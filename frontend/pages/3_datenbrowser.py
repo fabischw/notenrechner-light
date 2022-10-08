@@ -19,3 +19,5 @@ st.set_page_config(page_title="Explore",page_icon=icon_load)
 
 #sidebar
 st.sidebar.success("Funktion / Modul wählen")
+
+st.title("Datenbrowser")
