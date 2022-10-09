@@ -29,6 +29,27 @@ st.markdown("### Zeugnisdurchschnittsrechner")
 st.markdown(" -Diese Funktion rechnet den Zeugnisnotendurchschnitt basierend auf eingegebenen Noten aus")
 
 
+@st.cache(allow_output_mutation=True)
+def Nums():
+    return []
+
+nums = Nums()
+num = st.sidebar.number_input("Note hinzufügen",min_value=0,max_value=15,step=1)
+if st.sidebar.button("Note hinzufügen"):
+    nums.append(num)
+
+if st.sidebar.button("Letzte Note entfernen "):
+    if len(nums) > 0:
+        nums.pop(len(nums)-1)
+
+try:
+    inputs = nums
+    st.table(inputs)
+    st.write("Durchschnitt: ", sum(inputs)/len(inputs))
+except:
+    st.write("Gib Noten ein !")
+
+
 
 #Note für Zeugnis vorberechnen
 st.markdown("### Note für Zeugnis vorberechnen")
