@@ -45,9 +45,11 @@ if st.sidebar.button("Letzte Note entfernen "):
 try:
     inputs = nums
     st.table(inputs)
-    st.write("Durchschnitt: ", sum(inputs)/len(inputs))
+    st.write("Durchschnitt: ", sum(inputs)/len(inputs)," in Notensystem 1-6:",round(((17-(sum(inputs)/len(inputs)))/3),2))
 except:
-    st.write("Gib Noten ein !")
+    st.write("Gib Noten links in der Seitenleiste ein !")
+
+
 
 
 
