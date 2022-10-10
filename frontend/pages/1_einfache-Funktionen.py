@@ -1,7 +1,7 @@
 import streamlit as st
 import PIL
 import pathlib
-
+# TODO add comments for basicly everything
 
 here = pathlib.Path(__file__)
 resources_dir = here.parent.parent / 'resources'
@@ -82,6 +82,8 @@ with st.expander("Note vorberechnen"):
 
 #Prozent in Arbeit ausrechnen
 st.markdown("### Prozent in Arbeit ausrechnen")
+st.makrdown("- Dise Funktion erleichtert das Rechnen mit Prozenten und Punkten im Zusammenhang einer Kursarbeit")
+
 
 
 
