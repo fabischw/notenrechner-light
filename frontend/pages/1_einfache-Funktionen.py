@@ -6,7 +6,7 @@ import pandas as pd
 #functions
 # TODO export functions to different file
 
-
+#Funktion um Prozentzahl zu gegebener Note zu erhalten
 def getpercentage_for_note(note):
     if note == 15:
         return(95)
@@ -41,15 +41,40 @@ def getpercentage_for_note(note):
 
 
 
-
-
-
-
-
-
-
-
-
+#Funktion um Note füt gegebene Prozent zu erhalten		
+def getnotefrompercentage(percentage):
+    if percentage < 20:
+        return("00")
+    elif percentage >= 20 and percentage <27:
+        return("01")
+    elif percentage >= 27 and percentage <33:
+        return("02")
+    elif percentage >= 33 and percentage <40:
+            return("03")
+    elif percentage >= 40 and percentage <45:
+            return("04")
+    elif percentage >= 45 and percentage < 50:
+        return("05")
+    elif percentage >= 50 and percentage < 55:
+        return("06")
+    elif percentage >= 55 and percentage < 60:
+        return("07")
+    elif percentage >= 60 and percentage < 65:
+        return("08")
+    elif percentage >= 65 and percentage < 70:
+        return("09")
+    elif percentage >= 70 and percentage < 75:
+        return("10")
+    elif percentage >= 75 and percentage < 80:
+        return("11")
+    elif percentage >= 80 and percentage < 85:
+        return("12")
+    elif percentage >= 85 and percentage < 90:
+        return("13")
+    elif percentage >= 90 and percentage  < 95:
+        return("14")
+    elif percentage >= 95:
+        return("15")
 
 
 
@@ -115,6 +140,7 @@ with st.expander("Notendurchschnitt"):#streamlit expander for content
 st.markdown("### Note für Zeugnis vorberechnen [Oberstufe]")
 st.markdown("- Diese Funktion rechnet aus Kursarbeitsnoten und der Mitarbeitsnote die Zeugnisnote aus.")
 
+# TODO add comments
 with st.expander("Note vorberechnen"):#streamlit expander for content
 
     #number inputs
@@ -180,8 +206,7 @@ with st.expander("Prozentrechnung Kursarbeit"):
 
     if st.button("Eingaben anwenden"):
         prozentrechnung_arbeit(max_punktzahl)
-
-
+        st.write("Erreichte Note: ",getnotefrompercentage((erreicht_punktzahl/max_punktzahl)*100),"Erreichte Prozentzahl: ",round(erreicht_punktzahl/max_punktzahl*100,2))
 
 
 
