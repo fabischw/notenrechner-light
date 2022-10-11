@@ -1,4 +1,4 @@
 streamlit
-pillows
+pillow
 pandas
 pathlib
