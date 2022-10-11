@@ -1,6 +1,63 @@
 import streamlit as st
 import PIL
 import pathlib
+import pandas as pd
+
+#functions
+# TODO export functions to different file
+
+
+def getpercentage_for_note(note):
+    if note == 15:
+        return(95)
+    elif note == 14:
+        return(90)
+    elif note == 13:
+        return(85)
+    elif note == 12:
+        return(80)
+    elif note == 11:
+        return(75)
+    elif note == 10:
+        return(70)
+    elif note == 9:
+        return(65)
+    elif note == 8:
+        return(60)
+    elif note == 7:
+        return(55)
+    elif note == 6:
+        return(50)
+    elif note == 5:
+        return(45)
+    elif note == 4:
+        return(40)
+    elif note == 3:
+        return(33)
+    elif note == 2:
+        return(27)
+    elif note == 1:
+        return(20)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #set the page icon
@@ -46,7 +103,7 @@ with st.expander("Notendurchschnitt"):#streamlit expander for content
     try:
         inputs = nums
         st.table(inputs)#create the table containing the data
-        st.write("Durchschnitt: ", sum(inputs)/len(inputs)," in Notensystem 1-6:",round(((17-(sum(inputs)/len(inputs)))/3),2))
+        st.write("Durchschnitt: ", round(sum(inputs)/len(inputs),2)," in Notensystem 1-6:",round(((17-(sum(inputs)/len(inputs)))/3),2))
     except:
         st.write("Gib Noten links in der Seitenleiste ein !")#output info if no data to calculate average yet
 
@@ -67,7 +124,7 @@ with st.expander("Note vorberechnen"):#streamlit expander for content
     muendlich_1 = st.number_input("mündliche Mitarbeit 1",min_value=0,max_value=15,step=1)
     muendlich_2 = st.number_input("mündliche Mitarbeit 2 (optional) ",min_value=0,max_value=15,step=1)
 
-    gewichtung = st.slider("Prozent pro Kursarbeit (optional)", min_value=0,max_value=100, value=40)#iput slider
+    gewichtung = st.slider("Prozent pro Kursarbeit (optional)", min_value=0,max_value=50, value=40)#iput slider
 
     if muendlich_2 == None:#check if there was a 2nd 'mündliche Note' given, if no, set to same as first (for average calculation)
         muendlich_2 = muendlich_1
@@ -81,7 +138,49 @@ with st.expander("Note vorberechnen"):#streamlit expander for content
 
 #Prozent in Arbeit ausrechnen
 st.markdown("### Prozent in Arbeit ausrechnen")
-st.makrdown("- Dise Funktion erleichtert das Rechnen mit Prozenten und Punkten im Zusammenhang einer Kursarbeit")
+st.markdown("- Dise Funktion erleichtert das Rechnen mit Prozenten und Punkten im Zusammenhang einer Kursarbeit")
+
+with st.expander("Prozentrechnung Kursarbeit"):
+    st.markdown("Prozentwerte für Abitur / GOS")
+
+    data_dict = {
+        "Note: ": [],
+        "benötigte Punkte: ": []
+    }
+
+
+    def prozentrechnung_arbeit(gesamt):
+        noten = []
+        punkte = []
+        if gesamt != None or gesamt != 0.0:
+            for i in range(1,16):
+                x = round(((gesamt * getpercentage_for_note(i)) / 100),2)
+                if len(str(i)) == 1:
+                    i = str("0"+str(i))
+                noten.append(i)
+                punkte.append(x)
+            
+            data_dict["Note: "] = noten
+            data_dict["benötigte Punkte: "] = punkte
+
+
+
+        else:
+            st.table()
+            st.write("Gib die Maximalpunktzahl ein !")
+
+
+        st.table(pd.DataFrame.from_dict(data_dict))
+
+    max_punktzahl = st.number_input("Maximalpunktzahl",min_value=1.00)
+
+
+    erreicht_punktzahl = st.slider("erreichte Punktzahl",min_value=0.0,max_value=max_punktzahl,step=0.25)
+
+
+    if st.button("Eingaben anwenden"):
+        prozentrechnung_arbeit(max_punktzahl)
+
 
 
 

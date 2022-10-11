@@ -8,7 +8,8 @@
 - das Projekt ist in großen Teilen in englischer Sprache geschrieben, um den Austausch und das Beitragen zu vereinfachen
 - das frontend und alle für den Nutzer zugänglichen Funktionen sind in deutscher Sprache formuliert
 
-
+### NOTES / CREDIT:
+- using streamlit as the frontend framework
 
 # DIESES PROJEKT BEFINDET SICH NOCH IN DER ENTWICKLUNG !!!
 # THIS PROJECT IS STILL UNDER DEVELOPMENT
