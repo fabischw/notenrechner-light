@@ -206,10 +206,38 @@ with st.expander("Prozentrechnung Kursarbeit"):
 
     if st.button("Eingaben anwenden"):
         prozentrechnung_arbeit(max_punktzahl)
-        st.write("Erreichte Note: ",getnotefrompercentage((erreicht_punktzahl/max_punktzahl)*100),"Erreichte Prozentzahl: ",round(erreicht_punktzahl/max_punktzahl*100,2))
+        st.write("Erreichte Note: ",int(getnotefrompercentage((erreicht_punktzahl/max_punktzahl)*100)),"Erreichte Prozentzahl: ",round(erreicht_punktzahl/max_punktzahl*100,2))
 
 
+
+# TODO add comments
 
 #Punktezähler für Arbeit
 st.markdown("### Punktezähler für Arbeit")
+st.markdown("- Punkte links eingeben und einfach summieren lassen !")
+
+@st.cache(allow_output_mutation=True)
+def punkte_arr():
+    return []
+
+
+st.sidebar.markdown("# Punktezähler für Arbeit")
+
+
+pkt_arr = punkte_arr()
+pkt = st.sidebar.number_input("Punkte hinzufügen",min_value=0.0,max_value=100.0,step=0.25)#sidebar input für Note
+if st.sidebar.button("Punkte hinzufügen"):
+    pkt_arr.append(pkt)
+
+if st.sidebar.button("Letzte Punkte entfernen "):
+    if len(pkt_arr) > 0:#check if theres already elements befroe attempting to delete the last element
+        pkt_arr.pop(len(pkt_arr)-1)
+
+try:
+    inputs = pkt_arr
+    st.sidebar.write("Punkte gesamt: ",sum(pkt_arr))
+except:
+    st.sidebar.write("Gib Noten oben ein!")#output info if no data to calculate average yet
+
+
 
