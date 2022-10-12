@@ -156,7 +156,7 @@ with st.expander("Note vorberechnen"):#streamlit expander for content
         muendlich_2 = muendlich_1
 
 
-    zeugnis_note = round((kursarbeit1+kursarbeit2)*(gewichtung/100) + ((100-gewichtung)/100)*((muendlich_1+muendlich_2)/2),2)#calculation
+    zeugnis_note = round((kursarbeit1+kursarbeit2)*((gewichtung/100)) + ((100-gewichtung*2)/100)*((muendlich_1+muendlich_2)/2),2)#calculation
 
     st.write("Zeugnisnote:",zeugnis_note," in Notensystem 1-6:",round(((17-zeugnis_note)/3),2))#output results
 
