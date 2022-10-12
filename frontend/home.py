@@ -8,6 +8,7 @@ import pathlib
 
 
 here = pathlib.Path(__file__)
+here = here.parent
 
 icon_path_jmp1 = here / 'resources'
 icon_path_fnl = icon_path_jmp1 / 'page_icon.ico'
