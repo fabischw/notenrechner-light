@@ -19,8 +19,7 @@ try:
     icon_load = PIL.Image.open(icon_path_fnl)
     st.set_page_config(page_title="Notenrechner light home",page_icon=icon_load)
 except:
-    st.write(here)
-    st.write(icon_path_fnl)
+    st.write("unable to load icon.")
 
 
 
