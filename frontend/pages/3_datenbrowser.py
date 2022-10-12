@@ -18,3 +18,7 @@ st.set_page_config(page_title="explore",page_icon=icon_load)
 st.sidebar.success("Funktion / Modul wählen")
 
 st.title("Datenbrowser")
+
+
+st.markdown("### Diese Funktion ist nur bei persönlichem dashboard verfügbar.")
+st.markdown("### Link zu Anleitung für personalisierte Version: https://github.com/fabischw/notenrechner-light")

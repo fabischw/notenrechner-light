@@ -18,6 +18,6 @@ st.sidebar.success("Funktion / Modul wählen")
 
 
 st.markdown("## Database query")
-st.markdown("- Diese Funktion erlaubt es, Anfragen direkt an die Datenbank zu schreiben")
 
-db_request = st.text_input("Hier query eingeben [Oracle PL/SQL]: ")
+st.markdown("### Diese Funktion ist nur bei persönlichem dashboard verfügbar.")
+st.markdown("### Link zu Anleitung für personalisierte Version: https://github.com/fabischw/notenrechner-light")
