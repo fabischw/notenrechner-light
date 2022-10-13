@@ -2,9 +2,13 @@
 
 #installing dependencies
 import PIL
+from importlib_metadata import version
 import streamlit as st
 import frontend_funcs
 import pathlib
+
+__author__ = "fabischw"
+__version__ = ("DEV","0.001","early-testing")
 
 
 here = pathlib.Path(__file__)
@@ -28,6 +32,9 @@ st.sidebar.success("Funktion / Modul wählen")
 
 #title the page
 st.title("Notenrechner light") 
+
+st.markdown("Version",__version__[0]+__version__[1]+" ,",__version__[2])
+st.markdown("## Dieses Projekt befindet sich noch in der Entwicklungsphases")
 
 
 
