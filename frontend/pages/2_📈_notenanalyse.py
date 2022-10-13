@@ -18,3 +18,6 @@ st.sidebar.success("Funktion / Modul wählen")
 
 
 st.title("Notenanalyse")
+
+st.markdown("### Diese Funktion ist nur bei persönlichem dashboard verfügbar.")
+st.markdown("### Link zu Anleitung für personalisierte Version: https://github.com/fabischw/notenrechner-light")
