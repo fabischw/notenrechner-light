@@ -33,6 +33,8 @@ st.sidebar.success("Funktion / Modul wählen")
 #title the page
 st.title("Notenrechner light") 
 
+version_msg = "Version "+str(__version__[0])+" "+str(__version__[1])+" , "+str(__version__[2])
+
 st.markdown("Version",__version__[0]+__version__[1]+" ,",__version__[2])
 st.markdown("## Dieses Projekt befindet sich noch in der Entwicklungsphases")
 
