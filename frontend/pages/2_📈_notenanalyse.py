@@ -1,6 +1,7 @@
 import streamlit as st
 import PIL
 import pathlib
+import pandas as pd
 
 #set the page icon
 here = pathlib.Path(__file__)
@@ -18,6 +19,11 @@ st.sidebar.success("Funktion / Modul wählen")
 
 
 st.title("Notenanalyse")
+st.markdown("## Diese Funktion dient zur Analyse der Noten-Daten")
+
+st.markdown("### Hier 'Noten.csv' hochladen.")
+
+#noten_data = st.file_uploader("Notendaten hochladen",type="csv",help="Hier Noten.csv hinziehen, Wenn Sie dieses Programm noch nie genutzt haben, drücken Sie auf 'Datensatz erstellen'.")
 
 st.markdown("### Diese Funktion ist bei diesem dashboard nur in begrenztem Maße verfügbar.")
 st.markdown("### Link zu Anleitung für personalisierte Version: https://github.com/fabischw/notenrechner-light")

@@ -140,7 +140,7 @@ with st.expander("Notendurchschnitt"):#streamlit expander for content
 st.markdown("### Note für Zeugnis vorberechnen [Oberstufe]")
 st.markdown("- Diese Funktion rechnet aus Kursarbeitsnoten und der Mitarbeitsnote die Zeugnisnote aus.")
 
-# TODO add comments
+
 with st.expander("Note vorberechnen"):#streamlit expander for content
 
     #number inputs
@@ -166,19 +166,20 @@ with st.expander("Note vorberechnen"):#streamlit expander for content
 st.markdown("### Prozent in Arbeit ausrechnen")
 st.markdown("- Dise Funktion erleichtert das Rechnen mit Prozenten und Punkten im Zusammenhang einer Kursarbeit")
 
-with st.expander("Prozentrechnung Kursarbeit"):
+with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnung functionality
     st.markdown("Prozentwerte für Abitur / GOS")
 
+    #Dictionairy for the grades / required score
     data_dict = {
         "Note: ": [],
         "benötigte Punkte: ": []
     }
 
-
+    #calculate the required score for each possible grade based on the maximum score possible
     def prozentrechnung_arbeit(gesamt):
         noten = []
         punkte = []
-        if gesamt != None or gesamt != 0.0:
+        if gesamt != None or gesamt != 0.0 and gesamt > 0:#double checking if the inserted data makes sense
             for i in range(1,16):
                 x = round(((gesamt * getpercentage_for_note(i)) / 100),2)
                 if len(str(i)) == 1:
@@ -196,26 +197,29 @@ with st.expander("Prozentrechnung Kursarbeit"):
             st.write("Gib die Maximalpunktzahl ein !")
 
 
-        st.table(pd.DataFrame.from_dict(data_dict))
+        st.table(pd.DataFrame.from_dict(data_dict))#displaying the calculated data in a streamlit table componenet
 
-    max_punktzahl = st.number_input("Maximalpunktzahl",min_value=1.00)
-
-
-    erreicht_punktzahl = st.slider("erreichte Punktzahl",min_value=0.0,max_value=max_punktzahl,step=0.25)
+    max_punktzahl = st.number_input("Maximalpunktzahl",min_value=1.00)#input for the maximum score possible in an exam
 
 
-    if st.button("Eingaben anwenden"):
+    erreicht_punktzahl = st.slider("erreichte Punktzahl",min_value=0.0,max_value=max_punktzahl,step=0.25)#slider for the reached score
+
+
+    if st.button("Eingaben anwenden"):#button for applying the input 
         prozentrechnung_arbeit(max_punktzahl)
+        #displaying the grade the student gets with the points given
         st.write("Erreichte Note: ",int(getnotefrompercentage((erreicht_punktzahl/max_punktzahl)*100)),"Erreichte Prozentzahl: ",round(erreicht_punktzahl/max_punktzahl*100,2))
 
 
 
-# TODO add comments
+
 
 #Punktezähler für Arbeit
 st.markdown("### Punktezähler für Arbeit")
 st.markdown("- Punkte links eingeben und einfach summieren lassen !")
 
+
+#moving this function to the sidebar to make things easier
 @st.cache(allow_output_mutation=True)
 def punkte_arr():
     return []
@@ -226,10 +230,10 @@ st.sidebar.markdown("# Punktezähler für Arbeit")
 
 pkt_arr = punkte_arr()
 pkt = st.sidebar.number_input("Punkte hinzufügen",min_value=0.0,max_value=100.0,step=0.25)#sidebar input für Note
-if st.sidebar.button("Punkte hinzufügen"):
+if st.sidebar.button("Punkte hinzufügen"):#adding points to the array
     pkt_arr.append(pkt)
 
-if st.sidebar.button("Letzte Punkte entfernen "):
+if st.sidebar.button("Letzte Punkte entfernen "):#removing the last added element in the array
     if len(pkt_arr) > 0:#check if theres already elements befroe attempting to delete the last element
         pkt_arr.pop(len(pkt_arr)-1)
 
