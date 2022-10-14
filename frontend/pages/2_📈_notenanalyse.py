@@ -25,5 +25,3 @@ st.markdown("### Hier 'Noten.csv' hochladen.")
 
 #noten_data = st.file_uploader("Notendaten hochladen",type="csv",help="Hier Noten.csv hinziehen, Wenn Sie dieses Programm noch nie genutzt haben, drücken Sie auf 'Datensatz erstellen'.")
 
-st.markdown("### Diese Funktion ist bei diesem dashboard nur in begrenztem Maße verfügbar.")
-st.markdown("### Link zu Anleitung für personalisierte Version: https://github.com/fabischw/notenrechner-light")
