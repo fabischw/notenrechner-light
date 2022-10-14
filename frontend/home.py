@@ -38,5 +38,7 @@ version_msg = "Version "+str(__version__[0])+" "+str(__version__[1])+" , "+str(_
 
 st.markdown(version_msg)
 
+st.markdown("Diese webversion bietet nicht die volle Funktionalität des Notenrechners. Für die Vollversion (ebenfalls kostenlos), gehen Sie auf den Link zum Projekt(siehe unten)")
+
 st.markdown("## Dieses Projekt befindet sich noch in der Entwicklungsphase.")
 st.markdown("- Link zu Github Projekt: https://github.com/fabischw/notenrechner-light")
