@@ -20,5 +20,5 @@ st.sidebar.success("Funktion / Modul wählen")
 st.title("Datenbrowser")
 
 
-st.markdown("### Diese Funktion ist nur bei persönlichem dashboard verfügbar.")
+st.markdown("### Diese Funktion ist bei diesem dashboard nur in begrenztem Maße verfügbar.")
 st.markdown("### Link zu Anleitung für personalisierte Version: https://github.com/fabischw/notenrechner-light")
