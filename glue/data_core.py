@@ -26,7 +26,7 @@ import pandas as pd
 
 
 #noten table als object:
-class note():
+class noten():
 	def __init__(self,noten_id,score,ntype,kommentar,doclink,ndate,anz_year,kurs_id,cre_userid,cre_date,chg_userid,chg_date):
 		self.noten_id = noten_id
 		self.score = score
@@ -40,8 +40,9 @@ class note():
 		self.cre_date = cre_date
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
-		
-		
+
+	def __repr__(self):
+		return f"Note({self.noten_id},{self.score},{self.ntype},{self.kommentar},{self.doclink},{self.ndate},{self.anz_year},{self.kurs_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 #schueler table als object:
@@ -50,7 +51,7 @@ class schueler():
 		self.schueler_id = schueler_id
 		self.vorname = vorname
 		self.nachname = nachname
-		self.vorname2 = vorname
+		self.vorname2 = vorname2
 		self.email = email
 		self.an_schule_seit = an_schule_seit
 		self.schule = schule
@@ -63,6 +64,8 @@ class schueler():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 		
+	def __repr__(self):
+		return f"Schüler({self.schueler_id},{self.vorname},{self.nachname},{self.vorname2},{self.email},{self.an_schule_seit},{self.schule},{self.stufe},{self.adresse},{self.salter},{self.gebdatum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 #kurs table as object
@@ -77,6 +80,9 @@ class kurs():
 		self.cre_date = cre_date
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
+	
+	def __repr__(self):
+		return f"Kurs({self.kurs_id},{self.lehrer_id},{self.fach_id},{self.stundenzahl},{self.stufe},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 
@@ -90,6 +96,9 @@ class stunden():
 		self.cre_date = cre_date
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
+
+	def __repr__(self):
+		return f"Stunden({self.stunden_id},{self.sday},{self.scount},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 #lehrer table as object
@@ -110,6 +119,8 @@ class lehrer():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
+	def __repr__(self):
+		return f"Lehrer({self.vorname},{self.nachname},{self.vorname2},{self.email},{self.an_schule_seit},{self.schule},{self.origin},{self.adresse},{self.gebdatum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 #stunden table as object
@@ -123,6 +134,9 @@ class stunden():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
+	def __repr__(self):
+		return f"Stunde({self.stunden_id},{self.sday},{self.scount},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+
 
 
 #fach table as object
@@ -135,6 +149,8 @@ class fach():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
+	def __repr__(self):
+		return f"Fach({self.fach_id},{self.fname},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 #schulevents table as object
@@ -148,7 +164,8 @@ class schulevents():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
-
+	def __repr__(self):
+		return f"Schulevent({self.schulevents_id},{self.descript},{self.datum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 #arbeiten table as object
@@ -164,7 +181,8 @@ class arbeiten():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
-
+	def __repr__(self):
+		return f"Arbeit({self.arbeiten_id},{self.atype},{self.kurs_id},{self.datum},{self.acount},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 
@@ -180,6 +198,9 @@ class kalender():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
+	def __repr__(self):
+		return f"Kalender({self.kalender_id},{self.events_descript},{self.events_date},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+
 
 
 #kursschuleventsref table as object
@@ -193,7 +214,8 @@ class kursschuleventsref():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
-
+	def __repr__(self):
+		return f"Kursschuleventsref({self.kursschuleventsref_id},{self.kurs_id},{self.schulevents_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 
@@ -209,6 +231,8 @@ class kursstundenref():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
+	def __repr__(self):
+		return f"Kursstundenref({self.kursstundenref_id},{self.kurs_id},{self.stunden_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 
@@ -223,7 +247,8 @@ class kursschuelerref():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
-
+	def __repr__(self):
+		return f"Kursschuelerref({self.kursschuelerref_id},{self.kurs_id},{self.schueler_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 #lehrerfachref table as object
@@ -237,6 +262,8 @@ class lehrerfachref():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
+	def __repr__(self):
+		return f"Lehrerfachref({self.lehrerfachref_id},{self.lehrer_id},{self.fach_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 
@@ -251,7 +278,8 @@ class notenschuelerref():
 		self.chg_userid = chg_userid
 		self.chg_date = chg_date
 
-
+	def __repr__(self):
+		return f"Notenschuelerref({self.notenschuelerref_id},{self.noten_id},{self.schueler_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 
 
