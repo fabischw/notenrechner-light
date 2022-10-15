@@ -1,0 +1,22 @@
+{"settings": {
+    "datasource": {
+        "location": "local",
+        "type": "appdata/user_data",
+        "size": "full",
+        "db_link": false,
+        "db_type": {
+            "db_name": null,
+            "db_username": null,
+            "db_userpass": null,
+            "db_specific": []
+            }
+        },
+    "theme": "dark",
+    "version": {
+        "platform": "localhost",
+        "type": "DEV",
+        "version": 0.001,
+        "keyword": "early-testing",
+        "full": true 
+        }
+}}

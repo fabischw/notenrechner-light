@@ -7,6 +7,7 @@
 ### Hineweise:
 - das Projekt ist in großen Teilen in englischer Sprache geschrieben, um den Austausch und das Beitragen zu vereinfachen
 - das frontend und alle für den Nutzer zugänglichen Funktionen sind in deutscher Sprache formuliert
+- In diesem branch findet die Entwicklung der Konfiguration 1 statt.
 
 ### NOTES / CREDIT:
 - using streamlit as the frontend framework
@@ -17,3 +18,6 @@
 
 # USE AT YOUR OWN RISK
 # NUTZEN AUF EIGENE GEFAHR, ES WIRD KEINE GARANTIE FÜR DIE ANGABEN ÜBERNOMMEN
+
+
+# [Konfigurationen](konfigurationen.md)
