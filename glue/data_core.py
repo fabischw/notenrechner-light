@@ -44,6 +44,29 @@ class noten():
 	def __repr__(self):
 		return f"Note({self.noten_id},{self.score},{self.ntype},{self.kommentar},{self.doclink},{self.ndate},{self.anz_year},{self.kurs_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"noten_id": [self.noten_id],
+			"score":  [self.score],
+			"ntype": [self.ntype],
+			"kommentar": [self.kommentar],
+			"doclink": [self.doclink],
+			"ndate": [self.ndate],
+			"anz_year": [self.anz_year],
+			"kurs_id": [self.kurs_id],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
+
 
 #schueler table als object:
 class schueler():
