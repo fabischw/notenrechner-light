@@ -18,6 +18,7 @@ planned / in development:
 
 
 #importing modules
+from ast import Raise
 import pandas as pd
 
 
@@ -231,7 +232,7 @@ def load_data_from_csv(inpt_csv):
 
 	def appenddata(data):#append the read data to existing 
 		#appending the read data into the tables
-		# ! FIX REQUIRED
+		# ! This will throw an error if the functions are not called in correct order
 		if table_type == "noten":
 			noten.append(data)
 		elif table_type == "schueler":
@@ -252,14 +253,31 @@ def load_data_from_csv(inpt_csv):
 			kursstundenref.append(data)
 		elif table_type == "kursschuelerref":
 			kursschuelerref.append(data)
-		elif table_typeref == "lehrerfachref":
+		elif table_type == "lehrerfachref":
 			lehrerfachref.append(data)
 		elif table_type == "notenschuelerref":
 			notenschuelerref.append(data)
 
 
+	appenddata(table_type)#append the data onto the pandas DataFrame
 
 
 
+
+
+#main function
 def main():
-	init_pd_dataframes()
+	# ! Do not change the call order
+	init_pd_dataframes()#generates the initial pandas dataframes
+
+
+
+
+#custom error message when running the program with wrong entry file
+class FileExecutionError(Exception):
+	def __init__(self,message="This file is not supposed to run as the main file."):
+		self.message = message
+		super().__init__(self.message)
+if __name__ == "__main__":
+	raise  FileExecutionError
+
