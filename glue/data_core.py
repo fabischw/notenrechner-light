@@ -23,7 +23,7 @@ import pandas as pd
 
 #importing local modules
 import data_objcts
-from glue.data_objcts import kursstundenref
+
 
 
 
@@ -240,21 +240,21 @@ def load_data_from_csv(inpt_csv):
 			kurs.append(data)
 		elif table_type == "stunden":
 			stunden.append(data)
-		elif schulevents == "schulevents":
+		elif table_type == "schulevents":
 			schulevents.append(data)
-		elif arbeiten == "arbeiten":
+		elif table_type == "arbeiten":
 			arbeiten.append(data)
-		elif kalender == "kalender":
+		elif table_type == "kalender":
 			kalender.append(data)
-		elif kursschuleventsref == "kursschuleventsref":
+		elif table_type == "kursschuleventsref":
 			kursschuleventsref.append(data)
-		elif kursstundenref == "kursstundenref":
+		elif table_type == "kursstundenref":
 			kursstundenref.append(data)
-		elif kursschuelerref == "kursschuelerref":
+		elif table_type == "kursschuelerref":
 			kursschuelerref.append(data)
-		elif lehrerfachref == "lehrerfachref":
+		elif table_typeref == "lehrerfachref":
 			lehrerfachref.append(data)
-		elif notenschuelerref == "notenschuelerref":
+		elif table_type == "notenschuelerref":
 			notenschuelerref.append(data)
 
 
