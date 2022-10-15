@@ -61,7 +61,7 @@ class noten():
 			"chg_userid": [self.chg_userid],
 			"chg_date": [self.chg_date]
 		})
-
+		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
 		return(dtframe)
 
@@ -90,6 +90,32 @@ class schueler():
 	def __repr__(self):
 		return f"Schüler({self.schueler_id},{self.vorname},{self.nachname},{self.vorname2},{self.email},{self.an_schule_seit},{self.schule},{self.stufe},{self.adresse},{self.salter},{self.gebdatum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"schueler_id": [self.schueler_id],
+			"vorname": [self.vorname],
+			"nachname": [self.nachname],
+			"vorname2": [self.vorname2],
+			"email": [self.email],
+			"an_schule_seit": [self.an_schule_seit],
+			"schule": [self.schule],
+			"stufe": [self.stufe],
+			"adresse": [self.adresse],
+			"salter": [self.salter],
+			"gebdatum": [self.gebdatum],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
+
 
 #kurs table as object
 class kurs():
@@ -107,6 +133,25 @@ class kurs():
 	def __repr__(self):
 		return f"Kurs({self.kurs_id},{self.lehrer_id},{self.fach_id},{self.stundenzahl},{self.stufe},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"kurs_id": [self.kurs_id],
+			"lehrer_id": [self.lehrer_id],
+			"fach_id": [self.fach_id],
+			"stundenzahl": [self.stundenzahl],
+			"stufe": [self.stufe],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
 
 
 #stunden table as object
@@ -122,6 +167,25 @@ class stunden():
 
 	def __repr__(self):
 		return f"Stunden({self.stunden_id},{self.sday},{self.scount},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"stunden_id": [self.stunden_id],
+			"sday": [self.sday],
+			"scount": [self.scount],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
+
 
 
 #lehrer table as object
@@ -145,6 +209,32 @@ class lehrer():
 	def __repr__(self):
 		return f"Lehrer({self.vorname},{self.nachname},{self.vorname2},{self.email},{self.an_schule_seit},{self.schule},{self.origin},{self.adresse},{self.gebdatum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"vorname": [self.vorname],
+			"nachname": [self.nachname],
+			"vorname2": [self.vorname2],
+			"email": [self.email],
+			"kuerzel": [self.kuerzel],
+			"an_schule_seit": [self.an_schule_seit],
+			"schule": [self.schule],
+			"origin": [self.origin],
+			"adresse": [self.adresse],
+			"gebdatum": [self.gebdatum],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
+
+
 
 #stunden table as object
 class stunden():
@@ -159,6 +249,23 @@ class stunden():
 
 	def __repr__(self):
 		return f"Stunde({self.stunden_id},{self.sday},{self.scount},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"stunen_id": [self.stunden_id],
+			"sday": [self.sday],
+			"scount": [self.scount],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
 
 
 
@@ -175,6 +282,25 @@ class fach():
 	def __repr__(self):
 		return f"Fach({self.fach_id},{self.fname},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"fach_id": [self.fach_id],
+			"fname": [self.fname],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
+
+
+
 
 #schulevents table as object
 class schulevents():
@@ -189,6 +315,23 @@ class schulevents():
 
 	def __repr__(self):
 		return f"Schulevent({self.schulevents_id},{self.descript},{self.datum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"schulevents_id": [self.schulevents_id],
+			"descript": [self.descript],
+			"datum": [self.datum],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
 
 
 #arbeiten table as object
@@ -207,6 +350,24 @@ class arbeiten():
 	def __repr__(self):
 		return f"Arbeit({self.arbeiten_id},{self.atype},{self.kurs_id},{self.datum},{self.acount},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"arbeiten_id": [self.arbeiten_id],
+			"atype": [self.atype],
+			"kurs_id": [self.kurs_id],
+			"datum": [self.datum],
+			"acount": [self.acount],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
 
 
 
@@ -224,6 +385,24 @@ class kalender():
 	def __repr__(self):
 		return f"Kalender({self.kalender_id},{self.events_descript},{self.events_date},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"kalender_id": [self.kalender_id],
+			"events_descript": [self.events_descript],
+			"events_date": [self.events_date],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
+
 
 
 #kursschuleventsref table as object
@@ -239,6 +418,22 @@ class kursschuleventsref():
 
 	def __repr__(self):
 		return f"Kursschuleventsref({self.kursschuleventsref_id},{self.kurs_id},{self.schulevents_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"kursschuleventsref_id": [self.kursschuleventsref_id],
+			"kurs_id": [self.kurs_id],
+			"schulevents_id": [self.schulevents_id],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
 
 
 
@@ -257,6 +452,23 @@ class kursstundenref():
 	def __repr__(self):
 		return f"Kursstundenref({self.kursstundenref_id},{self.kurs_id},{self.stunden_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"kursstundenref_id": [self.kursstundenref_id],
+			"kurs_id": [self.kurs_id],
+			"stunden_id": [self.stunden_id],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
 
 
 #kursschuelerref table as object
@@ -273,6 +485,25 @@ class kursschuelerref():
 	def __repr__(self):
 		return f"Kursschuelerref({self.kursschuelerref_id},{self.kurs_id},{self.schueler_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"kursschuelerref_id": [self.kursschuelerref_id],
+			"kurs_id": [self.kurs_id],
+			"schueler_id": [self.schueler_id],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
+
+
 
 #lehrerfachref table as object
 class lehrerfachref():
@@ -287,6 +518,24 @@ class lehrerfachref():
 
 	def __repr__(self):
 		return f"Lehrerfachref({self.lehrerfachref_id},{self.lehrer_id},{self.fach_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"lehrerfachref_id": [self.lehrerfachref_id],
+			"lehrer_id": [self.lehrer_id],
+			"fach_id": [self.fach_id],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
 
 
 
@@ -304,7 +553,21 @@ class notenschuelerref():
 	def __repr__(self):
 		return f"Notenschuelerref({self.notenschuelerref_id},{self.noten_id},{self.schueler_id},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
-
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"notenschuelerref_id": [self.notenschuelerref_id],
+			"noten_id": [self.noten_id],
+			"schueler_id": [self.schueler_id],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
 
 
 
