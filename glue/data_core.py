@@ -223,4 +223,43 @@ def init_pd_dataframes():
 
 
 
+def load_data_from_csv(inpt_csv):
+	data = pd.read_csv(inpt_csv)
 
+	table_type = pd.inpt_csv[:inpt_csv.find(".")]#loading the table into a 
+
+
+	def appenddata(data):#append the read data to existing 
+		#appending the read data into the tables
+		# ! FIX REQUIRED
+		if table_type == "noten":
+			noten.append(data)
+		elif table_type == "schueler":
+			schueler.append(data)
+		elif table_type == "kurs":
+			kurs.append(data)
+		elif table_type == "stunden":
+			stunden.append(data)
+		elif schulevents == "schulevents":
+			schulevents.append(data)
+		elif arbeiten == "arbeiten":
+			arbeiten.append(data)
+		elif kalender == "kalender":
+			kalender.append(data)
+		elif kursschuleventsref == "kursschuleventsref":
+			kursschuleventsref.append(data)
+		elif kursstundenref == "kursstundenref":
+			kursstundenref.append(data)
+		elif kursschuelerref == "kursschuelerref":
+			kursschuelerref.append(data)
+		elif lehrerfachref == "lehrerfachref":
+			lehrerfachref.append(data)
+		elif notenschuelerref == "notenschuelerref":
+			notenschuelerref.append(data)
+
+
+
+
+
+def main():
+	init_pd_dataframes()
