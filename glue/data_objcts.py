@@ -1,3 +1,11 @@
+"""
+This file is for managing data rows / data frames
+"""
+
+import pandas as pd
+
+
+
 #interpreting DB tables as objects, EXCLUDING semi-sys tables
 
 
