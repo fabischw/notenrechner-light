@@ -19,10 +19,15 @@ planned / in development:
 
 #importing modules
 import pandas as pd
+import os
+import pathlib
 
 
 #importing local modules
 import data_objcts
+
+
+
 
 
 
@@ -268,6 +273,27 @@ def load_data_from_csv(inpt_csv):
 def main():
 	# ! Do not change the call order
 	init_pd_dataframes()#generates the initial pandas dataframes
+
+
+	"""
+	generate path to local csvs, check if they exist or not
+	if path does not exist -> app is running in konf 0
+	if it does exist -> user is running in konf 1 / 2
+
+	this can also be done reading from the settgs json but this technic is mroe reliable
+	"""
+
+	here = pathlib.Path(__file__)
+	user_data_path = here.parent / "appdata" / "user_data"
+
+	testcsv = user_data_path / "noten.csv"
+
+	if os.path.exists(testcsv):
+		konf = 1
+	else:
+		konf = 0
+
+
 
 
 
