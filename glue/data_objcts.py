@@ -10,7 +10,7 @@ import pandas as pd
 
 
 #noten table als object:
-class noten():
+class noten_obj():
 	def __init__(self,noten_id,score,ntype,kommentar,doclink,ndate,anz_year,kurs_id,cre_userid,cre_date,chg_userid,chg_date):
 		self.noten_id = noten_id
 		self.score = score
@@ -53,7 +53,7 @@ class noten():
 
 
 #schueler table als object:
-class schueler():
+class schueler_obj():
 	def __init__(self,schueler_id,vorname,nachname,vorname2,email,an_schule_seit,schule,stufe,adresse,salter,gebdatum,cre_userid,cre_date,chg_userid,chg_date):
 		self.schueler_id = schueler_id
 		self.vorname = vorname
@@ -102,7 +102,7 @@ class schueler():
 
 
 #kurs table as object
-class kurs():
+class kurs_obj():
 	def __init__(self,kurs_id,lehrer_id,fach_id,stundenzahl,stufe,cre_userid,cre_date,chg_userid,chg_date):
 		self.kurs_id = kurs_id
 		self.lehrer_id = lehrer_id
@@ -139,7 +139,7 @@ class kurs():
 
 
 #stunden table as object
-class stunden():
+class stunden_obj():
 	def __init__(self,stunden_id,sday,scount,cre_userid,cre_date,chg_userid,chg_date):
 		self.stunden_id = stunden_id
 		self.sday = sday
@@ -173,7 +173,7 @@ class stunden():
 
 
 #lehrer table as object
-class lehrer():
+class lehrer_obj():
 	def __init__(self,vorname,nachname,vorname2,email,kuerzel,an_schule_seit,schule,origin,adresse,gebdatum,cre_userid,cre_date,chg_userid,chg_date):
 		self.vorname = vorname
 		self.nachname = nachname
@@ -221,7 +221,7 @@ class lehrer():
 
 
 #stunden table as object
-class stunden():
+class stunden_obj():
 	def __init__(self,stunden_id,sday,scount,cre_userid,cre_date,chg_userid,chg_date):
 		self.stunden_id = stunden_id
 		self.sday = sday
@@ -254,7 +254,7 @@ class stunden():
 
 
 #fach table as object
-class fach():
+class fach_obj():
 	def __init__(self,fach_id,fname,cre_userid,cre_date,chg_userid,chg_date):
 		self.fach_id = fach_id
 		self.fname = fname
@@ -287,7 +287,7 @@ class fach():
 
 
 #schulevents table as object
-class schulevents():
+class schulevents_obj():
 	def __init__(self,schulevents_id,descript,datum,cre_userid,cre_date,chg_userid,chg_date):
 		self.schulevents_id = schulevents_id
 		self.descript = descript
@@ -319,7 +319,7 @@ class schulevents():
 
 
 #arbeiten table as object
-class arbeiten():
+class arbeiten_obj():
 	def __init__(self,arbeiten_id,atype,kurs_id,datum,acount,cre_userid,cre_date,chg_userid,chg_date):
 		self.arbeiten_id = arbeiten_id
 		self.atype = atype
@@ -356,7 +356,7 @@ class arbeiten():
 
 
 #kalender table as object
-class kalender():
+class kalender_obj():
 	def __init__(self,kalender_id,events_descript,events_date,cre_userid,cre_date,chg_userid,chg_date):
 		self.kalender_id = kalender_id
 		self.events_descript = events_descript
@@ -390,7 +390,7 @@ class kalender():
 
 
 #kursschuleventsref table as object
-class kursschuleventsref():
+class kursschuleventsref_obj():
 	def __init__(self,kursschuleventsref_id,kurs_id,schulevents_id,cre_userid,cre_date,chg_userid,chg_date):
 		self.kursschuleventsref_id = kursschuleventsref_id
 		self.kurs_id = kurs_id
@@ -423,7 +423,7 @@ class kursschuleventsref():
 
 
 #kursstundenref table as object
-class kursstundenref():
+class kursstundenref_obj():
 	def __init__(self,kursstundenref_id,kurs_id,stunden_id,cre_userid,cre_date,chg_userid,chg_date):
 		self.kursstundenref_id = kursstundenref_id
 		self.kurs_id = kurs_id
@@ -456,7 +456,7 @@ class kursstundenref():
 
 
 #kursschuelerref table as object
-class kursschuelerref():
+class kursschuelerref_obj():
 	def __init__(self,kursschuelerref_id,kurs_id,schueler_id,cre_userid,cre_date,chg_userid,chg_date):
 		self.kursschuelerref_id = kursschuelerref_id
 		self.kurs_id = kurs_id
@@ -490,7 +490,7 @@ class kursschuelerref():
 
 
 #lehrerfachref table as object
-class lehrerfachref():
+class lehrerfachref_obj():
 	def __init__(self,lehrerfachref_id,lehrer_id,fach_id,cre_userid,cre_date,chg_userid,chg_date):
 		self.lehrerfachref_id = lehrerfachref_id
 		self.lehrer_id = lehrer_id
@@ -524,7 +524,7 @@ class lehrerfachref():
 
 
 #notenschuelerref table as object
-class notenschuelerref():
+class notenschuelerref_obj():
 	def __init__(self,notenschuelerref_id,noten_id,schueler_id,cre_userid,cre_date,chg_userid,chg_date):
 		self.notenschuelerref_id = notenschuelerref_id
 		self.noten_id = noten_id
