@@ -21,16 +21,25 @@ planned / in development:
 import pandas as pd
 import os
 import pathlib
+import importlib.util
+import sys
+
+
+#paths
+here = pathlib.Path(__file__)
+glue_layer = here.parent
 
 
 #importing local modules
-import data_objcts
+
+data_objcts_spec=importlib.util.spec_from_file_location("data_objcts",glue_layer / "data_objcts.py")
+data_objcts = importlib.util.module_from_spec(data_objcts_spec)
+data_objcts_spec.loader.exec_module(data_objcts)
+sys.modules["data_objcts"] = data_objcts
 
 
-
-
-
-
+def testthings(): # ! TEST ANNOTATION, REMOVE FOR COMMIT
+	return("im a test")
 
 #function for creating the initial dataframes, data can later be appended
 def init_pd_dataframes():
