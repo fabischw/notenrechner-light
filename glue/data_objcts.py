@@ -553,3 +553,14 @@ class notenschuelerref_obj():
 		dtframe.append(object_pd_repr)
 		return(dtframe)
 
+
+
+
+
+#custom error message when running the program with wrong entry file
+class FileExecutionError(Exception):
+	def __init__(self,message="This file is not supposed to run as the main file."):
+		self.message = message
+		super().__init__(self.message)
+if __name__ == "__main__":
+	raise  FileExecutionError
