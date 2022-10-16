@@ -1,7 +1,22 @@
+#importing modules
 import streamlit as st
 import PIL
 import pathlib
 import pandas as pd
+import sys
+
+
+#importing local modules
+here = pathlib.Path(__file__)
+glue_layer = here.parent.parent.parent / "glue"
+
+
+data_core = glue_layer / "data_core.py"
+sys.path.append(data_core)
+import data_core # ! testing required !
+
+
+
 
 #set the page icon
 here = pathlib.Path(__file__)
@@ -21,7 +36,10 @@ st.sidebar.success("Funktion / Modul wählen")
 st.title("Notenanalyse")
 st.markdown("## Diese Funktion dient zur Analyse der Noten-Daten")
 
-st.markdown("### Hier 'Noten.csv' hochladen.")
+#starting up the datacore
 
-#noten_data = st.file_uploader("Notendaten hochladen",type="csv",help="Hier Noten.csv hinziehen, Wenn Sie dieses Programm noch nie genutzt haben, drücken Sie auf 'Datensatz erstellen'.")
+
+
+if st.button("Rohdaten ansehen"):
+    st.table()
 
