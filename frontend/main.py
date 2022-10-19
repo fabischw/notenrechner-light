@@ -73,6 +73,63 @@ datasource_db_type_specific = datasource_db_type_info.get("db_specific")
 
 
 
+# getting the file paths and datasource for current configuration
+
+
+
+appdata_user_data = appdata / "user_data"#path to appdata/user_data
+
+# list of the files that make up all the data in the 'Konfiguration 0'
+konfig_0_files = [
+	"arbeiten.csv",
+	"kalender.csv",
+	"kurs.csv",
+	"kursschuelerref.csv",
+	"kursschuleventsref.csv",
+	"kursstundenref.csv",
+	"lehrerfachref.csv",
+	"noten.csv",
+	"notenschuelerref.csv",
+	"schueler.csv",
+	"schulevents.csv",
+	"stunden.csv"
+]
+
+
+# list of the files that make up all the data in the 'Konfiguration 1'
+konfig_1_files = ["noten_simplified.csv"]
+
+
+
+# ! setting these variables as global because they are required everywhere
+# * I know it's bad practice to do this but I want these variables to easily be accessible everywhere without parsing them
+global notenrechner_data_config
+notenrechner_data_cofig = None
+global notenrechner_datasource_arr
+notenrechner_datasource_arr = None
+global notenrechner_data_path
+notenrechner_data_path = None
+
+
+#defining files to access
+if datasource_location == "local":#local datasource
+	if datasource_type == "appdata/user_data":#not a DB datasource
+		if datasource_size == "full":#full konfig
+			notenrechner_data_cofig = 0
+			notenrechner_datasource_arr = konfig_0_files
+			notenrechner_data_path = appdata_user_data
+		elif datasource_size == "simplified":#simplified konfig
+			notenrechner_data_cofig = 1
+			notenrechner_datasource_arr = konfig_1_files
+			notenrechner_data_path = appdata_user_data
+		else:
+			st.error("an notenrechner error occured: datasource_size is not valid")
+	else:
+		st.error("This is not configured yet: datasource_type is not valid.")# ? This error is only temporary and will get removed as soon as this is accessible
+
+else:
+	st.error("This is not configured yet: datasource_location is not valid.")# ? This error is only temporary and will get removed as soon as this is accessible
+
 
 
 
