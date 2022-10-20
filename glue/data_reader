@@ -1,0 +1,90 @@
+# this module provides the functionality to read / write csv and json files
+# this module only serves as an 'API' and does the checking if the data given makes sense
+
+
+#importing modules
+import pandas as pd
+import os
+import pathlib
+import importlib.util
+import sys
+import json
+
+
+#paths
+here = pathlib.Path(__file__)
+glue_layer = here.parent
+
+
+#importing local modules
+
+
+
+# ! requires testing
+
+
+
+
+
+# smaller functions
+def is_dangerous(data_inpt):
+    with open("list_of_naughty_strings.txt","r") as sec_list:
+        line = sec_list.readline()
+        if data_inpt.find(line) > -1:
+            return(True)
+    return(False)
+
+
+def basic_type_check(data,sec_priority):
+    if type(data) == int:
+        return("input is safe")
+    elif type(data) == str:
+        #if priority is 1, check for string in the list of naughty strings
+        if sec_priority == 1:
+            dangerous = is_dangerous(data)
+            if dangerous:
+                return("input is potentially dangerous")
+            else:
+                return("input is safe")
+
+
+# function to validate data (general validation)
+def check_data(data,sec_priority):
+    if type(data) == int or type(data) == str:
+        finding = basic_type_check(data,sec_priority)
+        return(finding)
+
+
+    elif type(data) == list:
+        finding = 0
+        for elements in list:
+            finding_current = basic_type_check
+            if finding_current == "input is potentially dangerous":
+                finding +=1
+        if finding == 0:
+            return("inpt is safe")
+        elif finding > 0:
+            return(f"there are {finding} problems in your data")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#custom error message when running the program with wrong entry file
+class FileExecutionError(Exception):
+	def __init__(self,message="This file is not supposed to run as the main file."):
+		self.message = message
+		super().__init__(self.message)
+if __name__ == "__main__":
+	raise  FileExecutionError

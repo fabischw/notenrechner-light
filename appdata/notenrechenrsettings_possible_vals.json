@@ -1,0 +1,25 @@
+{"settings": {
+    "datasource": {
+        "location": ["local","cloud"],
+        "type": ["appdata/user_data","DATABASE"],
+        "size": ["full","simplified","full+"],
+        "db_link": [false,true],
+        "db_type": {
+            "db_name": [null,[]],
+            "db_username": [null,[]],
+            "db_userpass": [null,[]],
+            "db_specific": []
+            }
+        },
+    "version": {
+        "platform": ["localhost","deployed"],
+        "type": ["DEV","PROD-ALPHA","PROD-BETA","PROD-STABLE"],
+        "version": [0.001,[]],
+        "keyword": ["early-testing",[]],
+        "full": [true,false] 
+        },
+    "settings": {
+        "inpt_prefered": ["number","slider"],
+        "theme": ["dark"]
+    }
+}}

@@ -37,7 +37,7 @@ data_core_spec.loader.exec_module(data_core)
 sys.modules["data_core"] = data_core
 
 
-
+# ** This read operation is not performed by the data_reader since it's the main read required for the app, data_reader will perform any requests that repeat
 
 #extracting the settings from settings.json
 settings = json.load(settings_path)

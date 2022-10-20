@@ -38,8 +38,7 @@ data_objcts_spec.loader.exec_module(data_objcts)
 sys.modules["data_objcts"] = data_objcts
 
 
-def testthings(): # ! TEST ANNOTATION, REMOVE FOR COMMIT
-	return("im a test")
+
 
 #function for creating the initial dataframes, data can later be appended
 def init_pd_dataframes():
