@@ -130,13 +130,16 @@ if datasource_location == "local":#local datasource
 else:
 	st.error("This is not configured yet: datasource_location is not valid.")# ? This error is only temporary and will get removed as soon as this is accessible
 
+# ! Maybe change the code above to something like this:
+# if not datasource_location == "local":
+# 	st.error("This is not configured yet: datasource_location is not valid.")
+# else if not ...
 
 
 
 
 
-
-
+# ! D.R.Y - Don't Repeat Yourself - Define the exception in a seperate file if you use it all over the project.
 #custom error message when running the program with wrong entry file
 class FileExecutionError(Exception):
 	def __init__(self,message="This file is not supposed to run as the main file."):
