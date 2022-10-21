@@ -13,10 +13,6 @@ planned / in development:
 - local oracle DB (21c XE, notenrechner layout)
 - csv drag n' drop
 """
-
-
-
-
 #importing modules
 import pandas as pd
 import os
@@ -31,7 +27,6 @@ glue_layer = here.parent
 
 
 #importing local modules
-
 data_objcts_spec=importlib.util.spec_from_file_location("data_objcts",glue_layer / "data_objcts.py")
 data_objcts = importlib.util.module_from_spec(data_objcts_spec)
 data_objcts_spec.loader.exec_module(data_objcts)
@@ -241,7 +236,7 @@ def load_data_from_csv(inpt_csv):
 
 	table_type = pd.inpt_csv[:inpt_csv.find(".")]#loading the table into a 
 
-
+	# ! Change if-else to a dictionary
 	def appenddata(data):#append the read data to existing 
 		#appending the read data into the tables
 		# ! This will throw an error if the functions are not called in correct order
@@ -278,11 +273,9 @@ def load_data_from_csv(inpt_csv):
 
 
 #main function
+
+# ! Don't call this main if you don't run it
 def main():
-	# ! Do not change the call order
-	init_pd_dataframes()#generates the initial pandas dataframes
-
-
 	"""
 	generate path to local csvs, check if they exist or not
 	if path does not exist -> app is running in konf 0
@@ -290,12 +283,16 @@ def main():
 
 	this can also be done reading from the settgs json but this technic is mroe reliable
 	"""
-
+	# ! Do not change the call order
+	init_pd_dataframes()  # generates the initial pandas dataframes
+	
+	# ! Duplicate code from top of file
 	here = pathlib.Path(__file__)
 	user_data_path = here.parent / "appdata" / "user_data"
 
 	testcsv = user_data_path / "noten.csv"
-
+	
+	# ! Maybe use an enum class for configuration names.
 	if os.path.exists(testcsv):
 		konf = 1
 	else:
@@ -307,10 +304,13 @@ def main():
 
 
 #custom error message when running the program with wrong entry file
+
+# ! You can delete the body and replace it with `pass`
 class FileExecutionError(Exception):
 	def __init__(self,message="This file is not supposed to run as the main file."):
 		self.message = message
 		super().__init__(self.message)
+
 if __name__ == "__main__":
 	raise  FileExecutionError
 
