@@ -6,43 +6,30 @@ import pandas as pd
 #functions
 # TODO export functions to different file
 
-# ! Change to a switch statement.
+
 #Funktion um Prozentzahl zu gegebener Note zu erhalten
 def getpercentage_for_note(note):
-    if note == 15:
-        return(95)
-    elif note == 14:
-        return(90)
-    elif note == 13:
-        return(85)
-    elif note == 12:
-        return(80)
-    elif note == 11:
-        return(75)
-    elif note == 10:
-        return(70)
-    elif note == 9:
-        return(65)
-    elif note == 8:
-        return(60)
-    elif note == 7:
-        return(55)
-    elif note == 6:
-        return(50)
-    elif note == 5:
-        return(45)
-    elif note == 4:
-        return(40)
-    elif note == 3:
-        return(33)
-    elif note == 2:
-        return(27)
-    elif note == 1:
-        return(20)
+    match note:
+        case 15: return(95)
+        case 14: return(90)
+        case 13: return(85)
+        case 12: return(80)
+        case 11: return(75)
+        case 10: return(70)
+        case 9: return(65)
+        case 8: return(60)
+        case 7: return(55)
+        case 6: return(50)
+        case 5: return(45)
+        case 4: return(40)
+        case 3: return(33)
+        case 2: return(27)
+        case 1: return(20)
+
 
 
 # ! Change to a switch statement - Also, the name should be get_note_from_percentage(percentage).
-#Funktion um Note füt gegebene Prozent zu erhalten		
+# function to get the grade based on the percentage a student got		
 def getnotefrompercentage(percentage):
     if percentage < 20:
         return("00")
@@ -111,14 +98,13 @@ st.markdown("- Diese Funktion rechnet den Zeugnisnotendurchschnitt basierend auf
 st.sidebar.markdown("## Notendurchschnitt")
 
 @st.cache(allow_output_mutation=True)
-#get empty array
-# ! Is this function necessary?
+# ** this function has to be here for the cache loading to work
 def Nums():
     return []
 
 with st.expander("Notendurchschnitt"):#streamlit expander for content
 
-    nums = Nums()
+    nums = Nums() # ** should be fine I hope, check commit for extra details
     num = st.sidebar.number_input("Note hinzufügen",min_value=0,max_value=15,step=1)#sidebar input für Note
     if st.sidebar.button("Note hinzufügen"):
         nums.append(num)
