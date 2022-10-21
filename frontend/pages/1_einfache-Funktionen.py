@@ -6,6 +6,7 @@ import pandas as pd
 #functions
 # TODO export functions to different file
 
+# ! Change to a switch statement.
 #Funktion um Prozentzahl zu gegebener Note zu erhalten
 def getpercentage_for_note(note):
     if note == 15:
@@ -40,7 +41,7 @@ def getpercentage_for_note(note):
         return(20)
 
 
-
+# ! Change to a switch statement - Also, the name should be get_note_from_percentage(percentage).
 #Funktion um Note füt gegebene Prozent zu erhalten		
 def getnotefrompercentage(percentage):
     if percentage < 20:
@@ -111,6 +112,7 @@ st.sidebar.markdown("## Notendurchschnitt")
 
 @st.cache(allow_output_mutation=True)
 #get empty array
+# ! Is this function necessary?
 def Nums():
     return []
 
@@ -129,6 +131,7 @@ with st.expander("Notendurchschnitt"):#streamlit expander for content
         inputs = nums
         st.table(inputs)#create the table containing the data
         st.write("Durchschnitt: ", round(sum(inputs)/len(inputs),2)," in Notensystem 1-6:",round(((17-(sum(inputs)/len(inputs)))/3),2))
+    # ! Specify the possible exception - ZeroDivisionError
     except:
         st.write("Gib Noten links in der Seitenleiste ein !")#output info if no data to calculate average yet
 
@@ -179,6 +182,7 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
     def prozentrechnung_arbeit(gesamt):
         noten = []
         punkte = []
+        # ! False = 0 = None = 0.0 = "" = [] - You can just do `if gesamt:`
         if gesamt != None or gesamt != 0.0 and gesamt > 0:#double checking if the inserted data makes sense
             for i in range(1,16):
                 x = round(((gesamt * getpercentage_for_note(i)) / 100),2)
@@ -186,7 +190,9 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
                     i = str("0"+str(i))
                 noten.append(i)
                 punkte.append(x)
-            
+            # x = data_dict['dosent_exist'] - Creates KeyError
+            # x = data_dict.get("test_") - x will be equal to None
+            # ! Remove the colon from the names
             data_dict["Note: "] = noten
             data_dict["benötigte Punkte: "] = punkte
 
@@ -218,7 +224,7 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
 st.markdown("### Punktezähler für Arbeit")
 st.markdown("- Punkte links eingeben und einfach summieren lassen !")
 
-
+# ! D.R.Y
 #moving this function to the sidebar to make things easier
 @st.cache(allow_output_mutation=True)
 def punkte_arr():
@@ -240,6 +246,7 @@ if st.sidebar.button("Letzte Punkte entfernen "):#removing the last added elemen
 try:
     inputs = pkt_arr
     st.sidebar.write("Punkte gesamt: ",sum(pkt_arr))
+# ! Specify exception
 except:
     st.sidebar.write("Gib Noten oben ein!")#output info if no data to calculate average yet
 
