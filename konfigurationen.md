@@ -2,21 +2,36 @@
 - Diese Datei bietet einen Überblick, über die Notenrechner Konfigurationen
 
 
-| Kennzahl | Name           | host                                         | location | datasource    | csv type | status  |update/refernce |
-|----------|----------------|----------------------------------------------|----------|---------------|----------|---------|----------------|
-| 0        | streamlit      | [web](https://notenrechner.streamlitapp.com) | -        | csv Datei     | minimal  | HALTED  |                |
-| 1        | local csv      | localhost                                    | local    | csv Datei     | medium   | DEV     |                |
-| 2        | local oracle   | localhost                                    | local    | ORA DB 21c XE | -        | PLANING |                |
-| 3        | local csv full | localhost                                    | local    | csv Datei     | full     | CONCEPT |                |
+| setting_number | setting_name         | setting_description                                | location | type              | size       | additional                      |
+|----------------|----------------------|----------------------------------------------------|----------|-------------------|------------|---------------------------------|
+| 0              | full local csv       | uses local csv according to the database scheme    | local    | appdata/user_data | full       | all except noten_simplified.csv |
+| 1              | simplified local csv | uses a single, simplified csv for grades only      | local    | appdata/user_data | simplified | noten_simplified.csv            |
+| 2              | full local DB        | uses local oracle db with the full database scheme | local    | --DATABASE--      | full+      | ORA 21c XE                      |
+
+
+
+
+| Kennzahl | Name           | host                                         | location | datasource    | csv type | status                  |update/refernce                                          |
+|----------|----------------|----------------------------------------------|----------|---------------|----------|-------------------------|---------------------------------------------------------|
+| web      | streamlit      | [web](https://notenrechner.streamlitapp.com) | -        | csv Datei     | minimal  | TEST-DEPLOYED / HALTED  | [online version](https://notenrechner.anvilapp.com)     |
+| 0        | local csv full | localhost                                    | local    | csv Datei     | full     | DEV                     |                                                         |
+| 1        | local csv      | localhost                                    | local    | csv Datei     | medium   | DEV                     |                                                         |
+| 2        | local oracle   | localhost                                    | local    | ORA DB 21c XE | -        | PLANING                 | [repo](https://github.com/fabischw/notenrechner)        |
+
 
 
 # Erklärung der Konfigurationen
 
-## Konfiguration 0:
+## Konfiguration web:
 - Diese Konfiguration ist für jeden frei von jedglichem Aufwand bequem über das Internet abrufbar
 - Die Funktionalität beschränkt sich auf die Nutzung simpler Funktionen
 - Für die Notenanalyse kommt nur das lesen von csv Dateien, welche der Nutzer selbst generieren und auf seinem Gerät speichern muss, in Frage
 - Die Entwicklung dieser Konfiguration wurde angehalten
+
+
+## Konfiguration 0:
+- Diese Version nutzt eine vereinfachte lokale csv Datei, um die Noten zu speichern und ähnelt der web Konfiguration
+- Diese Konfiguration befindet sich in der aktiven Entwicklung
 
 
 ## Konfiguration 1:
@@ -32,5 +47,4 @@
 - Die Konfiguration befindet sich in der Planungsphase
 
 
-# Konfiguration 3:
-- Diese Konfiguration ist bisher nur ein Konzept
+
