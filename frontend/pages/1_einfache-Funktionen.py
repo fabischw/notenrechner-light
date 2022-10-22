@@ -117,8 +117,7 @@ with st.expander("Notendurchschnitt"):#streamlit expander for content
         inputs = nums
         st.table(inputs)#create the table containing the data
         st.write("Durchschnitt: ", round(sum(inputs)/len(inputs),2)," in Notensystem 1-6:",round(((17-(sum(inputs)/len(inputs)))/3),2))
-    # ! Specify the possible exception - ZeroDivisionError
-    except:
+    except:# ** render the Info to input data in case no data is present yet
         st.write("Gib Noten links in der Seitenleiste ein !")#output info if no data to calculate average yet
 
 
@@ -168,8 +167,7 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
     def prozentrechnung_arbeit(gesamt):
         noten = []
         punkte = []
-        # ! False = 0 = None = 0.0 = "" = [] - You can just do `if gesamt:`
-        if gesamt != None or gesamt != 0.0 and gesamt > 0:#double checking if the inserted data makes sense
+        if gesamt:#double checking if the inserted data makes sense
             for i in range(1,16):
                 x = round(((gesamt * getpercentage_for_note(i)) / 100),2)
                 if len(str(i)) == 1:
@@ -210,8 +208,9 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
 st.markdown("### Punktezähler für Arbeit")
 st.markdown("- Punkte links eingeben und einfach summieren lassen !")
 
-# ! D.R.Y
+
 #moving this function to the sidebar to make things easier
+# **the code below is required because of the way streamlit works with caching
 @st.cache(allow_output_mutation=True)
 def punkte_arr():
     return []
@@ -232,8 +231,7 @@ if st.sidebar.button("Letzte Punkte entfernen "):#removing the last added elemen
 try:
     inputs = pkt_arr
     st.sidebar.write("Punkte gesamt: ",sum(pkt_arr))
-# ! Specify exception
-except:
+except:# ** render the Info to input data in case no data is present yet
     st.sidebar.write("Gib Noten oben ein!")#output info if no data to calculate average yet
 
 

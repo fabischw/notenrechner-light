@@ -1,5 +1,7 @@
 """
 This file is for managing data rows / data frames
+
+the idea is to interpret data rows in the tables as objects until they're inserted into the pandas dataframes
 """
 
 import pandas as pd

@@ -139,7 +139,7 @@ else:
 
 
 
-# ! D.R.Y - Don't Repeat Yourself - Define the exception in a seperate file if you use it all over the project.
+# ! export exception to different file and test
 #custom error message when running the program with wrong entry file
 class FileExecutionError(Exception):
 	def __init__(self,message="This file is not supposed to run as the main file."):

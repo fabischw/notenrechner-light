@@ -10,19 +10,19 @@ import pathlib
 __author__ = "fabischw"
 __version__ = ("DEV","0.001","early-testing")
 
-# !  Make this a one-liner - pathlib.Path(__file__).parent. Maybe change the name to something more meaningful
-here = pathlib.Path(__file__)
-here = here.parent
+# ? reminder: maybe change variable name in future
+here = pathlib.Path(__file__).parent
 
 icon_path_jmp1 = here / 'resources'
 icon_path_fnl = icon_path_jmp1 / 'page_icon.ico'
 
 
+# loading page name and icon, since this isn't that important, let site continue to render if the build fails
 try:
     #set the page icon and title
     icon_load = PIL.Image.open(icon_path_fnl)
     st.set_page_config(page_title="Notenrechner light home",page_icon=icon_load)
-except:  # ! Specify the type of the exception.
+except:
     st.write("unable to load icon.")
 
 

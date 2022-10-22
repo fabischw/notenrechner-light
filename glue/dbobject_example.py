@@ -1,3 +1,10 @@
+'''
+This file includes an example of a possible alternative to using objects in the data_objcts file
+
+This version uses dictionairies instead of objects and attributes to store the data
+'''
+
+
 class DbObject():
 	def __init__(self, data):
 		self.data = data
