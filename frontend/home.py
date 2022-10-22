@@ -10,14 +10,14 @@ import pathlib
 __author__ = "fabischw"
 __version__ = ("DEV","0.001","early-testing")
 
-
-here = pathlib.Path(__file__)
-here = here.parent
+# ? reminder: maybe change variable name in future
+here = pathlib.Path(__file__).parent
 
 icon_path_jmp1 = here / 'resources'
 icon_path_fnl = icon_path_jmp1 / 'page_icon.ico'
 
 
+# loading page name and icon, since this isn't that important, let site continue to render if the build fails
 try:
     #set the page icon and title
     icon_load = PIL.Image.open(icon_path_fnl)
@@ -37,8 +37,7 @@ version_msg = "Version "+str(__version__[0])+" "+str(__version__[1])+" , "+str(_
 
 
 st.markdown(version_msg)
-
+# ! Maybe move markdown to different .md files and load it.
 st.markdown("Diese webversion bietet nicht die volle Funktionalität des Notenrechners. Für die Vollversion (ebenfalls kostenlos), gehen Sie auf den Link zum Projekt(siehe unten)")
-
 st.markdown("## Dieses Projekt befindet sich noch in der Entwicklungsphase.")
 st.markdown("- Link zu Github Projekt: https://github.com/fabischw/notenrechner-light")

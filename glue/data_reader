@@ -23,9 +23,6 @@ glue_layer = here.parent
 # ! requires testing
 
 
-
-
-
 # smaller functions
 def is_dangerous(data_inpt):
     with open("list_of_naughty_strings.txt","r") as sec_list:
