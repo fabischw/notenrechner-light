@@ -42,12 +42,14 @@ st.set_page_config(page_title="Einstellungen",page_icon=icon_load)
 #sidebar
 st.sidebar.success("Funktion / Modul wählen")
 
+number_inpt_choice = None
 
 # ! not functional yet
 # function to update the settings
 def update_settings(type):
+    st.markdown("does this work ?")# ! debug statement
     if type == "number_input":#updating the number input
-        if number_inpt_choice != st.session_state["inpt_prefered"]:
+        if number_inpt_choice != st.session_state["inpt_prefered"] and number_inpt_choice != None:
             st.session_state["inpt_prefered"] = number_inpt_choice
 
             #change the setting and save it again
@@ -60,6 +62,8 @@ def update_settings(type):
 
             with open(settings_path, "w") as file:
                 file.write(json.dumps(setting_data))
+
+
 
 
 
@@ -79,7 +83,7 @@ elif st.session_state.get("inpt_prefered") == "inpt_field":
     current_choice = 0
 else:
     choose_prefered_inpt_setting = False
-    st.markdown(st.session_state.inpt_prefered)
+    st.markdown("an error occured")# ! debug statement
 
 
 if choose_prefered_inpt_setting:
