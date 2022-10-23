@@ -4,10 +4,9 @@ import pathlib
 import pandas as pd
 
 #functions
-# TODO export functions to different file
 
 
-#Funktion um Prozentzahl zu gegebener Note zu erhalten
+# function to calculate the percentage required for a specific grade
 def getpercentage_for_note(note):
     match note:
         case 15: return(95)
@@ -105,7 +104,11 @@ def Nums():
 with st.expander("Notendurchschnitt"):#streamlit expander for content
 
     nums = Nums() # ** should be fine I hope, check commit for extra details
-    num = st.sidebar.number_input("Note hinzufügen",min_value=0,max_value=15,step=1)#sidebar input für Note
+    #slider / number inout depending on the current state
+    if st.session_state["inpt_prefered"] == "slider":
+        num = st.sidebar.slider("Note hinzufügen",min_value=0,max_value=15,step=1)
+    elif st.session_state["inpt_prefered"] == "Eingabefeld":
+        num = st.sidebar.number_input("Note hinzufügen",min_value=0,max_value=15,step=1)
     if st.sidebar.button("Note hinzufügen"):
         nums.append(num)
 
@@ -131,14 +134,26 @@ st.markdown("- Diese Funktion rechnet aus Kursarbeitsnoten und der Mitarbeitsnot
 
 with st.expander("Note vorberechnen"):#streamlit expander for content
 
-    #number inputs
-    kursarbeit1 = st.number_input("1. Kursarbeit",min_value=0,max_value=15,step=1)
-    kursarbeit2 = st.number_input("2. Kursarbeit",min_value=0,max_value=15,step=1)
+    #data input
 
-    muendlich_1 = st.number_input("mündliche Mitarbeit 1",min_value=0,max_value=15,step=1)
-    muendlich_2 = st.number_input("mündliche Mitarbeit 2 (optional) ",min_value=0,max_value=15,step=1)
+    if st.session_state["inpt_prefered"] == "Eingabefeld":
+        kursarbeit1 = st.number_input("1. Kursarbeit",min_value=0,max_value=15,step=1)
+        kursarbeit2 = st.number_input("2. Kursarbeit",min_value=0,max_value=15,step=1)
 
-    gewichtung = st.slider("Prozent pro Kursarbeit (optional)", min_value=0,max_value=50, value=40)#iput slider
+        muendlich_1 = st.number_input("mündliche Mitarbeit 1",min_value=0,max_value=15,step=1)
+        muendlich_2 = st.number_input("mündliche Mitarbeit 2 (optional) ",min_value=0,max_value=15,step=1)
+
+        gewichtung = st.number_input("Prozent pro Kursarbeit (optional)", min_value=0,max_value=50,value=40,setp=0.5)
+
+    elif st.session_state["inpt_prefered"] == "slider":
+
+        kursarbeit1 = st.slider("1. Kursarbeit",min_value=0,max_value=15,step=1)
+        kursarbeit2 = st.slider("2. Kursarbeit",min_value=0,max_value=15,step=1)
+
+        muendlich_1 = st.slider("mündliche Mitarbeit 1",min_value=0,max_value=15,step=1)
+        muendlich_2 = st.slider("mündliche Mitarbeit 2 (optional) ",min_value=0,max_value=15,step=1)
+
+        gewichtung = st.slider("Prozent pro Kursarbeit (optional)", min_value=0,max_value=50, value=40)
 
     if muendlich_2 == None:#check if there was a 2nd 'mündliche Note' given, if no, set to same as first (for average calculation)
         muendlich_2 = muendlich_1
@@ -150,7 +165,7 @@ with st.expander("Note vorberechnen"):#streamlit expander for content
 
 
 
-#Prozent in Arbeit ausrechnen
+# calculation for percent achieved in exam 
 st.markdown("### Prozent in Arbeit ausrechnen")
 st.markdown("- Dise Funktion erleichtert das Rechnen mit Prozenten und Punkten im Zusammenhang einer Kursarbeit")
 
@@ -189,10 +204,14 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
 
         st.table(pd.DataFrame.from_dict(data_dict))#displaying the calculated data in a streamlit table componenet
 
-    max_punktzahl = st.number_input("Maximalpunktzahl",min_value=1.00)#input for the maximum score possible in an exam
+    if st.session_state["inpt_prefered"] == "Eingabefeld":
+        max_punktzahl = st.number_input("Maximalpunktzahl",min_value=1.00)# input for the maximum score possible in an exam
+        erreicht_punktzahl = st.number_input("erreichte Punktzahl",min_value=0.0,max_value=max_punktzahl,step=0.25)# number_input for the reached score
+    elif st.session_state["inpt_prefered"] == "slider":
+        max_punktzahl = st.slider("Maximalpunktzahl",min_value=1.00)# input for the maximum score possible in an exam
+        erreicht_punktzahl = st.slider("erreichte Punktzahl",min_value=0.0,max_value=max_punktzahl,step=0.25)#slider for the reached score
 
-
-    erreicht_punktzahl = st.slider("erreichte Punktzahl",min_value=0.0,max_value=max_punktzahl,step=0.25)#slider for the reached score
+    
 
 
     if st.button("Eingaben anwenden"):#button for applying the input 
@@ -220,7 +239,10 @@ st.sidebar.markdown("# Punktezähler für Arbeit")
 
 
 pkt_arr = punkte_arr()
-pkt = st.sidebar.number_input("Punkte hinzufügen",min_value=0.0,max_value=100.0,step=0.25)#sidebar input für Note
+if st.session_state["inpt_prefered"] == "Eingabefeld":
+    pkt = st.sidebar.number_input("Punkte hinzufügen",min_value=0.0,max_value=100.0,step=0.25)#sidebar input für Note
+elif st.session_state["inpt_prefered"] == "slider":
+    pkt = st.sidebar.slider("Punkte hinzufügen",min_value=0.0,max_value=100.0,step=0.25)#sidebar input für Note
 if st.sidebar.button("Punkte hinzufügen"):#adding points to the array
     pkt_arr.append(pkt)
 

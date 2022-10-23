@@ -3,6 +3,7 @@ import PIL
 import pathlib
 import sys
 import importlib.util
+import json
 
 #file paths
 here = pathlib.Path(__file__)
@@ -42,11 +43,23 @@ st.set_page_config(page_title="Einstellungen",page_icon=icon_load)
 st.sidebar.success("Funktion / Modul wählen")
 
 
-
-
+# ! not functional yet
+# function to update the settings
 def update_settings(type):
-    if type == "number_input":
-        st.session_state["inpt_prefered"] = number_inpt_choice()
+    if type == "number_input":#updating the number input
+        if number_inpt_choice != st.session_state["inpt_prefered"]:
+            st.session_state["inpt_prefered"] = number_inpt_choice
+
+            #change the setting and save it again
+            with open(settings_path, "r")as file:
+                setting_data = file.read()
+
+            setting_data = json.loads(setting_data)
+            
+            setting_data["settigs"]["settings"]["inpt_prefered"] = number_inpt_choice
+
+            with open(settings_path, "w") as file:
+                file.write(json.dumps(setting_data))
 
 
 
@@ -70,4 +83,4 @@ else:
 
 
 if choose_prefered_inpt_setting:
-    number_inpt_choice = st.radio("Eingabe Möglichkeit wählen",("Eingabefeld","Slider"),index=current_choice,on_change=update_settings("number_input"))
+    number_inpt_choice = st.radio("Eingabe Möglichkeit wählen",("Eingabefeld","slider"),index=current_choice,on_change=update_settings("number_input"))
