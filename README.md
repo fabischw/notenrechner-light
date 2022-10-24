@@ -22,7 +22,7 @@
 # notenrechner light
 ## Notenorganisation mit Vielzahl an Analyse- und Auswertungsfeatures
 
-==================================================================================
+===========================================================================
 
 - Dies ist die light version von dem Notenrechner in dem ich in meiner Freizeit arbeite
 - Dieses Projekt befindet sich aktuell in der Entwicklung
