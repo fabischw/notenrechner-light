@@ -4,16 +4,26 @@
 ![PRs](https://badgen.net/github/prs/fabischw/notenrechner-light)
 ![issues](https://badgen.net/github/issues/fabischw/notenrechner-light)
 ![watchers](https://badgen.net/github/watchers/fabischw/notenrechner-light)
+![total lines](https://tokei.rs/b1/github/fabischw/notenrechner-light)
+![LoC](https://tokei.rs/b1/github/fabischw/notenrechner-light?category=code)
+![files](https://tokei.rs/b1/github/fabischw/notenrechner-light?category=files)
 
-[![wakatime](https://wakatime.com/badge/user/a1d10b76-8549-4033-b22c-3af4ea1a5d5c/project/35fdd01e-3efb-425f-829f-d5732a7119de.svg)](https://wakatime.com/badge/user/a1d10b76-8549-4033-b22c-3af4ea1a5d5c/project/35fdd01e-3efb-425f-829f-d5732a7119de)
+
+
 
 <!-- not working for whatever reason
 ![downloads](https://badgen.net/github/assets-dl/fabischw/notenrechner-light)
 ![commits](https://badgen.net/github/commits/fabischw/notenrechner-light)
+![wakatime](https://wakatime.com/badge/user/a1d10b76-8549-4033-b22c-3af4ea1a5d5c/project/35fdd01e-3efb-425f-829f-d5732a7119de.svg)
+
 -->
 
 
-# notenrechner light [DE]
+# notenrechner light
+## Notenorganisation mit Vielzahl an Analyse- und Auswertungsfeatures
+
+==================================================================================
+
 - Dies ist die light version von dem Notenrechner in dem ich in meiner Freizeit arbeite
 - Dieses Projekt befindet sich aktuell in der Entwicklung
 - Die volle Version wird sobald sie fertiggestellt wird, ebenfalls veröffentlicht werden
