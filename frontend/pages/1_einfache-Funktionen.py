@@ -29,7 +29,7 @@ def getpercentage_for_note(note):
 
 # ! Change to a switch statement - Also, the name should be get_note_from_percentage(percentage).
 # function to get the grade based on the percentage a student got		
-def getnotefrompercentage(percentage):
+def get_note_from_percentage(percentage):
     if percentage < 20:
         return("00")
     elif percentage >= 20 and percentage <27:
@@ -217,7 +217,7 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
     if st.button("Eingaben anwenden"):#button for applying the input 
         prozentrechnung_arbeit(max_punktzahl)
         #displaying the grade the student gets with the points given
-        st.write("Erreichte Note: ",int(getnotefrompercentage((erreicht_punktzahl/max_punktzahl)*100)),"Erreichte Prozentzahl: ",round(erreicht_punktzahl/max_punktzahl*100,2))
+        st.write("Erreichte Note: ",int(get_note_from_percentage((erreicht_punktzahl/max_punktzahl)*100)),"Erreichte Prozentzahl: ",round(erreicht_punktzahl/max_punktzahl*100,2))
 
 
 
