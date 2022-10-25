@@ -44,23 +44,29 @@ st.sidebar.success("Funktion / Modul wählen")
 
 number_inpt_choice = None
 
-# ! not functional yet
-# function to update the settings
+
+
+# function to update settings
 def update_settings(type):
     if type == "number_input":#updating the number input
         if st.session_state.number_inpt_choice != st.session_state["inpt_prefered"] and number_inpt_choice != None:
             st.session_state["inpt_prefered"] = st.session_state.number_inpt_choice
 
-            #change the setting and save it again
+            # loading the current settings
             with open(settings_path, "r")as file:
                 setting_data = file.read()
-
             setting_data = json.loads(setting_data)
             
+            #changing the 'inpt_prefered'-setting
             setting_data["settings"]["settings"]["inpt_prefered"] = st.session_state.number_inpt_choice
 
+            #saving the new settings as json into the old file -> overwriting old data
             with open(settings_path, "w") as file:
                 file.write(json.dumps(setting_data))
+
+        # ? try to make this alert work so the user gets notified when the settings change and he gets actual feedback on the action
+        #updt_msg = "alert('Einstellung aktualisiert')"
+        #st.components.v1.html(f"<script>{updt_msg}</script>")
 
 
 
@@ -68,23 +74,24 @@ def update_settings(type):
 
 st.markdown("## Einstellungen")
 
+# ** NOTE: for verious reasons the individual settings cannot be wrapped into functions
 
-# Festlegen, ob der Nutzer die Eingabe mit slider oder mit Eingabefeld möchte
+# setting for the default input method (slider vs number_input)
 st.markdown("#### Zahlen Eingabe")
-
 
 current_choice = None
 choose_prefered_inpt_setting = True
 
+#checking what the current choice is, this is done to set the default for the st.radio component
 if st.session_state.get("inpt_prefered") == "slider":
     current_choice = 1
 elif st.session_state.get("inpt_prefered") == "Eingabefeld":
     current_choice = 0
 else:
     choose_prefered_inpt_setting = False
-    st.markdown("an error occured")# ! debug statement
+    st.markdown("Ein Fehler ist aufgetreten, Einstellungen zur Zeit nicht verfügbar")#
 
 
-if choose_prefered_inpt_setting:
+if choose_prefered_inpt_setting:#getting the user input
     number_inpt_choice = st.radio("Eingabe Möglichkeit wählen",("Eingabefeld","slider"),index=current_choice,on_change=update_settings, args=("number_input",),key="number_inpt_choice")
 
