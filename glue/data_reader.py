@@ -9,6 +9,7 @@ import pathlib
 import importlib.util
 import sys
 import json
+import os.path
 
 
 #paths
@@ -20,14 +21,12 @@ glue_layer = here.parent
 
 
 
-# ! requires testing
-
-
 
 
 
 # function to validate data (general validation)
 def check_data(data,sec_priority):
+    # ! requires testing
     """
     This function checks an input if it makes sense and is not dangerous before writing it to the csv / json files
     """
@@ -73,9 +72,42 @@ def check_data(data,sec_priority):
 
 
 
-def write_data(target: str):
+
+
+
+def read_data(target: str):
+    # ! requires testing
     """
-    This function writes data to a file
+    This function reads data from a file (csv file -> pd dataframe)
+    
+    This action is performed on the initial page load or if any additional data is required or checks are performed
+    """
+
+
+    if not (target.find(".csv") > -1): # returning False as success for non-csv files
+        return(False)
+
+    #attempting to load the data from the csv file
+    try:
+        data = pd.DataFrame.from_csv(target,sep=",")
+    except FileNotFoundError:
+        return(False)# return success
+
+    return(data)
+
+
+
+
+
+
+
+
+
+
+def write_data(target: str,data):
+    # ! requires testing
+    """
+    This function writes data to a file (pd dataframe -> csv file)
 
     For this there are multiple steps:
 
