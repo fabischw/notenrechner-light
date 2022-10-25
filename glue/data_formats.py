@@ -22,65 +22,74 @@ here = pathlib.Path(__file__)
 glue_layer = here.parent
 
 # ** columns / datatpyes for the tables / csv's
-kurs_columns = []
-kurs_datatypes = []
-kurs_required = []
+"""
+EXAMPLE LAYOUT:
 
-stunden_columns = []
-stunden_datatypes = []
-stunden_required = []
+EXAMPLE_columns = ["name","score","date","day"]
+EXAMPLE_datatypes = ["VARCHAR(20)","NUMBER(2)","DATE","DATE"] -> ORACLE datatypes
+EXAMPLE_required = ["name","score"] -> required keys
+"""
 
-fach_columns = []
-fach_datatypes = []
-fach_required = []
 
-schulevents_columns = []
-schulevents_datatypes = []
-schulevents_required = []
+kurs_columns = ["kurs_id","lehrer_id","fach_id","stundenzahl","stufe","cre_userid","cre_date","chg_userid","chg_date"]
+kurs_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","NUMBER(2)","NUMBER(2)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+kurs_required = ["kurs_id","lehrer_id","fach_id","stundenzahl","stufe","cre_userid","cre_date"]
 
-arbeiten_columns = []
-arbeiten_datatypes = []
-arbeiten_required = []
+stunden_columns = ["stunden_id","sday","scount","cre_userid","cre_date","chg_userid","chg_date"]
+stunden_datatypes = ["NUMBER(10)","VARCHAR(20)","NUMBER(2)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+stunden_required = ["stunden_id","sday","scount","cre_userid","cre_date"]
 
-kalender_columns = []
-kalender_datatypes = []
-kalender_required = []
+fach_columns = ["fach_id","fname","cre_userid","cre_date","chg_userid","chg_date"]
+fach_datatypes = ["NUMBER(10)","VARCHAR(40)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+fach_required = ["fach_id","fname","cre_userid","cre_date"]
 
-schueler_columns = []
-schueler_datatypes = []
-schueler_required = []
+schulevents_columns = ["schulevents_id","descript","datum","cre_userid","cre_date","chg_userid","chg_date"]
+schulevents_datatypes = ["NUMBER(10)","VARCHAR(200)","DATE","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+schulevents_required = ["schulevents_id","descript","datum","cre_userid","cre_date"]
 
-noten_columns = []
-noten_datatypes = []
-noten_required = []
+arbeiten_columns = ["arbeiten_id","atype","kurs_id","datum","acount","cre_userid","cre_date","chg_userid","chg_date"]
+arbeiten_datatypes = ["NUMBER(10)","VARCHAR(3)","NUMBER(10)","DATE","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+arbeiten_required = ["arbeiten_id","atype","kurs_id","datum","cre_userid","cre_date"]
 
-lehrer_columns = []
-lehrer_datatypes = []
-lehrer_required = []
+kalender_columns = ["kalender_id","events_descript","events_date","cre_userid","cre_date","chg_userid","chg_date"]
+kalender_datatypes = ["NUMBER(10)","VARCHAR(200)","DATE","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+kalender_required = ["kalender_id","events_descript","events_date","cre_userid","cre_date"]
 
-fach_columns = []
-fach_datatypes = []
-fach_required = []
+schueler_columns = ["schueler_id","vorname","nachname","vorname2","email","an_schule_seit","schule","stufe","adresse","salter","gebdatum","cre_userid","cre_date","chg_userid","chg_date"]
+schueler_datatypes = ["NUMBER(10)","VARCHAR(30)","VARCHAR(30)","VARCHAR2(30)","VARCHAR(30)","DATE",""]
+schueler_required = ["schueler_id","vorname","nachname","email","schule","stufe","salter","cre_userid","cre_date"]
 
-kursschuleventsref_columns = []
-kursschuleventsref_datatypes = []
-kursschuleventsref_required = []
+noten_columns = ["noten_id","score","ntype","kommentar","doclink","ndate","anz_year","kurs_id","cre_userid","cre_date","chg_userid","chg_date"]
+noten_datatypes = ["NUMBER(10)","NUMBER(2)","VARCHAR(10)","VARCHAR2(100)","VARCHAR2(200)","DATE","VARCHAR2(100)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+noten_required = ["noten_id","score","ntype","kurs_id","cre_userid","cre_date"]
 
-kursstundenref_columns = []
-kursstundenref_datatypes = []
-kursstundenref_required = []
+lehrer_columns = ["lehrer_id","vorname","nachname","vorname2","email","kuerzel","an_schule_seit","schule","origin","adresse","gebdatum","cre_userid","cre_date","chg_userid","chg_date"]
+lehrer_datatypes = ["NUMBER(10)","VARCHAR(30)","VARCHAR(30)","VARCHAR2(30)","VARCHAR(30)","VARCHAR(5)","DATE","VARCHAR(2)","VARCHAR(1)","VARCHAR2(300)","VARCHAR(30)","DATE","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+lehrer_required = ["lehrer_id","vorname","nachname","email","kuerzel","schule","origin","adresse","cre_userid","cre_date"]
 
-kursschuelerref_columns = []
-kursschuelerref_datatypes = []
-kursschuelerref_required = []
+fach_columns = ["fach_id","fname","cre_userid","cre_date","chg_userid","chg_date"]
+fach_datatypes = ["NUMBER(10)","VARCHAR(40)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+fach_required = ["fach_id","fname","cre_userid","cre_date"]
 
-lehrerfachref_columns = []
-lehrerfachref_datatypes = []
-lehrerfachref_required = []
+kursschuleventsref_columns = ["kursschuleventsref_id","kurs_id","schulevents_id","cre_userid","cre_date","chg_userid","chg_date"]
+kursschuleventsref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+kursschuleventsref_required = ["kursschuleventsref_id","kurs_id","schulevents_id","cre_userid","cre_date"]
 
-notenschuelerref_columns = []
-notenschuelerref_datatypes = []
-notenschuelerref_required = []
+kursstundenref_columns = ["kursschuleventsref_id","kurs_id","schulevents_id","cre_userid","cre_date","chg_userid","chg_date"]
+kursstundenref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+kursstundenref_required = ["kursschuleventsref_id","kurs_id","schulevents_id","cre_userid","cre_date"]
+
+kursschuelerref_columns = ["kursschuelerref_id","kurs_id","schueler_id","cre_userid","cre_date","chg_userid","chg_date"]
+kursschuelerref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+kursschuelerref_required = ["kursschuelerref_id","kurs_id","schueler_id","cre_userid","cre_date"]
+
+lehrerfachref_columns = ["lehrerfachref_id","lehrer_id","fach_id","cre_userid","cre_date","chg_userid","chg_date"]
+lehrerfachref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+lehrerfachref_required = ["lehrerfachref_id","lehrer_id","fach_id","cre_userid","cre_date"]
+
+notenschuelerref_columns = ["notenschuelerref_id","noten_id","schueler_id","cre_userid","cre_date","chg_userid","chg_date"]
+notenschuelerref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+notenschuelerref_required = ["notenschuelerref_id","noten_id","schueler_id","cre_userid","cre_date"]
 
 
 

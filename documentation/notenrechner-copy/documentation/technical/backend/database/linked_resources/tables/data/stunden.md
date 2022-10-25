@@ -7,7 +7,7 @@
 |--------------|----------------|------------------------------------------------------|---------------|---------------|-----------------|----------------|
 | 0            | stunden_id     | ID                                                   | NUMBER(10)    | y             | PK              | y              |
 | 1            | sday           | Wochentag der betreffenden Stunde                    | VARCHAR(20)   | y             | null            | y              |
-| 2            | scount         | Zeit der entsprechenden Stunde                       | NUMBEr(2)     | y             | null            | y              |
+| 2            | scount         | Zeit der entsprechenden Stunde                       | NUMBER(2)     | y             | null            | y              |
 | 3            | cre_userid     | User, der die Daten eingefügt hat                    | VARCHAR(30)   | y             | null            | y              |
 | 4            | cre_date       | Erstellungsdatum der Daten                           | DATE          | y             | null            | y              |
 | 5            | chg_userid     | User, der die Daten potentiell verändert hat         | VARCHAR2(30)  | n             | null            | y              |
