@@ -143,7 +143,7 @@ with st.expander("Note vorberechnen"):#streamlit expander for content
         muendlich_1 = st.number_input("mündliche Mitarbeit 1",min_value=0,max_value=15,step=1)
         muendlich_2 = st.number_input("mündliche Mitarbeit 2 (optional) ",min_value=0,max_value=15,step=1)
 
-        gewichtung = st.number_input("Prozent pro Kursarbeit (optional)", min_value=0,max_value=50,value=40,setp=0.5)
+        gewichtung = st.number_input("Prozent pro Kursarbeit (optional)", min_value=0,max_value=50,value=40,step=1)
 
     elif st.session_state["inpt_prefered"] == "slider":
 
