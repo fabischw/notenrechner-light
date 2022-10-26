@@ -1,3 +1,14 @@
+"""
+This file contains the frontend functionality for the analyses of exam results
+This includes:
+- graphing the grades etc.
+- reading / writing data
+- exporting the data to 3rd party applications(ex. MS excel)
+"""
+
+
+
+
 #importing modules
 import streamlit as st
 import PIL

@@ -1,4 +1,6 @@
-# this page is meant to act as a content library, link to external resources etc.
+"""
+this page is meant to act as a content library, links to external resources etc.
+"""
 
 import streamlit as st
 import PIL

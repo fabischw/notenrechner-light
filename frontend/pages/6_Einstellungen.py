@@ -1,3 +1,9 @@
+"""
+This page has all the options / settings for the app, those are directly stored and updated in the appdata/notenrechnersettings.json
+
+"""
+
+
 import streamlit as st
 import PIL
 import pathlib

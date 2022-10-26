@@ -4,7 +4,8 @@ This file includes super simple frontend-only functions that provide mostly QOL 
 the functions for the user:
 - calculate the average for a given amount of grades
 - calculate the final grade someone is supposed to get basedon prevous exam results
-- 
+- calculate the achieved percent in an exam
+- function to help counting points in an exam
 """
 
 
@@ -212,7 +213,7 @@ with st.expander("Note vorberechnen"):#streamlit expander for content
         muendlich_1 = st.slider("mündliche Mitarbeit 1",min_value=0,max_value=15,step=1)
         muendlich_2 = st.slider("mündliche Mitarbeit 2 (optional) ",min_value=0,max_value=15,step=1)
 
-        gewichtung = st.slider("Prozent pro Kursarbeit (optional)", min_value=0,max_value=50, value=40)
+        gewichtung = st.slider("Prozent pro Kursarbeit (optional)", min_value=0,max_value=50, value=40, step=1)
 
     if muendlich_2 == None:#check if there was a 2nd 'mündliche Note' given, if no, set to same as first (for average calculation)
         muendlich_2 = muendlich_1
@@ -225,6 +226,7 @@ with st.expander("Note vorberechnen"):#streamlit expander for content
 
 
 # calculation for percent achieved in exam 
+# ! fix bug related to this
 st.markdown("### Prozent in Arbeit ausrechnen")
 st.markdown("- Dise Funktion erleichtert das Rechnen mit Prozenten und Punkten im Zusammenhang einer Kursarbeit")
 

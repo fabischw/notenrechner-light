@@ -1,3 +1,9 @@
+"""
+This file contains the frontend functionality to browse the data stored in the local appdata/useer_data folder
+"""
+
+
+
 import streamlit as st
 import PIL
 import pathlib

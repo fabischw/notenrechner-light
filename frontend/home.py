@@ -1,4 +1,10 @@
-# frontend appss
+"""
+this file is the home page of the notenrechner app
+to run the notenrechner, do streamlit run home.py in your terminal when this folder is selected
+
+
+This file also starts all the required processes like loading settings, data etc.
+"""
 
 #installing dependencies
 import PIL
