@@ -151,7 +151,7 @@ def loadsettings():
 
 
 	# list of the files that make up all the data in the 'Konfiguration 1'
-	konfig_1_files = ["noten_simplified.csv"]
+	config_1_files = ["noten_simplified.csv"]
 
 
 
@@ -172,7 +172,7 @@ def loadsettings():
 				notenrechner_data_path = appdata_user_data
 			elif datasource_size == "simplified":#simplified konfig
 				notenrechner_data_cofig = 1
-				notenrechner_datasource_arr = konfig_1_files
+				notenrechner_datasource_arr = config_1_files
 				notenrechner_data_path = appdata_user_data
 			else:
 				st.error("an notenrechner error occured: datasource_size is not valid")

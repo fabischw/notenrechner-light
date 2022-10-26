@@ -14,11 +14,22 @@ planned / in development:
 - csv drag n' drop
 """
 #importing modules
+from msilib.schema import Error
 import pandas as pd
 import os
 import pathlib
 import importlib.util
 import sys
+from enum import Enum
+import streamlit as st
+
+
+
+class ntr_config(Enum):
+	full_local_csv = 0
+	simplified_local_csv = 1
+	full_local_DB = 2
+	web = -1
 
 
 #paths
@@ -39,7 +50,11 @@ data_reader = importlib.util.module_from_spec(data_reader_spec)
 data_reader_spec.loader.exec_module(data_reader)
 sys.modules["data_reader"] = data_reader
 
-
+# ** importing data_formats
+data_formats_spec=importlib.util.spec_from_file_location("data_formats",glue_layer / "data_formats.py")
+data_formats = importlib.util.module_from_spec(data_formats_spec)
+data_formats_spec.loader.exec_module(data_formats)
+sys.modules["data_formats"] = data_formats
 
 
 
@@ -279,33 +294,41 @@ def load_data_from_csv(inpt_csv):
 
 
 
+class NTR_CONFIGURATION_ERROR(Exception):
+	def __init__(self,message="There was an critical error with the Notenrechenr configuration. try to change the configuration and contact the developer team."):
+		self.message = message
+		super().__init__(self.message)
+
 
 
 #main function
 
-# ! Don't call this main if you don't run it
-def main():
+def init_data_core():
 	"""
 	generate path to local csvs, check if they exist or not
 	if path does not exist -> app is running in konf 0
 	if it does exist -> user is running in konf 1 / 2
 
-	this can also be done reading from the settgs json but this technic is mroe reliable
+	this can also be done reading from the settings json but this technic is more reliable
 	"""
 	# ! Do not change the call order
 	init_pd_dataframes()  # generates the initial pandas dataframes
 	
-	# ! Duplicate code from top of file
 	here = pathlib.Path(__file__)
 	user_data_path = here.parent / "appdata" / "user_data"
 
 	testcsv = user_data_path / "noten.csv"
 	
-	# ! Maybe use an enum class for configuration names.
-	if os.path.exists(testcsv):
-		konf = 1
-	else:
-		konf = 0
+
+
+	# checking if all the files required for the configuration is valid
+	for elements in st.session_state["notenrechner_datasource_arr"]:
+		if not os.path.exists(elements):
+			raise NTR_CONFIGURATION_ERROR
+
+
+
+
 
 
 
@@ -313,13 +336,13 @@ def main():
 
 
 #custom error message when running the program with wrong entry file
-
-# ! You can delete the body and replace it with `pass`
 class FileExecutionError(Exception):
 	def __init__(self,message="This file is not supposed to run as the main file."):
 		self.message = message
 		super().__init__(self.message)
 
+
+#checking if file is being run as main
 if __name__ == "__main__":
 	raise  FileExecutionError
 

@@ -104,7 +104,7 @@ class ntr_data_formatter():
     notenschuelerref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
     notenschuelerref_required = ["notenschuelerref_id","noten_id","schueler_id","cre_userid","cre_date"]
 
-    #scheme fpr the simplified data config (config 0)
+    #scheme for the simplified data config (config 0)
     noten_simplified_columns = ["score","fach","type","count","cre_userid","cre_date","chg_userid","chg_date"]
     noten_simplified_datatypes = ["NUMBER(2)","VARCHAR(40)","VARCHAR(30)","NUMBER(2)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
     noten_simplified_required = ["score","fach","type","count","cre_userid","cre_date","chg_userid","chg_date"]

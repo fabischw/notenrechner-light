@@ -1,11 +1,85 @@
+"""
+This file includes super simple frontend-only functions that provide mostly QOL (quality of life) features
+
+the functions for the user:
+- calculate the average for a given amount of grades
+- calculate the final grade someone is supposed to get basedon prevous exam results
+- 
+"""
+
+
+
 import streamlit as st
 import PIL
 import pathlib
 import pandas as pd
+import pathlib
+import importlib.util
+import sys
 
-#functions
 
 
+# file paths
+here = pathlib.Path(__file__).parent
+
+
+project = here.parent.parent#project folder
+glue_layer = project / "glue"# /glue
+frontend_layer = project / "frontend"
+resources_dir = project / "frontend" / "resources"# /frontend/resources
+appdata = project / "appdata"
+
+settings_path = appdata / "user_data" / "notenrechnersettings.json"
+
+
+
+# import local modules
+
+
+#importing main
+main_spec=importlib.util.spec_from_file_location("main",frontend_layer / "main.py")
+main = importlib.util.module_from_spec(main_spec)
+main_spec.loader.exec_module(main)
+sys.modules["main"] = main
+
+
+
+
+
+
+
+# ** code for when this page is reloaded
+if "inpt_prefered" not in st.session_state:
+    main.loadsettings()
+
+
+
+
+
+
+
+#set the page icon
+here = pathlib.Path(__file__)
+resources_dir = here.parent.parent / 'resources'
+icon = resources_dir = resources_dir / 'page_icon.ico'
+icon_load = PIL.Image.open(icon)
+st.set_page_config(page_title="Funktionen",page_icon=icon_load)
+
+
+
+
+#sidebar
+st.sidebar.success("Funktion / Modul wählen")
+
+
+#page title
+st.title("einfache Funktionen")
+st.markdown("- Es wird keine Garantie für die errechneten Werte übernommen")
+
+
+
+
+# functions
 # function to calculate the percentage required for a specific grade
 def getpercentage_for_note(note):
     match note:
@@ -72,23 +146,8 @@ def get_note_from_percentage(percentage):
 
 
 
-#set the page icon
-here = pathlib.Path(__file__)
-resources_dir = here.parent.parent / 'resources'
-icon = resources_dir = resources_dir / 'page_icon.ico'
-icon_load = PIL.Image.open(icon)
-st.set_page_config(page_title="Funktionen",page_icon=icon_load)
 
 
-
-
-#sidebar
-st.sidebar.success("Funktion / Modul wählen")
-
-
-#page title
-st.title("einfache Funktionen")
-st.markdown("- Es wird keine Garantie für die errechneten Werte übernommen")
 
 #Zeugnisdurchschnittsrechner
 st.markdown("### Zeugnisdurchschnittsrechner")
@@ -189,9 +248,6 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
                     i = str("0"+str(i))
                 noten.append(i)
                 punkte.append(x)
-            # x = data_dict['dosent_exist'] - Creates KeyError
-            # x = data_dict.get("test_") - x will be equal to None
-            # ! Remove the colon from the names
             data_dict["Note: "] = noten
             data_dict["benötigte Punkte: "] = punkte
 
