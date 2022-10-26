@@ -255,42 +255,8 @@ def init_pd_dataframes():
 
 
 
-def load_data_from_csv(inpt_csv):
-	data = pd.read_csv(inpt_csv)
-
-	table_type = pd.inpt_csv[:inpt_csv.find(".")]#loading the table into a 
-
-	# ! Change if-else to a dictionary
-	def appenddata(data):#append the read data to existing 
-		#appending the read data into the tables
-		# ! This will throw an error if the functions are not called in correct order
-		if table_type == "noten":
-			noten.append(data)
-		elif table_type == "schueler":
-			schueler.append(data)
-		elif table_type == "kurs":
-			kurs.append(data)
-		elif table_type == "stunden":
-			stunden.append(data)
-		elif table_type == "schulevents":
-			schulevents.append(data)
-		elif table_type == "arbeiten":
-			arbeiten.append(data)
-		elif table_type == "kalender":
-			kalender.append(data)
-		elif table_type == "kursschuleventsref":
-			kursschuleventsref.append(data)
-		elif table_type == "kursstundenref":
-			kursstundenref.append(data)
-		elif table_type == "kursschuelerref":
-			kursschuelerref.append(data)
-		elif table_type == "lehrerfachref":
-			lehrerfachref.append(data)
-		elif table_type == "notenschuelerref":
-			notenschuelerref.append(data)
 
 
-	appenddata(table_type)#append the data onto the pandas DataFrame
 
 
 
@@ -305,26 +271,25 @@ class NTR_CONFIGURATION_ERROR(Exception):
 
 def init_data_core():
 	"""
-	generate path to local csvs, check if they exist or not
-	if path does not exist -> app is running in konf 0
-	if it does exist -> user is running in konf 1 / 2
+	this function initilizes the data_core, this includes
 
-	this can also be done reading from the settings json but this technic is more reliable
+	- creating the pd dataframes
+	- reading the avilable data
+
 	"""
-	# ! Do not change the call order
+	# ! Do not change the call order, can lead to problems
 	init_pd_dataframes()  # generates the initial pandas dataframes
 	
 	here = pathlib.Path(__file__)
 	user_data_path = here.parent / "appdata" / "user_data"
 
-	testcsv = user_data_path / "noten.csv"
-	
-
-
 	# checking if all the files required for the configuration is valid
 	for elements in st.session_state["notenrechner_datasource_arr"]:
 		if not os.path.exists(elements):
 			raise NTR_CONFIGURATION_ERROR
+
+	# ** doing initial data read
+	
 
 
 

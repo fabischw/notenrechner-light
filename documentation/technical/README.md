@@ -1,4 +1,4 @@
-# technical documentation
+# Notenrechner (NTR) technical documentation
 - this documentation is NOT meant for end-users
 - this documentation does not replace the need for a quick look at the source code for contributors
 - it is meant to provide a quick overview of the project's codebase
