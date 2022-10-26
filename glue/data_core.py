@@ -27,10 +27,19 @@ glue_layer = here.parent
 
 
 #importing local modules
+# ** importing data_objcts
 data_objcts_spec=importlib.util.spec_from_file_location("data_objcts",glue_layer / "data_objcts.py")
 data_objcts = importlib.util.module_from_spec(data_objcts_spec)
 data_objcts_spec.loader.exec_module(data_objcts)
 sys.modules["data_objcts"] = data_objcts
+
+# ** importing data_reader
+data_reader_spec=importlib.util.spec_from_file_location("data_reader",glue_layer / "data_reader.py")
+data_reader = importlib.util.module_from_spec(data_reader_spec)
+data_reader_spec.loader.exec_module(data_reader)
+sys.modules["data_reader"] = data_reader
+
+
 
 
 

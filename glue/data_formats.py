@@ -4,6 +4,8 @@ This includes column names, data types etc.
 """
 
 
+# ! requires testing
+
 
 #importing modules
 import pandas as pd
@@ -90,6 +92,11 @@ lehrerfachref_required = ["lehrerfachref_id","lehrer_id","fach_id","cre_userid",
 notenschuelerref_columns = ["notenschuelerref_id","noten_id","schueler_id","cre_userid","cre_date","chg_userid","chg_date"]
 notenschuelerref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
 notenschuelerref_required = ["notenschuelerref_id","noten_id","schueler_id","cre_userid","cre_date"]
+
+#scheme fpr the simplified data config (config 0)
+noten_simplified_columns = ["score","fach","type","count","cre_userid","cre_date","chg_userid","chg_date"]
+noten_simplified_datatypes = ["NUMBER(2)","VARCHAR(40)","VARCHAR(30)","NUMBER(2)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+noten_simplified_required = ["score","fach","type","count","cre_userid","cre_date","chg_userid","chg_date"]
 
 
 
@@ -194,6 +201,13 @@ def get_data_format(table_name):
             result.append(notenschuelerref_required)
             return(result)
 
+        #scheme fpr the simplified data config (config 0)
+        case "noten_simplified":
+            result = []
+            result.append(noten_simplified_columns)
+            result.append(noten_simplified_datatypes)
+            result.append(noten_simplified_required)
+            return(result)
 
 
 

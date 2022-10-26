@@ -1,6 +1,7 @@
-# this module provides the functionality to read / write csv and json files
-# this module only serves as an 'API' and does the checking if the data given makes sense
-
+"""
+this module provides the functionality to read / write csv and json files
+this module only serves as an 'API' and does the checking if the data given makes sense
+"""
 
 #importing modules
 import pandas as pd
@@ -20,6 +21,13 @@ glue_layer = here.parent
 
 
 #importing local modules
+
+# ** importing data_formats
+data_formats_spec=importlib.util.spec_from_file_location("data_formats",glue_layer / "data_formats.py")
+data_formats = importlib.util.module_from_spec(data_formats_spec)
+data_formats_spec.loader.exec_module(data_formats)
+sys.modules["data_formats"] = data_formats
+
 
 
 
