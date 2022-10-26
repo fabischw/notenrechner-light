@@ -49,6 +49,20 @@ This is a simple TODO things for the notenrechner app
 - add initial read to startup process according to the selected setting
 
 
+###### data_core
+- add functionality for reading (file)
+- add functionality for writing (file)
+    -> add functions for appending to session_state DATE
+    -> add functions for stripping elements from session_state DATA
+
+###### data_reader
+- add function to translate PLSQL datatypes to python
+
+
+## possible design changes:
+- make main.py into a init function to init the app
+- add check for each file if page is rerun -> rerun using proposed init app
+- add check value to session_state
 
 </details>
 

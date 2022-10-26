@@ -248,6 +248,17 @@ def init_pd_dataframes():
 	})
 
 
+	noten_simplified = pd.DataFrame({
+		"score": [],
+		"fach": [],
+		"type": [],
+		"count": [],
+		"cre_userid": [],
+		"cre_date": [],
+		"chg_userid": [],
+		"chg_date": []
+	})
+
 
 	# ** dictionairy with all the objects, keeping arr for debugging reasons but commentd out because it's not required
 	# dataframes_arr = [noten,schueler,kurs,stunden,lehrer,schulevents,arbeiten,kalender,kursschuleventsref,kursstundenref,kursschuelerref,lehrerfachref,notenschuelerref]
@@ -264,7 +275,8 @@ def init_pd_dataframes():
 		"kursstundenref": kursstundenref,
 		"kursschuelerref": kursschuelerref,
 		"lehrerfachref": lehrerfachref,
-		"notenschuelerref": notenschuelerref
+		"notenschuelerref": notenschuelerref,
+		"noten_simplified": noten_simplified
 	}
 
 
@@ -311,7 +323,6 @@ class NTR_CONFIGURATION_ERROR(Exception):
 
 
 
-#main function
 
 def init_data_core():
 	"""
@@ -341,6 +352,7 @@ def init_data_core():
 
 
 
+# TODO add functionality for reading, writing -> file read, file write, file modify(append/remove)
 
 
 
