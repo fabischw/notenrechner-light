@@ -14,7 +14,6 @@
 <!-- not working for whatever reason
 ![downloads](https://badgen.net/github/assets-dl/fabischw/notenrechner-light)
 ![commits](https://badgen.net/github/commits/fabischw/notenrechner-light)
-![wakatime](https://wakatime.com/badge/user/a1d10b76-8549-4033-b22c-3af4ea1a5d5c/project/35fdd01e-3efb-425f-829f-d5732a7119de.svg)
 
 -->
 

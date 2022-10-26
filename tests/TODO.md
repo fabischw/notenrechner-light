@@ -11,7 +11,7 @@ This is a simple TODO things for the notenrechner app
 
 ##### /data_core
 - init_data_core()
-- load_data_from_csv()
+- do_initial_read()
 - init_pd_dataframes()
 
 

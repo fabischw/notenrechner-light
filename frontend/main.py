@@ -14,6 +14,7 @@ import pandas as pd
 import sys
 import importlib.util
 import json
+from enum import Enum
 
 
 #file paths
@@ -35,6 +36,16 @@ data_core_spec=importlib.util.spec_from_file_location("data_core",glue_layer / "
 data_core = importlib.util.module_from_spec(data_core_spec)
 data_core_spec.loader.exec_module(data_core)
 sys.modules["data_core"] = data_core
+
+
+#enumeration class for the Notenrechner settings
+class ntr_config(Enum):
+	full_local_csv = 0
+	simplified_local_csv = 1
+	full_local_DB = 2
+	web = -1
+
+
 
 
 # ** This read operation is not performed by the data_reader since it's the main read required for the app, data_reader will perform any requests that repeat

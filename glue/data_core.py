@@ -25,11 +25,7 @@ import streamlit as st
 
 
 
-class ntr_config(Enum):
-	full_local_csv = 0
-	simplified_local_csv = 1
-	full_local_DB = 2
-	web = -1
+
 
 
 #paths
@@ -253,6 +249,54 @@ def init_pd_dataframes():
 
 
 
+	# ** dictionairy with all the objects, keeping arr for debugging reasons but commentd out because it's not required
+	# dataframes_arr = [noten,schueler,kurs,stunden,lehrer,schulevents,arbeiten,kalender,kursschuleventsref,kursstundenref,kursschuelerref,lehrerfachref,notenschuelerref]
+	dataframes_dict = {
+		"noten": noten,
+		"schueler": schueler,
+		"kurs": kurs,
+		"stunden": stunden,
+		"lehrer": lehrer,
+		"schulevents": schulevents,
+		"arbeiten": arbeiten,
+		"kalender": kalender,
+		"kursschuleventsref": kursschuleventsref,
+		"kursstundenref": kursstundenref,
+		"kursschuelerref": kursschuelerref,
+		"lehrerfachref": lehrerfachref,
+		"notenschuelerref": notenschuelerref
+	}
+
+
+	return(dataframes_dict)
+
+
+
+
+def do_initial_read(datasources):
+	"""
+	This function does the initial data_read, which does the following steps:
+
+	- read data from csv's according to the datasources param which should contain a list of files containing the data
+	- merge the data onto the existing pd_dataframes
+	"""
+
+	store_data = st.session_state["DATA"]# data currently stored in session_state
+
+	# load data from all the csv's
+	for elements in datasources:
+		# getting the data as a pd DataFrame
+		data = data_reader.read_data(elements)
+
+		current_element = elements[:elements.find(".csv")]# current element (serves as key in store_data)
+
+		merge = pd.concat([data,store_data[current_element]])# merging the two pandas DataFrames
+
+		store_data[current_element] = merge# storing the new data in session_state
+
+
+
+
 
 
 
@@ -278,18 +322,22 @@ def init_data_core():
 
 	"""
 	# ! Do not change the call order, can lead to problems
-	init_pd_dataframes()  # generates the initial pandas dataframes
+	DATA = init_pd_dataframes()  # generates the initial pandas dataframes
+	if "DATA" not in st.session_state: # saving data in the session state, this will be all the data the app works with !
+		st.session_state["DATA"] = DATA
 	
 	here = pathlib.Path(__file__)
 	user_data_path = here.parent / "appdata" / "user_data"
 
 	# checking if all the files required for the configuration is valid
+
+	# ! fix elements only being file names, NOT paths -> error is raised
 	for elements in st.session_state["notenrechner_datasource_arr"]:
 		if not os.path.exists(elements):
 			raise NTR_CONFIGURATION_ERROR
 
 	# ** doing initial data read
-	
+	do_initial_read(st.session_state["notenrechner_datasource_arr"])
 
 
 
