@@ -40,6 +40,8 @@ This is a simple TODO things for the notenrechner app
 
 ### frontend
 - add config setting to page 6_Einstellungen
+- add securizy settings to page 6_Einstellungen (-> configure how much inputs are being checked)
+- remove automatic setting rewrite (bind to config settings, -> make merge to deploy possible)
 
 
 
@@ -52,11 +54,13 @@ This is a simple TODO things for the notenrechner app
 ###### data_core
 - add functionality for reading (file)
 - add functionality for writing (file)
-    -> add functions for appending to session_state DATE
+    -> add functions for appending to session_state DATA
     -> add functions for stripping elements from session_state DATA
 
 ###### data_reader
 - add function to translate PLSQL datatypes to python
+- build secure read function (based on format checking from write function)
+- remove comment lines from list of naughty strings comparison
 
 
 ## possible design changes:
@@ -80,6 +84,7 @@ This is a simple TODO things for the notenrechner app
 ### frontend (USER) -> GERMAN
 - Install
 - Usage
+    -> reveal.js guide
 
 
 

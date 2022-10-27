@@ -60,15 +60,14 @@ def update_settings(type):
 
             # loading the current settings
             with open(settings_path, "r")as file:
-                setting_data = file.read()
-            setting_data = json.loads(setting_data)
+                setting_data = json.load(file)
             
             #changing the 'inpt_prefered'-setting
             setting_data["settings"]["settings"]["inpt_prefered"] = st.session_state.number_inpt_choice
 
             #saving the new settings as json into the old file -> overwriting old data
             with open(settings_path, "w") as file:
-                file.write(json.dumps(setting_data))
+                file.write(json.dumps(setting_data, indent=4))
 
         # ? try to make this alert work so the user gets notified when the settings change and he gets actual feedback on the action
         #updt_msg = "alert('Einstellung aktualisiert')"
