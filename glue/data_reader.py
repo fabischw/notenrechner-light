@@ -13,6 +13,7 @@ import json
 import os.path
 import streamlit as st
 import copy
+import datetime
 
 
 #paths
@@ -31,6 +32,44 @@ sys.modules["data_formats"] = data_formats
 
 
 
+def translate_plsql_dtype_to_py(inpt: str):
+    """
+    This function 'translates' PL/SQL datatypes to python datatypes
+
+    return syntax:
+    returns an array which has this syntax:
+    [0]: corresponding datatype
+    [1]: max_len
+    [2]: REQ (true false ) -> None as default, true / false if 100% certain
+    """
+
+    result_arr = [None,None,None]
+    # doing if / elif / else for *all possibly PL/SQL datatypes *(meaning all present formats in the notenrechner)
+
+    if inpt.find("NUMBER") > -1 or inpt.find("number") > -1:
+        result_arr[0] = float
+        max_len = inpt[inpt.find("NUMBER")+7:inpt.find(")")]
+        result_arr[1] = float(max_len)
+        # leaving REQ in current state since NUMBER does not pass a req 'parameter'
+
+    elif inpt.find("VARCHAR") > -1: 
+        result_arr[0] = str
+        max_len = inpt[inpt.find("(")+1:inpt.find(")")]
+        result_arr[1] = float(max_len)
+
+        # find if its VARCHAR or VARCHAR2
+        if inpt.find("VARCHAR2") > -1:
+            result_arr[2] = False
+
+
+    elif inpt.find("DATE") > -1:
+        result_arr[0] = datetime.datetime
+
+    else:
+        return(None)
+
+
+    return(result_arr)
 
 
 

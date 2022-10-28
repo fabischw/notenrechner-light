@@ -304,10 +304,7 @@ def do_initial_read(datasources):
 
 		merge = pd.concat([data,store_data[current_element]])# merging the two pandas DataFrames
 
-		store_data[current_element] = merge# storing the new data in session_state
-
-
-
+		st.session_state["DATA"][current_element] = merge# storing the new data in session_state
 
 
 
@@ -354,6 +351,56 @@ def init_data_core():
 
 # TODO add functionality for reading, writing -> file read, file write, file modify(append/remove)
 
+
+
+
+
+def write_data_csv(target,data):
+	"""
+	This function writes a pandas dataframe to a csv file
+	# ! NOTE: this function is not eant for appending new user data but rather writing entire blocks of data
+	# ! this means that this function will overwrite any present data
+
+	parameters:
+
+	target: the file the data gets written to
+	data: the pandas dataframe that is supposed to be written
+
+	# TODO:
+		- add the syntax checking etc.
+	"""
+
+
+
+def read_data_csv(target):
+	"""
+	This function reads data from a csv file and returns the data as a pandas dataframe
+	# ! this function does not replace the initial read but rather serves as a method to check data writing success and similar
+
+	parameters:
+	target: the file that gets read
+	"""
+
+
+
+def append_data(target, data):
+	"""
+	This function appends some data to a csv file
+
+	parameters:
+	target: the file that is being appended to
+
+
+	# TODO:
+		- add the syntax checking etc.
+	"""
+
+
+
+def remove_data():
+	"""
+	this function removes data from a csv file
+	"""
 
 
 

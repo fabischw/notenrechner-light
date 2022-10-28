@@ -97,6 +97,17 @@ else:
     st.markdown("Ein Fehler ist aufgetreten, Einstellungen zur Zeit nicht verfügbar")#
 
 
-if choose_prefered_inpt_setting:#getting the user input
+if choose_prefered_inpt_setting:#getting the user input for the setting
     number_inpt_choice = st.radio("Eingabe Möglichkeit wählen",("Eingabefeld","slider"),index=current_choice,on_change=update_settings, args=("number_input",),key="number_inpt_choice")
 
+
+
+
+# ! add config check for security settings
+with st.expander("Sicherheitseinstellungen"):
+    """
+    This section includes the security settings, this includes things like:
+    - what checks are being run for the read
+    - what checks are being run for the write
+    """
+    st.markdown("#### Sicherheitseinstellungen")
