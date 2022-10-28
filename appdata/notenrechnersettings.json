@@ -20,8 +20,24 @@
             "full": true
         },
         "settings": {
-            "inpt_prefered": "slider",
+            "inpt_prefered": "Eingabefeld",
             "theme": "dark"
+        },
+        "security": {
+            "write": {
+                "check_dangerous": true,
+                "check_path_existence": true,
+                "check_if_data_already_present": false,
+                "check_indexing": true,
+                "check_length": true,
+                "enforce_required": true,
+                "check_general_format": true
+            },
+            "read": {
+                "check_dangerous": false,
+                "check_path_existence": true,
+                "check_if_data_already_present": false
+            }
         }
     }
 }
