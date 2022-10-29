@@ -68,6 +68,8 @@ This is a simple TODO things for the notenrechner app
 - add check for each file if page is rerun -> rerun using proposed init app
 - add check value to session_state
 
+- change session_state settings to be in a dedicated dictionairy
+
 </details>
 
 
