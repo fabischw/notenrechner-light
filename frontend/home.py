@@ -53,6 +53,7 @@ sys.modules["main"] = main
 
 
 main.loadsettings()
+main.init_data_management()
 
 
 

@@ -43,4 +43,34 @@ def paste_csv_structure_to_files():
 
 
 
-paste_csv_structure_to_files()
+def generate_userdata_structure():
+    """
+    This function intializes the essential NTR file structre
+    (this does not include settings)
+    # ! NOTE THAT THIS FUNCTION RESETS ALL PRESENT DATA
+    """
+    data = data_core.init_pd_dataframes()
+
+    for keys in data:
+        path = user_data / f"{keys}.csv"
+
+        with open(path,"w") as file:
+            file.write("")
+    
+
+    paste_csv_structure_to_files()
+
+
+
+
+
+
+class FileExecutionError2(Exception):
+	def __init__(self,message=f"You cannot import and run this file as a module: 'run_once_script.py'"):
+		self.message = message
+		super().__init__(self.message)
+
+
+
+if __name__ != "__main__":
+    raise FileExecutionError2

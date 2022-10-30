@@ -265,7 +265,7 @@ def read_data(target: str):
 
     #attempting to load the data from the csv file
     try:
-        data = pd.DataFrame.from_csv(target,sep=",")
+        data = pd.read_csv(target,sep=",")
     except FileNotFoundError:
         return(False)# return success
 

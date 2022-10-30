@@ -342,13 +342,16 @@ def init_data_core():
 		st.session_state["DATA"] = DATA
 	
 	here = pathlib.Path(__file__)
-	user_data_path = here.parent / "appdata" / "user_data"
+	user_data_path = here.parent.parent / "appdata" / "user_data"
+	st.markdown(user_data_path)# ! debug statement
 
 	# checking if all the files required for the configuration is valid
 
 	# ! fix elements only being file names, NOT paths -> error is raised
 	for elements in st.session_state["notenrechner_datasource_arr"]:
-		if not os.path.exists(elements):
+		current_element_path = user_data_path / elements
+		st.markdown(current_element_path)# ! debug statement
+		if not os.path.exists(current_element_path):
 			raise NTR_CONFIGURATION_ERROR
 
 	# ** doing initial data read
@@ -380,21 +383,26 @@ def write_data_csv(target,data):
 
 
 
-def read_data_csv(target):
+def read_data_csv(targetfile,add_to):
 	"""
 	This function reads data from a csv file and returns the data as a pandas dataframe
 	# ! this function does not replace the initial read but rather serves as a method to check data writing success and similar
 
 	parameters:
 	target: the file that gets read
+	add_to: the dataframe to add data to
 	"""
 
-	data = data_reader.read_data(target)
+	data = data_reader.read_data(targetfile)
 
 	if not data:
 		raise NTR_READ_ERROR
 	else:
 		pass
+
+	if add_to:
+		final = pd.concat([add_to,data])
+		return(final)
 
 
 

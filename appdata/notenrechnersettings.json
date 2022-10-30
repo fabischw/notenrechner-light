@@ -20,7 +20,7 @@
             "full": true
         },
         "settings": {
-            "inpt_prefered": "Eingabefeld",
+            "inpt_prefered": "slider",
             "theme": "dark"
         },
         "security": {
