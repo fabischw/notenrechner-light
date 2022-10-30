@@ -15,6 +15,7 @@ planned / in development:
 """
 #importing modules
 from msilib.schema import Error
+from tkinter import E
 import pandas as pd
 import os
 import pathlib
@@ -320,6 +321,12 @@ class NTR_CONFIGURATION_ERROR(Exception):
 
 
 
+class NTR_READ_ERROR(Exception):
+	def __init__(self,message="There was an critical error when trying to read data."):
+		self.message = message
+		super().__init__(self.message)
+
+
 
 def init_data_core():
 	"""
@@ -372,6 +379,7 @@ def write_data_csv(target,data):
 
 
 
+
 def read_data_csv(target):
 	"""
 	This function reads data from a csv file and returns the data as a pandas dataframe
@@ -380,6 +388,13 @@ def read_data_csv(target):
 	parameters:
 	target: the file that gets read
 	"""
+
+	data = data_reader.read_data(target)
+
+	if not data:
+		raise NTR_READ_ERROR
+	else:
+		pass
 
 
 

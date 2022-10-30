@@ -230,13 +230,13 @@ def loadsettings():
 		st.session_state["write_check_general_format"] = write_check_general_format
 
 
-	read_check_dangerous = read_security_settings.get("read_check_dangerous")
+	read_check_dangerous = read_security_settings.get("check_dangerous")
 	if "read_check_dangerous" in st.session_state:
 		st.session_state["read_check_dangerous"] = read_check_dangerous
-	read_check_path_existenc = read_security_settings.get("read_check_path_existenc")
-	if "read_check_path_existenc" not in st.session_state:
-		st.session_state["read_check_path_existenc"] = read_check_path_existenc
-	read_check_if_data_already_present = read_security_settings.get("read_check_if_data_already_present")
+	read_check_path_existence = read_security_settings.get("check_path_existence")
+	if "read_check_path_existence" not in st.session_state:
+		st.session_state["read_check_path_existence"] = read_check_path_existence
+	read_check_if_data_already_present = read_security_settings.get("check_if_data_already_present")
 	if "read_check_if_data_already_present" not in st.session_state:
 		st.session_state["read_check_if_data_already_present"] = read_check_if_data_already_present
 
@@ -255,7 +255,8 @@ def loadsettings():
 
 
 
-
+def init_data_management():
+	data_core.init_data_core()
 
 
 # ! export exception to different file and test
