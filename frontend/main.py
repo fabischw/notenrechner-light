@@ -178,11 +178,11 @@ def loadsettings():
 	if datasource_location == "local":#local datasource
 		if datasource_type == "appdata/user_data":#not a DB datasource
 			if datasource_size == "full":#full konfig
-				notenrechner_data_cofig = 0
+				notenrechner_data_config = 0
 				notenrechner_datasource_arr = konfig_0_files
 				notenrechner_data_path = appdata_user_data
 			elif datasource_size == "simplified":#simplified konfig
-				notenrechner_data_cofig = 1
+				notenrechner_data_config = 1
 				notenrechner_datasource_arr = config_1_files
 				notenrechner_data_path = appdata_user_data
 			else:
@@ -193,8 +193,8 @@ def loadsettings():
 	else:
 		st.error("This is not configured yet: datasource_location is not valid.")# ? This error is only temporary and will get removed as soon as this is accessible
 
-	if "notenrechner_data_cofig" not in st.session_state:
-		st.session_state["notenrechner_data_cofig"] = notenrechner_data_cofig
+	if "notenrechner_data_config" not in st.session_state:
+		st.session_state["notenrechner_data_config"] = notenrechner_data_config
 	if "notenrechner_datasource_arr" not in st.session_state:
 		st.session_state["notenrechner_datasource_arr"] = notenrechner_datasource_arr
 	if "notenrechner_data_path" not in st.session_state:

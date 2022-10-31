@@ -61,7 +61,7 @@ st.markdown("## Diese Funktion dient zur Analyse der Noten-Daten")
 
 # TODO: fix displaying data not working
 with st.expander("Rohdaten ansehen"):
-    if st.session_state["notenrechner_data_cofig"] == 1:
+    if st.session_state["notenrechner_data_config"] == 1:
         st.table(st.session_state["DATA"]["noten_simplified"])
     elif st.session_state["notenrechner_data_config"] == 0:
         st.table(st.session_state["DATA"]["noten"])
