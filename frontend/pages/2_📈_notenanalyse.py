@@ -16,6 +16,7 @@ import pathlib
 import pandas as pd
 import sys
 import importlib.util
+import datetime
 
 
 #file paths
@@ -65,6 +66,8 @@ with st.expander("Rohdaten ansehen"):
     elif st.session_state["notenrechner_data_config"] == 0:
         st.table(st.session_state["DATA"]["noten"])
 
+
+# TODO fix the comment below being displayed to the end user for whatever reason
 """
 # TODO:
 1. build the UI
@@ -73,7 +76,20 @@ with st.expander("Rohdaten ansehen"):
     -> save logic
 """
 
+
+# loading important data from the session state
 inpt_preference = st.session_state["inpt_prefered"]
+DATA = st.session_state["DATA"]
+
+# getting the 'fach' data which is important for some selections
+fach_data = DATA["fach"]
+faecher = []# TODO read actual data 
+
+
+def convert(list):
+    return tuple(i for i in list)
+
+faecher_tuple = convert(faecher)#converting feacher into a tuple
 
 
 # code for adding data
@@ -221,6 +237,42 @@ with st.expander("Daten hinzufügen"):
         """
 
         with st.form("Noten",clear_on_submit=True):
+            # ! NOTE: this part if not functional due to the facher variable not containing any data yet
+            """
+            form for the simplified Noten input
+            """
+            arbeit_type = ["(Arbeit / Kursarbeit)","(Test / Hausaufgabenüberprüfung / Mitarbeit)"]
+
+            if inpt_preference == "slider":# getting input for slider as prefered input
+                score = st.slider("Note eingeben",min_value=0,max_value=15, value=10, step=1)
+                fach = st.select_slider("Bitte Fach auswählen",faecher)
+                arbeit_type = st.select_slider("Bitte Typ des Leistungsnachweises wählen",arbeit_type)
+                count = st.slider("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
+                
+            elif inpt_preference == "Eingabefeld":# getting input for other input as prefered input
+                score = st.number_input("Note eingeben",min_value=0,max_value=15, value=10, step=1)
+                fach = st.selectbox("Bitte Fach auswählen",faecher_tuple)
+                arbeit_type = st.selectbox("Bitte Typ des Leistungsnachweises wählen",faecher_tuple)
+                count = st.number_input("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
+
+            #setting creation/change user and data
+            cre_userid = "notenanalyse"
+            cre_date = datetime.date.today()
+            chg_userid = None
+            chg_date = None
+
+            #creating a pandas Dataframe with current data to append to existing data later on
+            current_df = pd.DataFrame({
+                "score": [score],
+                "fach": [fach],
+                "type": [arbeit_type],
+                "count": [count],
+                "cre_userid": [cre_userid],
+                "cre_date": [cre_date],
+                "chg_userid": [chg_userid],
+                "chg_date": [chg_date]
+            })
+
             submitted = st.form_submit_button("Daten übernehmen")
             if submitted:
                 """

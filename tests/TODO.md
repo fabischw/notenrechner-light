@@ -7,7 +7,7 @@ This is a simple TODO things for the notenrechner app
 <summary>testing</summary>
 
 ### /glue
-
+- ALL
 
 ##### /data_core
 - init_data_core()
@@ -40,15 +40,16 @@ This is a simple TODO things for the notenrechner app
 
 ### frontend
 - add config setting to page 6_Einstellungen
-- add securizy settings to page 6_Einstellungen (-> configure how much inputs are being checked)
+- add security settings to page 6_Einstellungen (-> configure how much inputs are being checked)
 - remove automatic setting rewrite (bind to config settings, -> make merge to deploy possible)
+- add entire page 2 UI
 
 
 
 ### glue
 - finish the function to load data
 - finish the function to read data
-- add initial read to startup process according to the selected setting
+- 
 
 
 ###### data_core
@@ -99,5 +100,7 @@ This is a simple TODO things for the notenrechner app
 ### glue
 - ALL
 
+### backend
+- Noten simplified layout(table)
 
 </details>

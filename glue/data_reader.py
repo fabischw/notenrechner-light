@@ -46,13 +46,13 @@ def translate_plsql_dtype_to_py(inpt: str):
     result_arr = [None,None,None]
     # doing if / elif / else for *all possibly PL/SQL datatypes *(meaning all present formats in the notenrechner)
 
-    if inpt.find("NUMBER") > -1 or inpt.find("number") > -1:
+    if "NUMBER" in inpt or "number" in inpt:
         result_arr[0] = float
         max_len = inpt[inpt.find("NUMBER")+7:inpt.find(")")]
         result_arr[1] = float(max_len)
         # leaving REQ in current state since NUMBER does not pass a req 'parameter'
 
-    elif inpt.find("VARCHAR") > -1: 
+    elif "VARCHAR" in inpt: 
         result_arr[0] = str
         max_len = inpt[inpt.find("(")+1:inpt.find(")")]
         result_arr[1] = float(max_len)
@@ -62,7 +62,7 @@ def translate_plsql_dtype_to_py(inpt: str):
             result_arr[2] = False
 
 
-    elif inpt.find("DATE") > -1:
+    elif "DATE" in inpt:
         result_arr[0] = datetime.datetime
 
     else:
@@ -83,7 +83,7 @@ def check_data(data,sec_priority):
     def is_dangerous(data_inpt):
         with open("list_of_naughty_strings.txt","r") as sec_list:
             line = sec_list.readline()
-            if data_inpt.find(line) > -1:
+            if line in data_inpt:
                 return(True)
         return(False)
 
@@ -257,7 +257,7 @@ def read_data(target: str):
     """
 
 
-    if not (str(target).find(".csv") > -1): # returning False as success for non-csv files
+    if ".csv" not in str(target): # returning False as success for non-csv files
         return(False)
 
     # TODO do security checks
