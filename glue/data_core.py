@@ -281,6 +281,7 @@ def init_pd_dataframes():
 		"schulevents": schulevents,
 		"arbeiten": arbeiten,
 		"kalender": kalender,
+		"fach": fach,
 		"kursschuleventsref": kursschuleventsref,
 		"kursstundenref": kursstundenref,
 		"kursschuelerref": kursschuelerref,

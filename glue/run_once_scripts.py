@@ -38,6 +38,7 @@ def paste_csv_structure_to_files():
 
     for keys, elements in data.items():
         path_to_element = user_data / f"{keys}.csv"
+        print(f"Applying structure to {path_to_element}")
         elements.to_csv(path_to_element,sep=",")
 
 
@@ -53,6 +54,7 @@ def generate_userdata_structure():
 
     for keys in data:
         path = user_data / f"{keys}.csv"
+        print(f"Resetting/creating file: {path}")
 
         with open(path,"w") as file:
             file.write("")
@@ -62,7 +64,7 @@ def generate_userdata_structure():
 
 
 
-
+generate_userdata_structure()
 
 
 class FileExecutionError2(Exception):
