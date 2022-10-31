@@ -257,7 +257,7 @@ def read_data(target: str):
     """
 
 
-    if not (target.find(".csv") > -1): # returning False as success for non-csv files
+    if not (str(target).find(".csv") > -1): # returning False as success for non-csv files
         return(False)
 
     # TODO do security checks

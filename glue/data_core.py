@@ -296,12 +296,21 @@ def do_initial_read(datasources):
 
 	store_data = st.session_state["DATA"]# data currently stored in session_state
 
+	here = pathlib.Path(__file__)
+	user_data_path = here.parent.parent / "appdata" / "user_data"
+
 	# load data from all the csv's
 	for elements in datasources:
 		# getting the data as a pd DataFrame
-		data = data_reader.read_data(elements)
+
+		#turn datasources into actual file paths
+		elements_path = user_data_path / elements
+
+		data = data_reader.read_data(elements_path)
+
 
 		current_element = elements[:elements.find(".csv")]# current element (serves as key in store_data)
+
 
 		merge = pd.concat([data,store_data[current_element]])# merging the two pandas DataFrames
 
@@ -343,14 +352,12 @@ def init_data_core():
 	
 	here = pathlib.Path(__file__)
 	user_data_path = here.parent.parent / "appdata" / "user_data"
-	st.markdown(user_data_path)# ! debug statement
 
 	# checking if all the files required for the configuration is valid
 
 	# ! fix elements only being file names, NOT paths -> error is raised
 	for elements in st.session_state["notenrechner_datasource_arr"]:
 		current_element_path = user_data_path / elements
-		st.markdown(current_element_path)# ! debug statement
 		if not os.path.exists(current_element_path):
 			raise NTR_CONFIGURATION_ERROR
 
