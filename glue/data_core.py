@@ -213,6 +213,15 @@ def init_pd_dataframes():
 	})
 
 
+	fach = pd.DataFrame({
+		"fach_id": [],
+		"fname": [],
+		"cre_userid": [],
+		"cre_date": [],
+		"chg_userid": [],
+		"chg_date": []
+	})
+
 
 	kursschuelerref = pd.DataFrame({
 		"kursschuelerref_id": [],

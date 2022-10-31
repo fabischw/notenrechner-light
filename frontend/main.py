@@ -157,7 +157,8 @@ def loadsettings():
 		"notenschuelerref.csv",
 		"schueler.csv",
 		"schulevents.csv",
-		"stunden.csv"
+		"stunden.csv",
+		"fach.csv"
 	]
 
 
