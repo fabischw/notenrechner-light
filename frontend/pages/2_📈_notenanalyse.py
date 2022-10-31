@@ -73,6 +73,9 @@ with st.expander("Rohdaten ansehen"):
     -> save logic
 """
 
+inpt_preference = st.session_state["inpt_prefered"]
+
+
 # code for adding data
 with st.expander("Daten hinzufügen"):
     if st.session_state["notenrechner_data_config"] == 1:

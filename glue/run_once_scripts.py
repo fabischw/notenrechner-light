@@ -4,6 +4,8 @@ This file contains functions which are only ever required to run once (at max), 
 This file's code is not well structured which I would like to apaologize for in advance ;D
 
 These functions are not meant to be used by anyone who is not familar with the project structure !
+
+# ! DO NOT USE THESE FUNCTIONS UNLESS YOU KNOW WHAT YOU ARE DOING !
 """
 
 
@@ -64,7 +66,74 @@ def generate_userdata_structure():
 
 
 
-generate_userdata_structure()
+def generate_default_tables():
+    """
+    this function generates the data for the tables that is normally already present unless the user data was reset
+    # ! NOTE: this function will reset any present data for these tables:
+        - fach
+    """
+
+    #fach table default values
+    fname_arr = [
+        "Mathematik",
+        "Deutsch",
+        "Englisch",
+        "Naturwissenschaften",
+        "Physik",
+        "Sport",
+        "Erdkunde",
+        "Politik",
+        "Geschichte",
+        "Religion (katholisch)",
+        "Religion (evangelisch)",
+        "Chemie",
+        "Bildende Kunst",
+        "Seminarfach",
+        "Informatik",
+        "Spanisch",
+        "Französisch",
+        "Latein",
+    ]
+
+
+    fach_id_arr = [ i for i in range(1,len(fname_arr)+1)]
+    cre_userid_arr = ["run_once_scripts" for i in range(len(fname_arr))]
+    cre_date_arr = [datetime.datetime(2022,10,31) for i in range(len(fname_arr))]
+    chg_userid_arr = [None for i in range(len(fname_arr))]
+    chg_date_arr = [None for i in range(len(fname_arr))]
+
+
+    fach_table = pd.DataFrame({
+		"fach_id": fach_id_arr,
+		"fname": fname_arr,
+		"cre_userid": cre_userid_arr,
+		"cre_date": cre_date_arr,
+		"chg_userid": chg_userid_arr,
+		"chg_date": chg_date_arr
+	})
+
+
+
+
+    filename = "fach.csv"
+    path_to_file = user_data / filename
+
+    print(f"writing to {path_to_file}")
+    fach_table.to_csv(path_to_file, sep=",")
+
+
+
+
+
+
+def main():
+    """
+    write the function you want to use here
+    """
+
+
+
+
 
 
 class FileExecutionError2(Exception):
@@ -76,3 +145,6 @@ class FileExecutionError2(Exception):
 
 if __name__ != "__main__":
     raise FileExecutionError2
+
+else:
+    main()
