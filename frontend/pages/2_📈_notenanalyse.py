@@ -67,14 +67,13 @@ with st.expander("Rohdaten ansehen"):
         st.table(st.session_state["DATA"]["noten"])
 
 
-# TODO fix the comment below being displayed to the end user for whatever reason
-"""
+
 # TODO:
-1. build the UI
-2. give data to data_core:
-    -> check logic
-    -> save logic
-"""
+# 1. build the UI
+# 2. give data to data_core:
+#     -> check logic
+#     -> save logic
+
 
 
 # loading important data from the session state
@@ -95,30 +94,30 @@ faecher_tuple = convert(faecher)#converting feacher into a tuple
 # code for adding data
 with st.expander("Daten hinzufügen"):
     if st.session_state["notenrechner_data_config"] == 1:
-        """
-        code for adding a grade for config 1
+        
+        # code for adding a grade for config 1
 
-        NOTE: for this config there are many different tables which results in a big number of input forms
+        # NOTE: for this config there are many different tables which results in a big number of input forms
 
-        forms to build(german names because frontend is rendered in german):
-        - Noten -> noten.csv
-        - Arbeiten -> arbeiten.csv
-        - Kurs -> kurs.csv
-        - Lehrer -> lehrer.csv
-        - Schüler -> schueler.csv
-        - Stunden -> stunden.csv
-        - Schulevents -> schulevents.csv
+        # forms to build(german names because frontend is rendered in german):
+        # - Noten -> noten.csv
+        # - Arbeiten -> arbeiten.csv
+        # - Kurs -> kurs.csv
+        # - Lehrer -> lehrer.csv
+        # - Schüler -> schueler.csv
+        # - Stunden -> stunden.csv
+        # - Schulevents -> schulevents.csv
 
-        - Kalender -> kalender.csv  # ** this is a special table since it's being generated automaticly (not yet implemented)
-        - Fach -> fach.csv # ** this table will be automaticly created and updated
+        # - Kalender -> kalender.csv  # ** this is a special table since it's being generated automaticly (not yet implemented)
+        # - Fach -> fach.csv # ** this table will be automaticly created and updated
 
-        REFs (these REF Tables will have to be dynamicly integrated into the form(via radio buttons or similar))
+        # REFs (these REF Tables will have to be dynamicly integrated into the form(via radio buttons or similar))
 
-        kursschuelerref (link student to a course)
-        kursschuleventsref (link a course to a school 'event')
-        kursstundenref (link a course to a time when that course is being offered)
+        # kursschuelerref (link student to a course)
+        # kursschuleventsref (link a course to a school 'event')
+        # kursstundenref (link a course to a time when that course is being offered)
 
-        """
+        
 
 
         #creating a radio button to choose a table to add data to
@@ -140,69 +139,69 @@ with st.expander("Daten hinzufügen"):
 
         match form_choice:
             case "Noten":
-                """
-                form for the 'noten' input
-                """
+                
+                # form for the 'noten' input
+                
                 with st.form("Noten",clear_on_submit=True):
                     submitted = st.form_submit_button("Daten übernehmen")
                     if submitted:
-                        """
-                        give data to data_core
-                        """
+                        
+                        # give data to data_core
+                        
 
 
             case "Schüler":
-                """
-                form for the 'schueler' input
-                """
+                
+                # form for the 'schueler' input
+                
                 with st.form("Schüler",clear_on_submit=True):
                     submitted = st.form_submit_button("Daten übernehmen")
                     if submitted:
-                        """
-                        give data to data_core
-                        """
+                        
+                        # give data to data_core
+                        
 
 
             case "Arbeiten":
-                """
-                form for the 'arbeiten' input
-                """
+                
+                # form for the 'arbeiten' input
+                
                 with st.form("Arbeiten",clear_on_submit=True):
                     submitted = st.form_submit_button("Daten übernehmen")
                     if submitted:
-                        """
-                        give data to data_core
-                        """
+                        
+                        # give data to data_core
+                        
 
 
             case "Kurse":
-                """
-                form for the 'kurs' input
-                """
+                
+                # form for the 'kurs' input
+                
                 with st.form("Kurse",clear_on_submit=True):
                     submitted = st.form_submit_button("Daten übernehmen")
                     if submitted:
-                        """
-                        give data to data_core
-                        """
+                        
+                        # give data to data_core
+                        
 
 
             case "Lehrer":
-                """
-                form for the 'lehrer' input
-                """
+                
+                # form for the 'lehrer' input
+                
                 with st.form("Lehrer",clear_on_submit=True):
                     submitted = st.form_submit_button("Daten übernehmen")
                     if submitted:
-                        """
-                        give data to data_core
-                        """
+                        
+                        # give data to data_core
+                        
 
 
             case "Stunden":
-                """
-                form for the 'stunden' input
-                """
+                
+                # form for the 'stunden' input
+                
                 with st.form("Stunden",clear_on_submit=True):
                     submitted = st.form_submit_button("Daten übernehmen")
                     if submitted:
@@ -212,9 +211,9 @@ with st.expander("Daten hinzufügen"):
 
 
             case "Schulevents":
-                """
-                form for the 'schulevents' input
-                """
+                
+                # form for the 'schulevents' input
+                
                 with st.form("Schulevents",clear_on_submit=True):
                     submitted = st.form_submit_button("Daten übernehmen")
                     if submitted:
@@ -227,20 +226,20 @@ with st.expander("Daten hinzufügen"):
 
 
     elif st.session_state["notenrechner_data_config"] == 0:
-        """
-        code for adding a grade for config 1
+        
+        # code for adding a grade for config 1
 
-        NOTE: for this config there is only a single table
+        # NOTE: for this config there is only a single table
 
-        forms to build:
-        Noten -> noten_simplified.csv
-        """
+        # forms to build:
+        # Noten -> noten_simplified.csv
+        
 
         with st.form("Noten",clear_on_submit=True):
             # ! NOTE: this part if not functional due to the facher variable not containing any data yet
-            """
-            form for the simplified Noten input
-            """
+            
+            # form for the simplified Noten input
+            
             arbeit_type = ["(Arbeit / Kursarbeit)","(Test / Hausaufgabenüberprüfung / Mitarbeit)"]
 
             if inpt_preference == "slider":# getting input for slider as prefered input
@@ -275,7 +274,7 @@ with st.expander("Daten hinzufügen"):
 
             submitted = st.form_submit_button("Daten übernehmen")
             if submitted:
-                """
-                give data to data_core
-                """
+                
+                # give data to data_core
+                
 

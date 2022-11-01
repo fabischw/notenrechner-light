@@ -105,9 +105,9 @@ if choose_prefered_inpt_setting:#getting the user input for the setting
 
 # ! add config check for security settings
 with st.expander("Sicherheitseinstellungen"):
-    """
-    This section includes the security settings, this includes things like:
-    - what checks are being run for the read
-    - what checks are being run for the write
-    """
+    
+    # This section includes the security settings, this includes things like:
+    # - what checks are being run for the read
+    # - what checks are being run for the write
+    
     st.markdown("#### Sicherheitseinstellungen")
