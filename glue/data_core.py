@@ -14,11 +14,19 @@ planned / in development:
 - csv drag n' drop
 """
 #importing modules
+from msilib.schema import Error
+from tkinter import E
 import pandas as pd
 import os
 import pathlib
 import importlib.util
 import sys
+from enum import Enum
+import streamlit as st
+
+
+
+
 
 
 #paths
@@ -27,10 +35,23 @@ glue_layer = here.parent
 
 
 #importing local modules
+# ** importing data_objcts
 data_objcts_spec=importlib.util.spec_from_file_location("data_objcts",glue_layer / "data_objcts.py")
 data_objcts = importlib.util.module_from_spec(data_objcts_spec)
 data_objcts_spec.loader.exec_module(data_objcts)
 sys.modules["data_objcts"] = data_objcts
+
+# ** importing data_reader
+data_reader_spec=importlib.util.spec_from_file_location("data_reader",glue_layer / "data_reader.py")
+data_reader = importlib.util.module_from_spec(data_reader_spec)
+data_reader_spec.loader.exec_module(data_reader)
+sys.modules["data_reader"] = data_reader
+
+# ** importing data_formats
+data_formats_spec=importlib.util.spec_from_file_location("data_formats",glue_layer / "data_formats.py")
+data_formats = importlib.util.module_from_spec(data_formats_spec)
+data_formats_spec.loader.exec_module(data_formats)
+sys.modules["data_formats"] = data_formats
 
 
 
@@ -192,6 +213,15 @@ def init_pd_dataframes():
 	})
 
 
+	fach = pd.DataFrame({
+		"fach_id": [],
+		"fname": [],
+		"cre_userid": [],
+		"cre_date": [],
+		"chg_userid": [],
+		"chg_date": []
+	})
+
 
 	kursschuelerref = pd.DataFrame({
 		"kursschuelerref_id": [],
@@ -228,75 +258,189 @@ def init_pd_dataframes():
 	})
 
 
+	noten_simplified = pd.DataFrame({
+		"score": [],
+		"fach": [],
+		"type": [],
+		"count": [],
+		"cre_userid": [],
+		"cre_date": [],
+		"chg_userid": [],
+		"chg_date": []
+	})
 
 
-
-def load_data_from_csv(inpt_csv):
-	data = pd.read_csv(inpt_csv)
-
-	table_type = pd.inpt_csv[:inpt_csv.find(".")]#loading the table into a 
-
-	# ! Change if-else to a dictionary
-	def appenddata(data):#append the read data to existing 
-		#appending the read data into the tables
-		# ! This will throw an error if the functions are not called in correct order
-		if table_type == "noten":
-			noten.append(data)
-		elif table_type == "schueler":
-			schueler.append(data)
-		elif table_type == "kurs":
-			kurs.append(data)
-		elif table_type == "stunden":
-			stunden.append(data)
-		elif table_type == "schulevents":
-			schulevents.append(data)
-		elif table_type == "arbeiten":
-			arbeiten.append(data)
-		elif table_type == "kalender":
-			kalender.append(data)
-		elif table_type == "kursschuleventsref":
-			kursschuleventsref.append(data)
-		elif table_type == "kursstundenref":
-			kursstundenref.append(data)
-		elif table_type == "kursschuelerref":
-			kursschuelerref.append(data)
-		elif table_type == "lehrerfachref":
-			lehrerfachref.append(data)
-		elif table_type == "notenschuelerref":
-			notenschuelerref.append(data)
+	# ** dictionairy with all the objects, keeping arr for debugging reasons but commentd out because it's not required
+	# dataframes_arr = [noten,schueler,kurs,stunden,lehrer,schulevents,arbeiten,kalender,kursschuleventsref,kursstundenref,kursschuelerref,lehrerfachref,notenschuelerref]
+	dataframes_dict = {
+		"noten": noten,
+		"schueler": schueler,
+		"kurs": kurs,
+		"stunden": stunden,
+		"lehrer": lehrer,
+		"schulevents": schulevents,
+		"arbeiten": arbeiten,
+		"kalender": kalender,
+		"fach": fach,
+		"kursschuleventsref": kursschuleventsref,
+		"kursstundenref": kursstundenref,
+		"kursschuelerref": kursschuelerref,
+		"lehrerfachref": lehrerfachref,
+		"notenschuelerref": notenschuelerref,
+		"noten_simplified": noten_simplified
+	}
 
 
-	appenddata(table_type)#append the data onto the pandas DataFrame
+	return(dataframes_dict)
 
 
 
 
-
-#main function
-
-# ! Don't call this main if you don't run it
-def main():
+def do_initial_read(datasources):
 	"""
-	generate path to local csvs, check if they exist or not
-	if path does not exist -> app is running in konf 0
-	if it does exist -> user is running in konf 1 / 2
+	This function does the initial data_read, which does the following steps:
 
-	this can also be done reading from the settgs json but this technic is mroe reliable
+	- read data from csv's according to the datasources param which should contain a list of files containing the data
+	- merge the data onto the existing pd_dataframes
 	"""
-	# ! Do not change the call order
-	init_pd_dataframes()  # generates the initial pandas dataframes
-	
-	# ! Duplicate code from top of file
+
+	store_data = st.session_state["DATA"]# data currently stored in session_state
+
 	here = pathlib.Path(__file__)
-	user_data_path = here.parent / "appdata" / "user_data"
+	user_data_path = here.parent.parent / "appdata" / "user_data"
 
-	testcsv = user_data_path / "noten.csv"
+	# load data from all the csv's
+	for elements in datasources:
+		# getting the data as a pd DataFrame
+
+		#turn datasources into actual file paths
+		elements_path = user_data_path / elements
+
+		data = data_reader.read_data(elements_path)
+
+
+		current_element = elements[:elements.find(".csv")]# current element (serves as key in store_data)
+
+
+		merge = pd.concat([data,store_data[current_element]])# merging the two pandas DataFrames
+
+		st.session_state["DATA"][current_element] = merge# storing the new data in session_state
+
+
+
+
+
+
+
+
+class NTR_CONFIGURATION_ERROR(Exception):
+	def __init__(self,message="There was an critical error with the Notenrechenr configuration. try to change the configuration and contact the developer team."):
+		self.message = message
+		super().__init__(self.message)
+
+
+
+class NTR_READ_ERROR(Exception):
+	def __init__(self,message="There was an critical error when trying to read data."):
+		self.message = message
+		super().__init__(self.message)
+
+
+
+def init_data_core():
+	"""
+	this function initilizes the data_core, this includes
+
+	- creating the pd dataframes
+	- reading the avilable data
+
+	"""
+	# ! Do not change the call order, can lead to problems
+	DATA = init_pd_dataframes()  # generates the initial pandas dataframes
+	if "DATA" not in st.session_state: # saving data in the session state, this will be all the data the app works with !
+		st.session_state["DATA"] = DATA
 	
-	# ! Maybe use an enum class for configuration names.
-	if os.path.exists(testcsv):
-		konf = 1
+	here = pathlib.Path(__file__)
+	user_data_path = here.parent.parent / "appdata" / "user_data"
+
+	# checking if all the files required for the configuration is valid
+
+	# ! fix elements only being file names, NOT paths -> error is raised
+	for elements in st.session_state["notenrechner_datasource_arr"]:
+		current_element_path = user_data_path / elements
+		if not os.path.exists(current_element_path):
+			raise NTR_CONFIGURATION_ERROR
+
+	# ** doing initial data read
+	do_initial_read(st.session_state["notenrechner_datasource_arr"])
+
+
+
+# TODO add functionality for reading, writing -> file read, file write, file modify(append/remove)
+
+
+
+
+
+def write_data_csv(target,data):
+	"""
+	This function writes a pandas dataframe to a csv file
+	# ! NOTE: this function is not eant for appending new user data but rather writing entire blocks of data
+	# ! this means that this function will overwrite any present data
+
+	parameters:
+
+	target: the file the data gets written to
+	data: the pandas dataframe that is supposed to be written
+
+	# TODO:
+		- add the syntax checking etc.
+	"""
+
+
+
+
+def read_data_csv(targetfile,add_to):
+	"""
+	This function reads data from a csv file and returns the data as a pandas dataframe
+	# ! this function does not replace the initial read but rather serves as a method to check data writing success and similar
+
+	parameters:
+	target: the file that gets read
+	add_to: the dataframe to add data to
+	"""
+
+	data = data_reader.read_data(targetfile)
+
+	if not data:
+		raise NTR_READ_ERROR
 	else:
-		konf = 0
+		pass
+
+	if add_to:
+		final = pd.concat([add_to,data])
+		return(final)
+
+
+
+def append_data(target, data):
+	"""
+	This function appends some data to a csv file
+
+	parameters:
+	target: the file that is being appended to
+
+
+	# TODO:
+		- add the syntax checking etc.
+	"""
+
+
+
+def remove_data():
+	"""
+	this function removes data from a csv file
+	"""
 
 
 
@@ -304,13 +448,13 @@ def main():
 
 
 #custom error message when running the program with wrong entry file
-
-# ! You can delete the body and replace it with `pass`
 class FileExecutionError(Exception):
 	def __init__(self,message="This file is not supposed to run as the main file."):
 		self.message = message
 		super().__init__(self.message)
 
+
+#checking if file is being run as main
 if __name__ == "__main__":
 	raise  FileExecutionError
 

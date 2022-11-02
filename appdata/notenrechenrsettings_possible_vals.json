@@ -21,5 +21,23 @@
     "settings": {
         "inpt_prefered": ["number","slider"],
         "theme": ["dark"]
+    },
+    "security": {
+        "write": {
+            "check_dangerous": [true,false],
+            "check_path_existence": [true,false],
+            "check_if_data_already_present": [true,false],
+            "check_indexing": [true,false],
+            "check_length": [true,false],
+            "enforce_required": [true,false],
+            "check_general_format": [true,false]
+        },
+        "read": {
+            "check_dangerous": [true,false],
+            "check_path_existence": [true,false],
+            "check_if_data_already_present": [true,false]
+            
+        }
     }
-}}
+}
+}

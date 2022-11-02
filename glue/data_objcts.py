@@ -2,13 +2,18 @@
 This file is for managing data rows / data frames
 
 the idea is to interpret data rows in the tables as objects until they're inserted into the pandas dataframes
+
+this is mainly for user adding info to the tables and connecting to databases
 """
 
 import pandas as pd
 
 
 
-#interpreting DB tables as objects, EXCLUDING semi-sys tables
+"""
+interpreting DB tables as objects, EXCLUDING semi-sys tables proposed in the notenrechner table documentation
+adding repr functions for each object in case front-end user wants to query data / see objects
+"""
 
 
 #noten table als object:
@@ -555,6 +560,39 @@ class notenschuelerref_obj():
 		dtframe.append(object_pd_repr)
 		return(dtframe)
 
+
+
+#noten_simplified 'table' as object
+class noten_simplified_obj():
+	def __init__(self,score,fach,type,count,cre_userid,cre_date,chg_userid,chg_date):
+		self.score = score
+		self.fach = fach
+		self.type = type
+		self.count = count
+		self.cre_userid = cre_userid
+		self.cre_date = cre_date
+		self.chg_userid = chg_userid
+		self.chg_date = chg_date
+
+	def __repr__(self):
+		return f"noten_simplified({self.score},{self.fach},{self.type},,{self.count},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"score": [self.score],
+			"fach": [self.fach],
+			"type": [self.type],
+			"count": [self.count],
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
 
 
 
