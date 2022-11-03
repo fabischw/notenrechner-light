@@ -139,10 +139,47 @@ with st.expander("Daten hinzufügen"):
 
         match form_choice:
             case "Noten":
-                
                 # form for the 'noten' input
                 
                 with st.form("Noten",clear_on_submit=True):
+                    arbeit_type = ["(Arbeit / Kursarbeit)","(Test / Hausaufgabenüberprüfung / Mitarbeit)"]
+                    kurs_tuple = ()# TODO: add way to query the kurs data
+                    
+                    if inpt_preference == "slider":# ** inpt as slider
+                        score = st.slider("Note eingeben",min_value=0,max_value=15, value=10, step=1)
+                        arbeit_type = st.select_slider("Bitte Typ des Leistungsnachweises wählen",arbeit_type)
+                        kommentar = st.text_area("Kommentar zur Note eingeben")# mark as not required field
+                        doclink = st.text_area("Link zu Dokument einfügen")# mark as not required field
+                        ndate = st.date_input("Datum, an welchem die Arbeit geschrieben wurde")
+                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
+                        kurs = st.selectbox("Bitte Kurs auswählen",kurs_tuple)
+
+
+                    elif inpt_preference == "Eingabefeld":# ** inpt as input fields
+                        score = st.number_input("Note eingeben",min_value=0,max_value=15, value=10, step=1)
+                        arbeit_type = st.selectbox("Bitte Typ des Leistungsnachweises wählen",arbeit_type)
+                        kommentar = st.text_area("Kommentar zur Note eingeben")# mark as not required field
+                        doclink = st.text_area("Link zu Dokument einfügen")# mark as not required field
+                        ndate = st.date_input("Datum, an welchem die Arbeit geschrieben wurde")
+                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
+                        kurs = st.selectbox("Bitte Kurs auswählen",kurs_tuple)
+
+
+                    noten = pd.DataFrame({
+                        "noten_id": [],
+                        "score":  [],
+                        "ntype": [],
+                        "kommentar": [],
+                        "doclink": [],
+                        "ndate": [],
+                        "anz_year": [],
+                        "kurs_id": [],
+                        "cre_userid": [],
+                        "cre_date": [],
+                        "chg_userid": [],
+                        "chg_date": []
+                    })
+
                     submitted = st.form_submit_button("Daten übernehmen")
                     if submitted:
                         
