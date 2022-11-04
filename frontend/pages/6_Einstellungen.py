@@ -76,7 +76,6 @@ def update_settings(type):
 
 
 
-
 st.markdown("## Einstellungen")
 
 # ** NOTE: for verious reasons the individual settings cannot be wrapped into functions

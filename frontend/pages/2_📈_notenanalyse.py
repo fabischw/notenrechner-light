@@ -117,7 +117,7 @@ with st.expander("Daten hinzufügen"):
         # kursschuleventsref (link a course to a school 'event')
         # kursstundenref (link a course to a time when that course is being offered)
 
-        
+
 
 
         #creating a radio button to choose a table to add data to
@@ -148,8 +148,8 @@ with st.expander("Daten hinzufügen"):
                     if inpt_preference == "slider":# ** inpt as slider
                         score = st.slider("Note eingeben",min_value=0,max_value=15, value=10, step=1)
                         arbeit_type = st.select_slider("Bitte Typ des Leistungsnachweises wählen",arbeit_type)
-                        kommentar = st.text_area("Kommentar zur Note eingeben")# mark as not required field
-                        doclink = st.text_area("Link zu Dokument einfügen")# mark as not required field
+                        kommentar = st.text_area("Kommentar zur Note eingeben")# TODO mark as not required field
+                        doclink = st.text_area("Link zu Dokument einfügen")# TODO mark as not required field
                         ndate = st.date_input("Datum, an welchem die Arbeit geschrieben wurde")
                         anz_year = st.number_input("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
                         kurs = st.selectbox("Bitte Kurs auswählen",kurs_tuple)
@@ -158,22 +158,24 @@ with st.expander("Daten hinzufügen"):
                     elif inpt_preference == "Eingabefeld":# ** inpt as input fields
                         score = st.number_input("Note eingeben",min_value=0,max_value=15, value=10, step=1)
                         arbeit_type = st.selectbox("Bitte Typ des Leistungsnachweises wählen",arbeit_type)
-                        kommentar = st.text_area("Kommentar zur Note eingeben")# mark as not required field
-                        doclink = st.text_area("Link zu Dokument einfügen")# mark as not required field
+                        kommentar = st.text_area("Kommentar zur Note eingeben")# TODO mark as not required field
+                        doclink = st.text_area("Link zu Dokument einfügen")# TODO mark as not required field
                         ndate = st.date_input("Datum, an welchem die Arbeit geschrieben wurde")
                         anz_year = st.number_input("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
                         kurs = st.selectbox("Bitte Kurs auswählen",kurs_tuple)
 
+                    # get kurs_id from the selected kurs
 
+                    # TODO add id capturing to automaticly get the noten_id
                     noten = pd.DataFrame({
-                        "noten_id": [],
-                        "score":  [],
-                        "ntype": [],
-                        "kommentar": [],
-                        "doclink": [],
-                        "ndate": [],
-                        "anz_year": [],
-                        "kurs_id": [],
+                        "noten_id": [noten_id],
+                        "score":  [score],
+                        "ntype": [arbeit_type],
+                        "kommentar": [kommentar],
+                        "doclink": [doclink],
+                        "ndate": [ndate],
+                        "anz_year": [anz_year],
+                        "kurs_id": [kurs_id],
                         "cre_userid": [],
                         "cre_date": [],
                         "chg_userid": [],
@@ -181,10 +183,11 @@ with st.expander("Daten hinzufügen"):
                     })
 
                     submitted = st.form_submit_button("Daten übernehmen")
-                    if submitted:
+                    #if submitted:
                         
                         # give data to data_core
-                        
+                        # 
+
 
 
             case "Schüler":
@@ -192,13 +195,37 @@ with st.expander("Daten hinzufügen"):
                 # form for the 'schueler' input
                 
                 with st.form("Schüler",clear_on_submit=True):
+
+                    if inpt_preference == "slider":
+
+                    elif inpt_preference == "Eingabefeld":
+
+                    schueler= pd.DataFrame({
+                        "schueler_id": [],
+                        "vorname": [],
+                        "nachname": [],
+                        "vorname2": [],
+                        "email": [],
+                        "an_schule_seit": [],
+                        "schule": [],
+                        "stufe": [],
+                        "adresse": [],
+                        "salter": [],
+                        "gebdatum": [],
+                        "cre_userid": [],
+                        "cre_date": [],
+                        "chg_userid": [],
+                        "chg_date": []
+                    })
+
+
                     submitted = st.form_submit_button("Daten übernehmen")
-                    if submitted:
+                    #if submitted:
                         
                         # give data to data_core
                         
 
-
+'''
             case "Arbeiten":
                 
                 # form for the 'arbeiten' input
@@ -315,3 +342,4 @@ with st.expander("Daten hinzufügen"):
                 # give data to data_core
                 
 
+'''
