@@ -89,6 +89,11 @@ def convert(list):
     return tuple(i for i in list)
 
 faecher_tuple = convert(faecher)#converting feacher into a tuple
+school_list = []# TODO get the list of schools a user has alread input
+kurse = {
+    "kurs_name": [],
+    "kurs_id": []
+}# TODO get the kurs data
 
 
 # code for adding data
@@ -116,6 +121,8 @@ with st.expander("Daten hinzufügen"):
         # kursschuelerref (link student to a course)
         # kursschuleventsref (link a course to a school 'event')
         # kursstundenref (link a course to a time when that course is being offered)
+
+        # ? add functionality to import templates (for example teacher and school templates)
 
 
 
@@ -151,7 +158,7 @@ with st.expander("Daten hinzufügen"):
                         kommentar = st.text_area("Kommentar zur Note eingeben")# TODO mark as not required field
                         doclink = st.text_area("Link zu Dokument einfügen")# TODO mark as not required field
                         ndate = st.date_input("Datum, an welchem die Arbeit geschrieben wurde")
-                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
+                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=1,max_value = 20,step=1,value = 0)
                         kurs = st.selectbox("Bitte Kurs auswählen",kurs_tuple)
 
 
@@ -161,7 +168,7 @@ with st.expander("Daten hinzufügen"):
                         kommentar = st.text_area("Kommentar zur Note eingeben")# TODO mark as not required field
                         doclink = st.text_area("Link zu Dokument einfügen")# TODO mark as not required field
                         ndate = st.date_input("Datum, an welchem die Arbeit geschrieben wurde")
-                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
+                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=1,max_value = 20,step=1,value = 0)
                         kurs = st.selectbox("Bitte Kurs auswählen",kurs_tuple)
 
                     # get kurs_id from the selected kurs
@@ -197,21 +204,44 @@ with st.expander("Daten hinzufügen"):
                 with st.form("Schüler",clear_on_submit=True):
 
                     if inpt_preference == "slider":
+                        vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
+                        nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
+                        zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
+                        email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")# TODO add check if email is valid
+                        an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
+                        schule = st.multiselect("Schule auswählen.",school_list)
+                        stufe = st.slider("Bitte Klassenstufe auswählen",min_value=1,max_value=13,step=1)
+                        adresse= st.text_input("Wohnadresse des Schülers")
+                        salter = st.slider("Alter in Jahren",min_value=1,max_value=99,step=1)
+                        gebdatum = st.date_input("Geburtsdatum")
+                        
 
                     elif inpt_preference == "Eingabefeld":
+                        vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
+                        nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
+                        zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
+                        email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")# TODO add check if email is valid
+                        an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
+                        schule = st.multiselect("Schule auswählen.",school_list)
+                        stufe = st.number_input("Bitte Klassenstufe auswählen",min_value=1,max_value=13,step=1)
+                        adresse= st.text_input("Wohnadresse des Schülers")
+                        salter = st.number_input("Alter in Jahren",min_value=1,max_value=99,step=1)
+                        gebdatum = st.date_input("Geburtsdatum")
+
+
 
                     schueler= pd.DataFrame({
                         "schueler_id": [],
-                        "vorname": [],
-                        "nachname": [],
-                        "vorname2": [],
-                        "email": [],
-                        "an_schule_seit": [],
-                        "schule": [],
-                        "stufe": [],
-                        "adresse": [],
-                        "salter": [],
-                        "gebdatum": [],
+                        "vorname": [vorname],
+                        "nachname": [nachname],
+                        "vorname2": [vorname2],
+                        "email": [email],
+                        "an_schule_seit": [an_schule_seit],
+                        "schule": [schule],
+                        "stufe": [stufe],
+                        "adresse": [adresse],
+                        "salter": [salter],
+                        "gebdatum": [gebdatum],
                         "cre_userid": [],
                         "cre_date": [],
                         "chg_userid": [],
@@ -225,14 +255,41 @@ with st.expander("Daten hinzufügen"):
                         # give data to data_core
                         
 
-'''
+
             case "Arbeiten":
                 
                 # form for the 'arbeiten' input
                 
                 with st.form("Arbeiten",clear_on_submit=True):
+                    if inpt_preference == "slider":
+                        arbeit_type = st.select_slider("Bitte Typ des Leistungsnachweises wählen",arbeit_type)
+                        kurs = st.selectbox("Kurs auswählen",kurse)# TODO get id by kurs
+                        datum = st.date_input("Datum der Arbeit eingeben")
+                        acount = st.slider("die wievielte Arbeit dieses Typs ist dies ?",min_value=1,max_value=20,step=1,value = 0)
+
+
+                    elif inpt_preference == "Eingabefeld":
+                        arbeit_type = st.selectbox("Bitte Typ des Leistungsnachweises wählen",arbeit_type)# TODO get id by kurs
+                        kurs = st.selectbox("Kurs auswählen",kurse)# TODO get id by kurs
+                        datum = st.date_input("Datum der Arbeit eingeben")
+
+
+
+
+                    arbeiten = pd.DataFrame({
+                        "arbeiten_id": [],
+                        "atype": [],
+                        "kurs_id": [],
+                        "datum": [],
+                        "acount": [],
+                        "cre_userid": [],
+                        "cre_date": [],
+                        "chg_userid": [],
+                        "chg_date": []
+                    })
+
                     submitted = st.form_submit_button("Daten übernehmen")
-                    if submitted:
+                    #if submitted:
                         
                         # give data to data_core
                         
@@ -243,8 +300,28 @@ with st.expander("Daten hinzufügen"):
                 # form for the 'kurs' input
                 
                 with st.form("Kurse",clear_on_submit=True):
+                    if inpt_preference == "slider":
+                        stufe = st.slider("Bitte Klassenstufe auswählen",min_value=1,max_value=13,step=1)
+
+
+                    elif inpt_preference == "Eingabefeld":
+                        stufe = st.number_input("Bitte Klassenstufe auswählen",min_value=1,max_value=13,step=1)
+
+
+                    kurs = pd.DataFrame({
+                        "kurs_id": [],
+                        "lehrer_id": [],
+                        "fach_id": [],
+                        "stundenzahl": [],
+                        "stufe": [],
+                        "cre_userid": [],
+                        "cre_date": [],
+                        "chg_userid": [],
+                        "chg_date": []
+                    })
+
                     submitted = st.form_submit_button("Daten übernehmen")
-                    if submitted:
+                    #if submitted:
                         
                         # give data to data_core
                         
@@ -255,8 +332,53 @@ with st.expander("Daten hinzufügen"):
                 # form for the 'lehrer' input
                 
                 with st.form("Lehrer",clear_on_submit=True):
+                    if inpt_preference == "slider":
+                        vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
+                        nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
+                        zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
+                        email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")# TODO add check if email is valid
+                        kuerzel = st.text_input("Lehrer-Kürzel")
+                        an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
+                        schule = st.multiselect("Schule auswählen", school_list)
+                        origin = st.multiselect("Schule auswählen", school_list)
+                        adresse= st.text_input("Wohnadresse des Schülers")
+                        gebdatum = st.date_input("Geburtsdatum")
+
+
+
+                    elif inpt_preference == "Eingabefeld":
+                        vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
+                        nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
+                        zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
+                        email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")# TODO add check if email is valid
+                        kuerzel = st.text_input("Lehrer-Kürzel")
+                        an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
+                        schule = st.multiselect("Schule auswählen", school_list)
+                        origin = st.multiselect("Schule auswählen", school_list)
+                        adresse= st.text_input("Wohnadresse des Schülers")
+                        gebdatum = st.date_input("Geburtsdatum")
+
+
+
+                    lehrer = pd.DataFrame({
+                        "vorname": [vorname],
+                        "nachname": [nachname],
+                        "vorname2": [vorname2],
+                        "email": [email],
+                        "kuerzel": [kuerzel],
+                        "an_schule_seit": [an_schule_seit],
+                        "schule": [schule],
+                        "origin": [origin],
+                        "adresse": [adresse],
+                        "gebdatum": [gebdatum],
+                        "cre_userid": [],
+                        "cre_date": [],
+                        "chg_userid": [],
+                        "chg_date": []
+                    })
+
                     submitted = st.form_submit_button("Daten übernehmen")
-                    if submitted:
+                    #if submitted:
                         
                         # give data to data_core
                         
@@ -267,11 +389,30 @@ with st.expander("Daten hinzufügen"):
                 # form for the 'stunden' input
                 
                 with st.form("Stunden",clear_on_submit=True):
+                    if inpt_preference == "slider":
+                        sday = st.selectbox("Wochentag auswählen",("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samtag","Sonntag"))
+                        scount = st.slider("Die wievielte Stunde ist dies an dem betreffenden Tag",min_value=1,max_value=10,step=1)
+
+                    elif inpt_preference == "Eingabefeld":
+                        sday = st.selectbox("Wochentag auswählen",("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samtag","Sonntag"))
+                        scount = st.number_input("Die wievielte Stunde ist dies an dem betreffenden Tag",min_value=1,max_value=10,step=1)
+
+
+                    stunden = pd.DataFrame({
+                        "stunen_id": [],
+                        "sday": [],
+                        "scount": [],
+                        "cre_userid": [],
+                        "cre_date": [],
+                        "chg_userid": [],
+                        "chg_date": []
+                    })
+
                     submitted = st.form_submit_button("Daten übernehmen")
-                    if submitted:
-                        """
-                        give data to data_core
-                        """
+                    #if submitted:
+                        
+                        # give data to data_core
+                        
 
 
             case "Schulevents":
@@ -279,11 +420,30 @@ with st.expander("Daten hinzufügen"):
                 # form for the 'schulevents' input
                 
                 with st.form("Schulevents",clear_on_submit=True):
+                    if inpt_preference == "slider":
+                        descript = st.text_area("Beschreibung des Events")
+                        datum = st.date_input("Datum wählen")
+
+                    elif inpt_preference == "Eingabefeld":
+                        descript = st.text_area("Beschreibung des Events")
+                        datum = st.date_input("Datum wählen")
+
+
+                    schulevents = pd.DataFrame({
+                        "schulevents_id": [],
+                        "descript": [],
+                        "datum": [],
+                        "cre_userid": [],
+                        "cre_date": [],
+                        "chg_userid": [],
+                        "chg_date": []
+                    })
+
                     submitted = st.form_submit_button("Daten übernehmen")
-                    if submitted:
-                        """
-                        give data to data_core
-                        """
+                    #if submitted:
+                        
+                        # give data to data_core
+                        
 
 
 
@@ -337,9 +497,8 @@ with st.expander("Daten hinzufügen"):
             })
 
             submitted = st.form_submit_button("Daten übernehmen")
-            if submitted:
+            #if submitted:
                 
                 # give data to data_core
                 
 
-'''
