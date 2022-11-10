@@ -1,5 +1,5 @@
 # Konfigurationen
-- Diese Datei bietet einen Überblick, über die Notenrechner Konfigurationen
+- Dieses Dokument bietet einen Überblick, über die Notenrechner Konfigurationen
 
 
 

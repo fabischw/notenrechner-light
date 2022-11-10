@@ -18,3 +18,5 @@
 - 4. get your name added on the contributor list 😉
 - 5. 🚀 continue creating together 
 
+
+# thanks for contributing ❤️
