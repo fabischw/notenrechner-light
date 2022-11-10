@@ -85,15 +85,19 @@ fach_data = DATA["fach"]
 faecher = []# TODO read actual data 
 
 
-def convert(list):
-    return tuple(i for i in list)
+convert = lambda a: tuple(i for i in a)
+
 
 faecher_tuple = convert(faecher)#converting feacher into a tuple
 school_list = []# TODO get the list of schools a user has alread input
+
+kurs_raw_data = DATA.get("kurs")
+# TODO code comprehension function to transfer DATA from session state to local dict
+
 kurse = {
     "kurs_name": [],
     "kurs_id": []
-}# TODO get the kurs data
+}
 
 
 # code for adding data
@@ -336,7 +340,7 @@ with st.expander("Daten hinzufügen"):
                         vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
                         nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
                         zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
-                        email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")# TODO add check if email is valid
+                        email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")
                         kuerzel = st.text_input("Lehrer-Kürzel")
                         an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
                         schule = st.multiselect("Schule auswählen", school_list)
@@ -350,13 +354,20 @@ with st.expander("Daten hinzufügen"):
                         vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
                         nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
                         zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
-                        email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")# TODO add check if email is valid
+                        email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")
                         kuerzel = st.text_input("Lehrer-Kürzel")
                         an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
                         schule = st.multiselect("Schule auswählen", school_list)
                         origin = st.multiselect("Schule auswählen", school_list)
                         adresse= st.text_input("Wohnadresse des Schülers")
                         gebdatum = st.date_input("Geburtsdatum")
+
+
+                    # check if email is valid:
+                    # TODO add better email check using module later on
+                    if "@" not in email:
+                        st.wanring("Email ungültig.",icon="⚠️")
+                        return()
 
 
 
