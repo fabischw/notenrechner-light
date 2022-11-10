@@ -290,6 +290,42 @@ class fach_obj():
 
 
 
+#schule table as object
+class schule_obj():
+	def __init__(self,schule_id,name,stype,adresse,cre_userid,cre_date,chg_userid,chg_date):
+		self.schule_id = schule_id
+		self.name = name
+		self.stype = stype
+		self.adresse = adresse
+		self.cre_userid = cre_userid
+		self.cre_date = cre_date
+		self.chg_userid = chg_userid
+		self.chg_date = chg_date
+
+	def __repr__(self):
+		return f"Fach({self.schule_id},{self.name},{self.stype},{self.adresse},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+
+	#function to append the object to a panda dataframe
+	def apd_pd_dataframe(self,dtframe):
+		#convert the current object to a dataframe
+		object_pd_repr = pd.DataFrame({
+			"schule_id": [self.schule_id],
+			"name": [self.name],
+			"stype": [self.stype],
+			"adresse": [self.adresse]
+			"cre_userid": [self.cre_userid],
+			"cre_date": [self.cre_date],
+			"chg_userid": [self.chg_userid],
+			"chg_date": [self.chg_date]
+		})
+		#append the dataframe with 1 row to the exisiting dataframe
+		dtframe.append(object_pd_repr)
+		return(dtframe)
+
+
+
+
+
 
 
 

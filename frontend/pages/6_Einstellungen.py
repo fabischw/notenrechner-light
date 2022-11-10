@@ -76,7 +76,6 @@ def update_settings(type):
 
 
 
-
 st.markdown("## Einstellungen")
 
 # ** NOTE: for verious reasons the individual settings cannot be wrapped into functions
@@ -111,3 +110,40 @@ with st.expander("Sicherheitseinstellungen"):
     # - what checks are being run for the write
     
     st.markdown("#### Sicherheitseinstellungen")
+
+
+
+
+# getting the current configuration from main / data_core
+current_configuration = st.session_state["notenrechner_data_config"]
+
+# getting the current db_link
+current_db_link = None
+
+
+
+if current_configuration != "web":
+    with st.expander("Konfigurations-Management"):
+        # This section is for managing the currently used configuration, please do not use this
+        # if you do not know what different configurations do
+
+        # TODO make sure if the configuration is web, a change is not permitted
+
+        st.markdown("#### Konfigurations-Management")
+        st.markdown("- Bitte nutzen diese FUnktion nur, wenn Sie sich sicher sind, was sie tun !")
+        st.markdown("Mehr Informationen zu den verschiedenen Konfigurationen finden sie [hier]()")
+
+
+        select_different_config = st.radio("Konfiguration wählen",("web","0","1","2"),index=current_config)
+
+
+        if st.button("Auswahl bestätigen."):
+            st.markdown("Konfiguration wird aktualisiert...")
+            st.markdown("Programm nicht beenden !")
+            st.markdown("Sobald die Konfiguration aktualisiert wurde, werden Sie informiert, bitte nutzen Sie die App während dieser Zeit nicht")
+
+        
+
+        with st.form("Datenbank-Verbindung aus add-ons herstellen"):
+            db_name = st.radio("Bitte unterstütze Datenbank auswählen",("ORA 21c XE"),index=current_db_link)
+            

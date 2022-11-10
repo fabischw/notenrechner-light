@@ -49,7 +49,7 @@ This is a simple TODO things for the notenrechner app
 ### glue
 - finish the function to load data
 - finish the function to read data
-- 
+- add structure to csv 'schule'
 
 
 ###### data_core
@@ -102,5 +102,18 @@ This is a simple TODO things for the notenrechner app
 
 ### backend
 - Noten simplified layout(table)
+
+</details>
+
+
+
+<details>
+<summary>important / urgent changes</summary>
+
+## this is a lot of important changes to do
+- change SQL table layout for the 'schueler' table, 'schule' column
+- change SQL table layout for the 'lehrer' table, 'email' column REQ status
+- add Schule table to the SQl layouts
+
 
 </details>

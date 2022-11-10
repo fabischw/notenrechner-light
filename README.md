@@ -23,7 +23,7 @@
 
 
 - Dies ist die light version von dem Notenrechner in dem ich in meiner Freizeit arbeite
-- Dieses Projekt befindet sich aktuell in der Entwicklung
+- Dieses Projekt befindet sich aktuell in der Entwicklung, eine online Testversion mit eingeschränkter Funktionalität finden sie [hier](https://notenrechner.streamlit.app)
 - Die volle Version wird sobald sie fertiggestellt wird, ebenfalls veröffentlicht werden
 - [LICENSE - GNU general public license](LICENSE)
 
