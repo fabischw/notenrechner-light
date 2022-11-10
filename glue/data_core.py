@@ -222,6 +222,17 @@ def init_pd_dataframes():
 		"chg_date": []
 	})
 
+	schule = pd.DataFrame({
+		"schule_id": [],
+		"name": [],
+		"stype": [],
+		"adresse": [],
+		"cre_userid": [],
+		"cre_date": [],
+		"chg_userid": [],
+		"chg_date": []
+	})
+
 
 	kursschuelerref = pd.DataFrame({
 		"kursschuelerref_id": [],
@@ -270,6 +281,7 @@ def init_pd_dataframes():
 	})
 
 
+
 	# ** dictionairy with all the objects, keeping arr for debugging reasons but commentd out because it's not required
 	# dataframes_arr = [noten,schueler,kurs,stunden,lehrer,schulevents,arbeiten,kalender,kursschuleventsref,kursstundenref,kursschuelerref,lehrerfachref,notenschuelerref]
 	dataframes_dict = {
@@ -282,6 +294,7 @@ def init_pd_dataframes():
 		"arbeiten": arbeiten,
 		"kalender": kalender,
 		"fach": fach,
+		"schule": schule,
 		"kursschuleventsref": kursschuleventsref,
 		"kursstundenref": kursstundenref,
 		"kursschuelerref": kursschuelerref,
