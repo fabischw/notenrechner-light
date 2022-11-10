@@ -312,7 +312,7 @@ class schule_obj():
 			"schule_id": [self.schule_id],
 			"name": [self.name],
 			"stype": [self.stype],
-			"adresse": [self.adresse]
+			"adresse": [self.adresse],
 			"cre_userid": [self.cre_userid],
 			"cre_date": [self.cre_date],
 			"chg_userid": [self.chg_userid],

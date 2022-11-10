@@ -176,6 +176,9 @@ with st.expander("Notendurchschnitt"):#streamlit expander for content
         if len(nums) > 0:#check if theres already elements befroe attempting to delete the last element
             nums.pop(len(nums)-1)
 
+    if st.sidebar.button("Alle Noten entfernen"):
+        nums = []
+
     try:
         inputs = nums
         st.table(inputs)#create the table containing the data
@@ -266,7 +269,7 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
         max_punktzahl = st.number_input("Maximalpunktzahl",min_value=1.00)# input for the maximum score possible in an exam
         erreicht_punktzahl = st.number_input("erreichte Punktzahl",min_value=0.0,max_value=max_punktzahl,step=0.25)# number_input for the reached score
     elif st.session_state["inpt_prefered"] == "slider":
-        max_punktzahl = st.slider("Maximalpunktzahl",min_value=1.00)# input for the maximum score possible in an exam
+        max_punktzahl = st.slider("Maximalpunktzahl",min_value=1.00,max_value=100.00,step=0.25)# input for the maximum score possible in an exam
         erreicht_punktzahl = st.slider("erreichte Punktzahl",min_value=0.0,max_value=max_punktzahl,step=0.25)#slider for the reached score
 
     
@@ -283,7 +286,7 @@ with st.expander("Prozentrechnung Kursarbeit"):#expander for the  Prozentrechnun
 
 #Punktezähler für Arbeit
 st.markdown("### Punktezähler für Arbeit")
-st.markdown("- Punkte links eingeben und einfach summieren lassen !")
+st.markdown("- Punkte links in Seitenleiste eingeben und einfach summieren lassen !")
 
 
 #moving this function to the sidebar to make things easier

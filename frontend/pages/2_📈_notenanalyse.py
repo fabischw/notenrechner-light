@@ -142,8 +142,10 @@ with st.expander("Daten hinzufügen"):
                 "Lehrer",
                 "Stunden",
                 "Schulevents",
+                "Schule",
+                "Fächer"
             ),
-            index="Noten",
+            index=0,
         )
 
 
@@ -162,7 +164,7 @@ with st.expander("Daten hinzufügen"):
                         kommentar = st.text_area("Kommentar zur Note eingeben")# TODO mark as not required field
                         doclink = st.text_area("Link zu Dokument einfügen")# TODO mark as not required field
                         ndate = st.date_input("Datum, an welchem die Arbeit geschrieben wurde")
-                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=1,max_value = 20,step=1,value = 0)
+                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=1,max_value = 20,step=1,value = 1)
                         kurs = st.selectbox("Bitte Kurs auswählen",kurs_tuple)
 
 
@@ -172,21 +174,21 @@ with st.expander("Daten hinzufügen"):
                         kommentar = st.text_area("Kommentar zur Note eingeben")# TODO mark as not required field
                         doclink = st.text_area("Link zu Dokument einfügen")# TODO mark as not required field
                         ndate = st.date_input("Datum, an welchem die Arbeit geschrieben wurde")
-                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=1,max_value = 20,step=1,value = 0)
+                        anz_year = st.number_input("Die wievielte Note ist das ?",min_value=1,max_value = 20,step=1,value = 1)
                         kurs = st.selectbox("Bitte Kurs auswählen",kurs_tuple)
 
                     # get kurs_id from the selected kurs
 
                     # TODO add id capturing to automaticly get the noten_id
                     noten = pd.DataFrame({
-                        "noten_id": [noten_id],
+                        "noten_id": [],
                         "score":  [score],
                         "ntype": [arbeit_type],
                         "kommentar": [kommentar],
                         "doclink": [doclink],
                         "ndate": [ndate],
                         "anz_year": [anz_year],
-                        "kurs_id": [kurs_id],
+                        "kurs_id": [],
                         "cre_userid": [],
                         "cre_date": [],
                         "chg_userid": [],
@@ -306,18 +308,20 @@ with st.expander("Daten hinzufügen"):
                 with st.form("Kurse",clear_on_submit=True):
                     if inpt_preference == "slider":
                         stufe = st.slider("Bitte Klassenstufe auswählen",min_value=1,max_value=13,step=1)
+                        stundenzahl = st.slider("Anzahl der Wochenstunden",min_value=1,max_value=8,step=1,value=2)
 
 
                     elif inpt_preference == "Eingabefeld":
                         stufe = st.number_input("Bitte Klassenstufe auswählen",min_value=1,max_value=13,step=1)
+                        stundenzahl = st.number_input("Anzahl der Wochenstunden",min_value=1,max_value=8,step=1,value=2)
 
 
                     kurs = pd.DataFrame({
                         "kurs_id": [],
                         "lehrer_id": [],
                         "fach_id": [],
-                        "stundenzahl": [],
-                        "stufe": [],
+                        "stundenzahl": [stundenzahl],
+                        "stufe": [stufe],
                         "cre_userid": [],
                         "cre_date": [],
                         "chg_userid": [],
@@ -366,8 +370,8 @@ with st.expander("Daten hinzufügen"):
                     # check if email is valid:
                     # TODO add better email check using module later on
                     if "@" not in email:
-                        st.wanring("Email ungültig.",icon="⚠️")
-                        return()
+                        st.warning("Email ungültig.",icon="⚠️")
+                        
 
 
 
@@ -411,8 +415,8 @@ with st.expander("Daten hinzufügen"):
 
                     stunden = pd.DataFrame({
                         "stunen_id": [],
-                        "sday": [],
-                        "scount": [],
+                        "sday": [sday],
+                        "scount": [scount],
                         "cre_userid": [],
                         "cre_date": [],
                         "chg_userid": [],
@@ -442,8 +446,8 @@ with st.expander("Daten hinzufügen"):
 
                     schulevents = pd.DataFrame({
                         "schulevents_id": [],
-                        "descript": [],
-                        "datum": [],
+                        "descript": [descript],
+                        "datum": [datum],
                         "cre_userid": [],
                         "cre_date": [],
                         "chg_userid": [],
@@ -479,13 +483,13 @@ with st.expander("Daten hinzufügen"):
 
             if inpt_preference == "slider":# getting input for slider as prefered input
                 score = st.slider("Note eingeben",min_value=0,max_value=15, value=10, step=1)
-                fach = st.select_slider("Bitte Fach auswählen",faecher)
+                #fach = st.select_slider("Bitte Fach auswählen",faecher) # ** commented out to allow for easier testing
                 arbeit_type = st.select_slider("Bitte Typ des Leistungsnachweises wählen",arbeit_type)
                 count = st.slider("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
                 
             elif inpt_preference == "Eingabefeld":# getting input for other input as prefered input
                 score = st.number_input("Note eingeben",min_value=0,max_value=15, value=10, step=1)
-                fach = st.selectbox("Bitte Fach auswählen",faecher_tuple)
+                #fach = st.selectbox("Bitte Fach auswählen",faecher_tuple) # ** commented out to allow for easier testing
                 arbeit_type = st.selectbox("Bitte Typ des Leistungsnachweises wählen",faecher_tuple)
                 count = st.number_input("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
 
@@ -498,7 +502,7 @@ with st.expander("Daten hinzufügen"):
             #creating a pandas Dataframe with current data to append to existing data later on
             current_df = pd.DataFrame({
                 "score": [score],
-                "fach": [fach],
+                #"fach": [fach], # ** commented out to allow for easier testing
                 "type": [arbeit_type],
                 "count": [count],
                 "cre_userid": [cre_userid],

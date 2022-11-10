@@ -27,10 +27,15 @@ settings_path = appdata / "notenrechnersettings.json"
 #importing local modules
 
 #importing data core
-data_core_spec=importlib.util.spec_from_file_location("data_core",glue_layer / "data_core.py")
+data_core_spec = importlib.util.spec_from_file_location("data_core",glue_layer / "data_core.py")
 data_core = importlib.util.module_from_spec(data_core_spec)
 data_core_spec.loader.exec_module(data_core)
 sys.modules["data_core"] = data_core
+
+frontend_funcs_spec = importlib.util.spec_from_file_location("frontend_funcs",frontend_layer / "frontend_funcs.py")
+frontend_funcs = importlib.util.module_from_spec(frontend_funcs_spec)
+frontend_funcs_spec.loader.exec_module(frontend_funcs)
+sys.modules["frontend_funcs"] = frontend_funcs
 
 
 
@@ -49,6 +54,14 @@ st.set_page_config(page_title="Einstellungen",page_icon=icon_load)
 st.sidebar.success("Funktion / Modul wählen")
 
 number_inpt_choice = None
+
+
+
+
+# logic to check if the page was being reload, if yes, initialize the app again
+if "DATA" not in st.session_state:
+    frontend_funcs.init_phase()#initializing the app, if page is reload
+
 
 
 
@@ -119,7 +132,7 @@ current_configuration = st.session_state["notenrechner_data_config"]
 
 # getting the current db_link
 current_db_link = None
-
+current_config = st.session_state["notenrechner_data_config"]
 
 
 if current_configuration != "web":
@@ -145,5 +158,6 @@ if current_configuration != "web":
         
 
         with st.form("Datenbank-Verbindung aus add-ons herstellen"):
-            db_name = st.radio("Bitte unterstütze Datenbank auswählen",("ORA 21c XE"),index=current_db_link)
+            if current_db_link:
+                db_name = st.radio("Bitte unterstütze Datenbank auswählen",("ORA 21c XE"),index=current_db_link)
             

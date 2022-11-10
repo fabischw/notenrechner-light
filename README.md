@@ -22,7 +22,7 @@
 ## Notenorganisation mit Vielzahl an Analyse- und Auswertungsfeatures
 
 
-- Dies ist ein Projekt, in dem ich in meiner Freizeit arbeite
+- Dies ist ein Projekt, an dem ich in meiner Freizeit arbeite.
 - Dieses Projekt befindet sich aktuell in der Entwicklung, eine online Testversion mit eingeschränkter Funktionalität finden sie [hier](https://notenrechner.streamlit.app)
 - [LICENSE - GNU general public license](LICENSE)
 
@@ -56,11 +56,10 @@
 ### 🤯 Überzeugt? Dann lerne [hier]() wie du den Notenrechner installieren kannst und verwendest
 
 ### Hinweise:
-- das Projekt ist in großen Teilen in englischer Sprache geschrieben, um den Austausch und das Beitragen zu vereinfachen
-- das frontend und alle für den Nutzer zugänglichen Funktionen sind in deutscher Sprache formuliert
-- In diesem branch findet die Entwicklung der Konfiguration 1 statt.
-- Da sich das Projekt noch in der Entwicklungsphase befindet, kann nicht für die Sicherheit garantiert werden
-- Dieses Projekt ist außerdem ein Projekt zum Erlernen vieler neuer Fertigkeiten rund um das Aufgabefeld Softwareentwicklung
+- Die Kommentare in der Software sind in englischer Sprache, um den Austausch und das Beitragen zu vereinfachen
+- Das frontend und alle für den Nutzer zugänglichen Funktionen sind in deutscher Sprache formuliert.
+- Da sich das Projekt noch in der Entwicklungsphase befindet, kann nicht für die Sicherheit garantiert werden.
+- Dieses Projekt ist außerdem ein Projekt zum Erlernen vieler neuer Fertigkeiten rund um das Aufgabefeld Softwareentwicklung.
 
 <details>
 <summary>Du möchtest zu dem Projekt beitragen ?</summary>
