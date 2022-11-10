@@ -33,7 +33,7 @@ user_data = appdata/ "user_data"
 
 def paste_csv_structure_to_files():
     """
-    This function initializes the csv structure in the csv files to make sure rea operations don't result in an exception
+    This function initializes the csv structure in the csv files to make sure read operations don't result in an exception
     """
 
     data = data_core.init_pd_dataframes()
@@ -42,6 +42,21 @@ def paste_csv_structure_to_files():
         path_to_element = user_data / f"{keys}.csv"
         print(f"Applying structure to {path_to_element}")
         elements.to_csv(path_to_element,sep=",")
+
+
+def paste_file_specific_csv_structure(name):
+    """
+    This function does the same as the paste_csv_structure_to_files but for only one specific file 
+    """
+
+    data = data_core.init_pd_dataframes()
+
+    specific_data = data.get(name)
+
+    path_to_element = user_data / f"{name}.csv"
+    print(f"Applying structure to {path_to_element}")
+    specific_data.to_csv(path_to_element,sep=",")
+
 
 
 
@@ -128,7 +143,7 @@ def generate_default_tables():
 
 def main():
     """
-    write the function you want to use here
+    paste function you want to use below 
     """
 
 

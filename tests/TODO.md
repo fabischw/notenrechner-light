@@ -49,7 +49,7 @@ This is a simple TODO things for the notenrechner app
 ### glue
 - finish the function to load data
 - finish the function to read data
-- 
+- add structure to csv 'schule'
 
 
 ###### data_core
