@@ -104,6 +104,11 @@ minimal translation of german text above
 
 
 
+### Documentation / Dokumentation
+- [technical](./documentation/technical/README.md)
+- [User / Nutzer](./documentation/user/README.md)
+
+
 
 ### contributors
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=fabischw/notenrechner-light)
