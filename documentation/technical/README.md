@@ -7,16 +7,21 @@
 
 ### general
 
-* [general structure layout(drawio)](general_structure.drawio)
 * this project represents the frontend as well as the simplified backend for the [notenrechner project](https://github.com/fabischw/notenrechner)
 * [used technology](technology.md)
 * this project is currently being developed as personalised dashboard which will be hosted on the user's own machine, for more info check [this](./backend/data/README.md) -> configurations
+
+###### project structure:
+- [DRAWIO](./structure/general_structure_revamp_01.drawio)
+- [PNG](./structure/general_structure_revamp_01.png)
+- [SVG](./structure/general_structure_revamp_01.svg)
 
 <details> <summary>documentation structure</summary>
 
 ## documentation structure
 
 Quick overview over the structure of the documentation
+
 
 ##### [Notenrechner-copy](../notenrechner-copy)
 
@@ -54,3 +59,5 @@ This part of the documentation focuses on the frontend section of the app, which
 ### [glue layer](./glue/README.md)
 
 ### [backend](./backend/README.md)
+
+
