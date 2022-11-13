@@ -24,6 +24,8 @@ here = pathlib.Path(__file__)
 
 glue_layer = here.parent.parent.parent / "glue"# /glue
 resources_dir = here.parent.parent / 'resources'# /frontend/resources
+project = here.parent.parent.parent
+frontend_layer = project / "frontend"
 
 
 
@@ -35,10 +37,16 @@ data_core = importlib.util.module_from_spec(data_core_spec)
 data_core_spec.loader.exec_module(data_core)
 sys.modules["data_core"] = data_core
 
+#importing frontend funcs
+frontend_funcs_spec = importlib.util.spec_from_file_location("frontend_funcs",frontend_layer / "frontend_funcs.py")
+frontend_funcs = importlib.util.module_from_spec(frontend_funcs_spec)
+frontend_funcs_spec.loader.exec_module(frontend_funcs)
+sys.modules["frontend_funcs"] = frontend_funcs
 
 
-
-
+# logic to check if the page was being reload, if yes, initialize the app again
+if "DATA" not in st.session_state:
+    frontend_funcs.init_phase()#initializing the app, if page is reload
 
 
 #set the page icon
@@ -80,6 +88,7 @@ with st.expander("Rohdaten ansehen"):
 inpt_preference = st.session_state["inpt_prefered"]
 DATA = st.session_state["DATA"]
 
+
 # getting the 'fach' data which is important for some selections
 fach_data = DATA["fach"]
 faecher = []# TODO read actual data 
@@ -98,6 +107,9 @@ kurse = {
     "kurs_name": [],
     "kurs_id": []
 }
+
+
+arbeit_type = []# TODO get exam types
 
 
 # code for adding data
@@ -127,6 +139,10 @@ with st.expander("Daten hinzufügen"):
         # kursstundenref (link a course to a time when that course is being offered)
 
         # ? add functionality to import templates (for example teacher and school templates)
+
+        # explanation of dataframe params:
+        # "ASIGN_FROM_CURRENT": means that the value has to be calculated from exisiting information
+        # ! "MISSING": a placeholder argument used during testing / dev, REMOVE / FIX for prod
 
 
 
@@ -181,18 +197,18 @@ with st.expander("Daten hinzufügen"):
 
                     # TODO add id capturing to automaticly get the noten_id
                     noten = pd.DataFrame({
-                        "noten_id": [],
+                        "noten_id": ["ASIGN_FROM_CURRENT"],
                         "score":  [score],
                         "ntype": [arbeit_type],
                         "kommentar": [kommentar],
                         "doclink": [doclink],
                         "ndate": [ndate],
                         "anz_year": [anz_year],
-                        "kurs_id": [],
-                        "cre_userid": [],
-                        "cre_date": [],
-                        "chg_userid": [],
-                        "chg_date": []
+                        "kurs_id": ["MISSING"],
+                        "cre_userid": ["frontend-page2-userinpt"],
+                        "cre_date": [datetime.date.today()],
+                        "chg_userid": [None],
+                        "chg_date": [None]
                     })
 
                     submitted = st.form_submit_button("Daten übernehmen")
@@ -212,7 +228,7 @@ with st.expander("Daten hinzufügen"):
                     if inpt_preference == "slider":
                         vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
                         nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
-                        zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
+                        vorname2 = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
                         email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")# TODO add check if email is valid
                         an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
                         schule = st.multiselect("Schule auswählen.",school_list)
@@ -225,7 +241,7 @@ with st.expander("Daten hinzufügen"):
                     elif inpt_preference == "Eingabefeld":
                         vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
                         nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
-                        zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
+                        vorname2 = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
                         email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")# TODO add check if email is valid
                         an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
                         schule = st.multiselect("Schule auswählen.",school_list)
@@ -237,7 +253,7 @@ with st.expander("Daten hinzufügen"):
 
 
                     schueler= pd.DataFrame({
-                        "schueler_id": [],
+                        "schueler_id": ["ASIGN_FROM_CURRENT"],
                         "vorname": [vorname],
                         "nachname": [nachname],
                         "vorname2": [vorname2],
@@ -248,10 +264,10 @@ with st.expander("Daten hinzufügen"):
                         "adresse": [adresse],
                         "salter": [salter],
                         "gebdatum": [gebdatum],
-                        "cre_userid": [],
-                        "cre_date": [],
-                        "chg_userid": [],
-                        "chg_date": []
+                        "cre_userid": ["frontend-page2-userinpt"],
+                        "cre_date": [datetime.date.today()],
+                        "chg_userid": [None],
+                        "chg_date": [None]
                     })
 
 
@@ -278,20 +294,21 @@ with st.expander("Daten hinzufügen"):
                         arbeit_type = st.selectbox("Bitte Typ des Leistungsnachweises wählen",arbeit_type)# TODO get id by kurs
                         kurs = st.selectbox("Kurs auswählen",kurse)# TODO get id by kurs
                         datum = st.date_input("Datum der Arbeit eingeben")
+                        acount = st.number_input("die wievielte Arbeit dieses Typs ist dies ?",min_value=1,max_value=20,step=1,value = 0)
 
 
 
 
                     arbeiten = pd.DataFrame({
-                        "arbeiten_id": [],
-                        "atype": [],
+                        "arbeiten_id": ["ASIGN_FROM_CURRENT"],
+                        "atype": [arbeit_type],
                         "kurs_id": [],
-                        "datum": [],
-                        "acount": [],
-                        "cre_userid": [],
-                        "cre_date": [],
-                        "chg_userid": [],
-                        "chg_date": []
+                        "datum": [datum],
+                        "acount": [acount],
+                        "cre_userid": ["frontend-page2-userinpt"],
+                        "cre_date": [datetime.date.today()],
+                        "chg_userid": [None],
+                        "chg_date": [None]
                     })
 
                     submitted = st.form_submit_button("Daten übernehmen")
@@ -317,15 +334,15 @@ with st.expander("Daten hinzufügen"):
 
 
                     kurs = pd.DataFrame({
-                        "kurs_id": [],
-                        "lehrer_id": [],
-                        "fach_id": [],
+                        "kurs_id": ["ASIGN_FROM_CURRENT"],
+                        "lehrer_id": ["MISSING"],
+                        "fach_id": ["MISSING"],
                         "stundenzahl": [stundenzahl],
                         "stufe": [stufe],
-                        "cre_userid": [],
-                        "cre_date": [],
-                        "chg_userid": [],
-                        "chg_date": []
+                        "cre_userid": ["frontend-page2-userinpt"],
+                        "cre_date": [datetime.date.today()],
+                        "chg_userid": [None],
+                        "chg_date": [None]
                     })
 
                     submitted = st.form_submit_button("Daten übernehmen")
@@ -343,7 +360,7 @@ with st.expander("Daten hinzufügen"):
                     if inpt_preference == "slider":
                         vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
                         nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
-                        zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
+                        vorname2 = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
                         email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")
                         kuerzel = st.text_input("Lehrer-Kürzel")
                         an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
@@ -357,7 +374,7 @@ with st.expander("Daten hinzufügen"):
                     elif inpt_preference == "Eingabefeld":
                         vorname = st.text_input("Bitte Vorname des Schülers / der Schülerin eingeben")
                         nachname = st.text_input("Bitte Nachname des Schülers / der Schülerin eingeben")
-                        zweiter_vorname = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
+                        vorname2 = st.text_input("Bitte zweiten Vornamen des Schülers / der Schülerin eingeben (falls vorhanden)")
                         email = st.text_input("Bitte Email-Adresse des Schülers eingeben (falls vorhanden)")
                         kuerzel = st.text_input("Lehrer-Kürzel")
                         an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
@@ -376,6 +393,7 @@ with st.expander("Daten hinzufügen"):
 
 
                     lehrer = pd.DataFrame({
+                        "lehrer_id": ["ASIGN_FROM_CURRENT"],
                         "vorname": [vorname],
                         "nachname": [nachname],
                         "vorname2": [vorname2],
@@ -386,10 +404,10 @@ with st.expander("Daten hinzufügen"):
                         "origin": [origin],
                         "adresse": [adresse],
                         "gebdatum": [gebdatum],
-                        "cre_userid": [],
-                        "cre_date": [],
-                        "chg_userid": [],
-                        "chg_date": []
+                        "cre_userid": ["frontend-page2-userinpt"],
+                        "cre_date": [datetime.date.today()],
+                        "chg_userid": [None],
+                        "chg_date": [None]
                     })
 
                     submitted = st.form_submit_button("Daten übernehmen")
@@ -414,13 +432,13 @@ with st.expander("Daten hinzufügen"):
 
 
                     stunden = pd.DataFrame({
-                        "stunen_id": [],
+                        "stunen_id": ["ASIGN_FROM_CURRENT"],
                         "sday": [sday],
                         "scount": [scount],
-                        "cre_userid": [],
-                        "cre_date": [],
-                        "chg_userid": [],
-                        "chg_date": []
+                        "cre_userid": ["frontend-page2-userinpt"],
+                        "cre_date": [datetime.date.today()],
+                        "chg_userid": [None],
+                        "chg_date": [None]
                     })
 
                     submitted = st.form_submit_button("Daten übernehmen")
@@ -445,13 +463,13 @@ with st.expander("Daten hinzufügen"):
 
 
                     schulevents = pd.DataFrame({
-                        "schulevents_id": [],
+                        "schulevents_id": ["ASIGN_FROM_CURRENT"],
                         "descript": [descript],
                         "datum": [datum],
-                        "cre_userid": [],
-                        "cre_date": [],
-                        "chg_userid": [],
-                        "chg_date": []
+                        "cre_userid": ["frontend-page2-userinpt"],
+                        "cre_date": [datetime.date.today()],
+                        "chg_userid": [None],
+                        "chg_date": [None]
                     })
 
                     submitted = st.form_submit_button("Daten übernehmen")
