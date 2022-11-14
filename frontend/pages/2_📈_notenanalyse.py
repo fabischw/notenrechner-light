@@ -109,11 +109,11 @@ kurse = {
 }
 
 
-arbeit_type = []# TODO get exam types
+arbeit_type = ["großer Leistungsnachweis","kleiner Leistungsnachweis"]# TODO check if different states handle this differently, -> make supersettings for this
 
 
 # code for adding data
-with st.expander("Daten hinzufügen"):
+with st.expander("Daten-Eingabe"):
     if st.session_state["notenrechner_data_config"] == 1:
         
         # code for adding a grade for config 1
@@ -477,6 +477,48 @@ with st.expander("Daten hinzufügen"):
                         
                         # give data to data_core
                         
+
+
+            case "Schule":
+
+                # form for the 'schule' input
+
+                with st.form("Schule",clear_on_submit=True):
+                    if inpt_preference == "slider":
+                        name = st.text_input("Name der Schule")
+                        stype = st.selectbox("Bitte Schultyp auswählen",)
+                        adresse = st.text_input("Adresse der Schule eingeben")
+
+
+                    elif inpt_preference== "Eingabefeld":
+                        name = st.text_input("Name der Schule")
+                        stype = st.selectbox("Bitte Schultyp auswählen",)
+                        adresse = st.text_input("Adresse der Schule eingeben")
+
+
+
+                    submitted = st.form_submit_button("Daten übernehmen")
+                    #if submitted:
+
+                        #give data to data_core
+
+
+            case "Fächer":
+
+                # form for the 'fächer' input
+
+                with st.form("Fächer",clear_on_submit=True):
+                    if inpt_preference == "slider":
+                        name = st.text_input("Name des Fachs eingeben")
+
+                    elif inpt_preference == "Eingabefeld":
+                        name = st.text_input("Name des Fachs eingeben")
+
+                    submitted = st.form_submit_button("Daten übernehmen")
+                    #if submitted:
+
+                        #give data to data_core
+
 
 
 
