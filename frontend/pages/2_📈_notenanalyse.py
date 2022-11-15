@@ -98,7 +98,8 @@ convert = lambda a: tuple(i for i in a)
 
 
 faecher_tuple = convert(faecher)#converting feacher into a tuple
-school_list = []# TODO get the list of schools a user has alread input
+school_list = DATA.get("schule")# TODO test
+schultypes = ["Gymnasium","Gemeinschaftsschule","Grundschule"]# TODO allows user to change this accoring to state
 
 kurs_raw_data = DATA.get("kurs")
 # TODO code comprehension function to transfer DATA from session state to local dict
@@ -302,7 +303,7 @@ with st.expander("Daten-Eingabe"):
                     arbeiten = pd.DataFrame({
                         "arbeiten_id": ["ASIGN_FROM_CURRENT"],
                         "atype": [arbeit_type],
-                        "kurs_id": [],
+                        "kurs_id": ["ASIGN_FROM_CURRENT"],
                         "datum": [datum],
                         "acount": [acount],
                         "cre_userid": ["frontend-page2-userinpt"],
@@ -365,7 +366,7 @@ with st.expander("Daten-Eingabe"):
                         kuerzel = st.text_input("Lehrer-Kürzel")
                         an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
                         schule = st.multiselect("Schule auswählen", school_list)
-                        origin = st.multiselect("Schule auswählen", school_list)
+                        origin = st.multiselect("Herkunftschule auswählen", school_list)
                         adresse= st.text_input("Wohnadresse des Schülers")
                         gebdatum = st.date_input("Geburtsdatum")
 
@@ -379,15 +380,11 @@ with st.expander("Daten-Eingabe"):
                         kuerzel = st.text_input("Lehrer-Kürzel")
                         an_schule_seit = st.date_input("Bitte Datum eingeben, seit welchem der Schüler / die Schülerin an der Schule ist")
                         schule = st.multiselect("Schule auswählen", school_list)
-                        origin = st.multiselect("Schule auswählen", school_list)
+                        origin = st.multiselect("Herkunftsschule auswählen", school_list)
                         adresse= st.text_input("Wohnadresse des Schülers")
                         gebdatum = st.date_input("Geburtsdatum")
 
 
-                    # check if email is valid:
-                    # TODO add better email check using module later on
-                    if "@" not in email:
-                        st.warning("Email ungültig.",icon="⚠️")
                         
 
 
@@ -411,7 +408,13 @@ with st.expander("Daten-Eingabe"):
                     })
 
                     submitted = st.form_submit_button("Daten übernehmen")
-                    #if submitted:
+                    if submitted:
+
+                        # check if email is valid:
+                        # TODO add better email check using module later on
+                        if "@" not in email:
+                            st.warning("Email ungültig.",icon="⚠️")
+
                         
                         # give data to data_core
                         
@@ -486,13 +489,13 @@ with st.expander("Daten-Eingabe"):
                 with st.form("Schule",clear_on_submit=True):
                     if inpt_preference == "slider":
                         name = st.text_input("Name der Schule")
-                        stype = st.selectbox("Bitte Schultyp auswählen",)
+                        stype = st.selectbox("Bitte Schultyp auswählen",schultypes)
                         adresse = st.text_input("Adresse der Schule eingeben")
 
 
                     elif inpt_preference== "Eingabefeld":
                         name = st.text_input("Name der Schule")
-                        stype = st.selectbox("Bitte Schultyp auswählen",)
+                        stype = st.selectbox("Bitte Schultyp auswählen",schultypes)
                         adresse = st.text_input("Adresse der Schule eingeben")
 
 
