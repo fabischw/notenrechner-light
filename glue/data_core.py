@@ -23,6 +23,7 @@ import importlib.util
 import sys
 from enum import Enum
 import streamlit as st
+import json
 
 
 
@@ -32,6 +33,8 @@ import streamlit as st
 #paths
 here = pathlib.Path(__file__)
 glue_layer = here.parent
+user_data_path = here.parent.parent / "appdata" / "user_data"
+project = here.parent.parent
 
 
 #importing local modules
@@ -319,8 +322,7 @@ def do_initial_read(datasources):
 
 	store_data = st.session_state["DATA"]# data currently stored in session_state
 
-	here = pathlib.Path(__file__)
-	user_data_path = here.parent.parent / "appdata" / "user_data"
+
 
 	# load data from all the csv's
 	for elements in datasources:
@@ -341,6 +343,34 @@ def do_initial_read(datasources):
 
 
 
+
+def init_additional_data():
+	"""
+	function to load additional data which can be set in the settings
+	"""
+
+	eingabeoptionen_path = project / "appdata" / "eingabeoptionen.json"
+	with open(eingabeoptionen_path,"r") as file:
+		eingabeoptionen = file.read()
+	eingabeoptionen = json.loads(eingabeoptionen)
+
+	eingabeoptionen_options = eingabeoptionen.get("options")
+	
+	leistungsnachweisformen = eingabeoptionen_options.get("leistungsnachweisformen")
+	schulformen = eingabeoptionen_options.get("schulformen")
+
+
+	additional_data = {
+		"Leistungsnachweisformen": leistungsnachweisformen,
+		"Schulformen": schulformen
+	}
+
+
+
+
+
+
+	st.session_state["additional_data"] = additional_data
 
 
 
@@ -386,6 +416,8 @@ def init_data_core():
 
 	# ** doing initial data read
 	do_initial_read(st.session_state["notenrechner_datasource_arr"])
+
+	init_additional_data()
 
 
 

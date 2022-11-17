@@ -66,6 +66,8 @@ if "DATA" not in st.session_state:
 
 
 
+DATA = st.session_state.get("DATA")
+
 
 # function to update settings
 def update_settings(type):
@@ -162,4 +164,50 @@ if current_configuration != "web":
         with st.form("Datenbank-Verbindung aus add-ons herstellen"):
             if current_db_link:
                 db_name = st.radio("Bitte unterstütze Datenbank auswählen",("ORA 21c XE"),index=current_db_link)
+
             
+
+
+with st.expander("Eingabeoptionen - erweitert"):
+    st.markdown("## erweiterte Eingabeoptionen")
+    st.markdown("In diesem Abschnitt können sie die Parameter für die Eingabe im Bereich Notenanalyse verändern.")
+    st.markdown("Dazu zählen:")
+    st.markdown("- Schulformen")
+    st.markdown("- Leistungsnachweisformen")
+
+
+    form_choice = st.radio(
+        "Tabelle zum bearbeiten auswählen",
+        (
+            "Schulformen",
+            "Leistungsnachweisformen"
+        ),
+        index=0,
+    )
+
+
+
+    match form_choice:
+
+        case "Schulformen":
+            #display current school-forms and possibility to add
+            with st.form("Schulformen bearbeiten"):
+
+                st.table(st.session_state["additional_data"]["Schulformen"])
+
+                submitted = st.form_submit_button("Daten übernehmen")
+
+
+
+        case "Leistungsnachweisformen":
+            #display current leistungsnachweis-forms and possibility to add
+            with st.form("Leistungsnachweisformen bearbeiten"):
+
+                st.table(st.session_state["additional_data"]["Leistungsnachweisformen"])
+
+                submitted = st.form_submit_button("Daten übernehmen")
+
+
+
+
+

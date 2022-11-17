@@ -1,0 +1,6 @@
+{
+    "options": {
+        "leistungsnachweisformen": ["GLN","KLN"],
+        "schulformen": ["Gymnasium","Gemeinschaftsschule","Grundschule","Universität","duale Hochschule","Fachhochschule"]
+    }
+}

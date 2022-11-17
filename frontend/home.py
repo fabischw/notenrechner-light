@@ -17,7 +17,7 @@ import sys
 
 
 __author__ = "fabischw"
-__version__ = ("DEV","0.001","early-testing")
+__version__ = ("DEV","0.002","early-testing")
 
 # ? reminder: maybe change variable name in future
 here = pathlib.Path(__file__).parent
