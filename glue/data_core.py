@@ -424,6 +424,15 @@ def init_data_core():
 # TODO add functionality for reading, writing -> file read, file write, file modify(append/remove)
 
 
+def find_current_id(tablename: str):
+	"""
+	this function checks for a given table name, what the currently highest id is to find out which id is the next on ewhich has to be applied
+	"""
+
+	DATA = st.session_state["DATA"]
+
+	return len(DATA.get(tablename).index)
+
 
 
 

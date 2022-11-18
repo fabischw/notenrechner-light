@@ -39,6 +39,12 @@ frontend_funcs = importlib.util.module_from_spec(frontend_funcs_spec)
 frontend_funcs_spec.loader.exec_module(frontend_funcs)
 sys.modules["frontend_funcs"] = frontend_funcs
 
+#importing frontend funcs
+debug_runner_spec = importlib.util.spec_from_file_location("debug_runner",glue_layer / "gluetest" / "runner.py")
+debug_runner = importlib.util.module_from_spec(debug_runner_spec)
+debug_runner_spec.loader.exec_module(debug_runner)
+sys.modules["debug_runner"] = debug_runner
+
 
 
 
@@ -208,6 +214,11 @@ with st.expander("Eingabeoptionen - erweitert"):
                 submitted = st.form_submit_button("Daten übernehmen")
 
 
+
+
+with st.expander("'Debugging'"):
+    if st.button("easy-debug öffnen (öffnet als weitere Seite)"):
+        debug_runner.run()# ! not fully functional yet
 
 
 
