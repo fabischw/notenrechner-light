@@ -178,11 +178,11 @@ def loadsettings():
 	#defining files to access
 	if datasource_location == "local":#local datasource
 		if datasource_type == "appdata/user_data":#not a DB datasource
-			if datasource_size == "full":#full konfig
+			if datasource_size == "full":#full config
 				notenrechner_data_config = 1
 				notenrechner_datasource_arr = konfig_0_files
 				notenrechner_data_path = appdata_user_data
-			elif datasource_size == "simplified":#simplified konfig
+			elif datasource_size == "simplified":#simplified config
 				notenrechner_data_config = 0
 				notenrechner_datasource_arr = config_1_files
 				notenrechner_data_path = appdata_user_data

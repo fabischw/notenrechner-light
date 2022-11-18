@@ -21,6 +21,7 @@ appdata = project / "appdata"
 frontend_layer = project / "frontend"
 
 settings_path = appdata / "notenrechnersettings.json"
+eingabeoptionen_path = appdata / "eingabeoptionen.json"
 
 
 
@@ -143,6 +144,11 @@ current_configuration = st.session_state["notenrechner_data_config"]
 # getting the current db_link
 current_db_link = None
 current_config = st.session_state["notenrechner_data_config"]
+possible_configs = ["web","0","1","2"]
+# getting the current index for the display
+for idx,elements in enumerate(possible_configs):
+    if elements == str(current_config):
+        current_config_idx = idx
 
 
 if current_configuration != "web":
@@ -157,13 +163,52 @@ if current_configuration != "web":
         st.markdown("Mehr Informationen zu den verschiedenen Konfigurationen finden sie [hier]()")
 
 
-        select_different_config = st.radio("Konfiguration wählen",("web","0","1","2"),index=current_config)
+        select_different_config = st.radio("Konfiguration wählen",("web","0","1","2"),index=current_config_idx)
 
 
         if st.button("Auswahl bestätigen."):
             st.markdown("Konfiguration wird aktualisiert...")
             st.markdown("Programm nicht beenden !")
             st.markdown("Sobald die Konfiguration aktualisiert wurde, werden Sie informiert, bitte nutzen Sie die App während dieser Zeit nicht")
+
+            if select_different_config != current_configuration:
+                # save new configuration
+                if select_different_config != "web" and select_different_config != 2:
+                    st.session_state["notenrechner_data_config"] = select_different_config
+                    
+                    # loading the current settings
+                    with open(settings_path, "r")as file:
+                        setting_data = json.load(file)
+                    
+
+                    match select_different_config:
+                        #saving the configs to the settings,
+                        # ? to avoid confusion: keep in mind the parameters being assigned below are the NEW parameters !!!
+                        case "1":
+                            setting_data["settings"]["datasource"]["size"] = "full"
+                            setting_data["settings"]["version"]["full"] = True
+                        case "0":
+                            setting_data["settings"]["datasource"]["size"] = "simplified"
+                            setting_data["settings"]["version"]["full"] = False
+
+                    #write data that is the same for both configs 0 and 1
+                    setting_data["settings"]["datasource"]["location"] = "local"
+                    setting_data["settings"]["datasource"]["type"] = "appdata/user_data"
+                    setting_data["settings"]["version"]["platform"] = "localhost"
+                    setting_data["settings"]["datasource"]["db_link"] = False
+
+                    
+
+
+                    #saving the new settings as json into the old file -> overwriting old data
+                    with open(settings_path, "w") as file:
+                        file.write(json.dumps(setting_data, indent=4))
+
+
+
+                    st.markdown("Änderung erfolgreich; es wird kein Neustart benötigt, sollte es zu Probleme kommen, einfach die Seite neu laden. ")
+                else:
+                    st.markdown("Bitte starten Sie die App neu, um die Änderung zu aktualisieren.")
 
         
 
@@ -199,9 +244,11 @@ with st.expander("Eingabeoptionen - erweitert"):
             #display current school-forms and possibility to add
             with st.form("Schulformen bearbeiten"):
 
-                st.table(st.session_state["additional_data"]["Schulformen"])
+                st.table(st.session_state["additional_data"]["schulformen"])
 
                 submitted = st.form_submit_button("Daten übernehmen")
+                #if submitted:
+                    #code to handle the data changes
 
 
 
@@ -209,7 +256,7 @@ with st.expander("Eingabeoptionen - erweitert"):
             #display current leistungsnachweis-forms and possibility to add
             with st.form("Leistungsnachweisformen bearbeiten"):
 
-                st.table(st.session_state["additional_data"]["Leistungsnachweisformen"])
+                st.table(st.session_state["additional_data"]["leistungsnachweisformen"])
 
                 submitted = st.form_submit_button("Daten übernehmen")
 
@@ -218,7 +265,7 @@ with st.expander("Eingabeoptionen - erweitert"):
 
 with st.expander("'Debugging'"):
     if st.button("easy-debug öffnen (öffnet als weitere Seite)"):
-        debug_runner.run()# ! not fully functional yet
+        debug_runner.run()# ! not fully functional yet -> error in displaing the generated data, missing option to save data
 
 
 

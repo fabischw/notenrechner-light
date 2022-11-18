@@ -5,9 +5,9 @@
 
 | Kennzahl | Name           | host                                         | location | datasource    | csv type | status                  |update/refernce                                          |
 |----------|----------------|----------------------------------------------|----------|---------------|----------|-------------------------|---------------------------------------------------------|
-| web      | streamlit      | [web](https://notenrechner.streamlitapp.com) | -        | csv Datei     | minimal  | TEST-DEPLOYED / HALTED  | [online version](https://notenrechner.anvilapp.com)     |
-| 0        | local csv full | localhost                                    | local    | csv Datei     | full     | DEV                     |                                                         |
-| 1        | local csv      | localhost                                    | local    | csv Datei     | medium   | DEV                     |                                                         |
+| web      | streamlit      | [web](https://notenrechner.streamlitapp.com) | -        | csv Datei     | NONE     | TEST-DEPLOYED / HALTED  | [online version](https://notenrechner.anvilapp.com)     |
+| 0        | local csv      | localhost                                    | local    | csv Datei     | minimal  | DEV                     |                                                         |
+| 1        | local csv full | localhost                                    | local    | csv Datei     | full     | DEV                     |                                                         |
 | 2        | local oracle   | localhost                                    | local    | ORA DB 21c XE | -        | PLANING                 | [repo](https://github.com/fabischw/notenrechner)        |
 
 

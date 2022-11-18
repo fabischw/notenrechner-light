@@ -37,6 +37,12 @@ data_core = importlib.util.module_from_spec(data_core_spec)
 data_core_spec.loader.exec_module(data_core)
 sys.modules["data_core"] = data_core
 
+#importing data_reader
+data_reader_spec=importlib.util.spec_from_file_location("data_reader",glue_layer / "data_reader.py")
+data_reader = importlib.util.module_from_spec(data_reader_spec)
+data_reader_spec.loader.exec_module(data_reader)
+sys.modules["data_reader"] = data_reader
+
 #importing frontend funcs
 frontend_funcs_spec = importlib.util.spec_from_file_location("frontend_funcs",frontend_layer / "frontend_funcs.py")
 frontend_funcs = importlib.util.module_from_spec(frontend_funcs_spec)
@@ -723,8 +729,39 @@ with st.expander("Daten-Eingabe"):
         # Noten -> noten_simplified.csv
         
 
+        # load the fach data since it doesn't get load initially because config 0 only loads 1 csv
+
+
+
+        store_data = st.session_state["DATA"]# data currently stored in session_state
+
+        fach = pd.DataFrame({
+            "fach_id": [],
+            "fname": [],
+            "cre_userid": [],
+            "cre_date": [],
+            "chg_userid": [],
+            "chg_date": []
+        })
+
+        fach_path = project / "appdata" / "user_data" / "fach.csv"
+        fach_data = data_reader.read_data(fach_path)
+        merge = pd.concat([fach_data,store_data["fach"]])# merging the two pandas DataFrames
+
+        st.session_state["DATA"]["fach"] = merge# storing the new data in session_state
+
+
+
+
+        fach_data = DATA["fach"]
+        fname_data = fach_data[["fach_id","fname"]]
+        fach_display = fach_data[["fname"]]# list of items to be displayed
+
+
+
+
+
         with st.form("Noten",clear_on_submit=True):
-            # ! NOTE: this part is not functional due to the faecher variable not containing any data yet
             
             # form for the simplified Noten input
             
@@ -732,7 +769,7 @@ with st.expander("Daten-Eingabe"):
 
             if inpt_preference == "slider":# getting input for slider as prefered input
                 score = st.slider("Note eingeben",min_value=0,max_value=15, value=10, step=1)
-                fach = st.select_slider("Bitte Fach auswählen",fach_display) # ** commented out to allow for easier testing
+                fach = st.selectbox("Bitte Fach auswählen",fach_display) # ** commented out to allow for easier testing
                 arbeit_type = st.select_slider("Bitte Typ des Leistungsnachweises wählen",leistungsnachweisformen)
                 count = st.slider("Die wievielte Note ist das ?",min_value=0,max_value = 20,step=1,value = 0)
                 
