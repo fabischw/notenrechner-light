@@ -85,7 +85,7 @@ def init_pd_dataframes():
 		"vorname2": [],
 		"email": [],
 		"an_schule_seit": [],
-		"schule": [],
+		"schule_id": [],
 		"stufe": [],
 		"adresse": [],
 		"salter": [],
@@ -131,7 +131,7 @@ def init_pd_dataframes():
 		"email": [],
 		"kuerzel": [],
 		"an_schule_seit": [],
-		"schule": [],
+		"schule_id": [],
 		"origin": [],
 		"adresse": [],
 		"gebdatum": [],
@@ -361,8 +361,8 @@ def init_additional_data():
 
 
 	additional_data = {
-		"Leistungsnachweisformen": leistungsnachweisformen,
-		"Schulformen": schulformen
+		"leistungsnachweisformen": leistungsnachweisformen,
+		"schulformen": schulformen
 	}
 
 

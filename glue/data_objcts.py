@@ -61,14 +61,14 @@ class noten_obj():
 
 #schueler table als object:
 class schueler_obj():
-	def __init__(self,schueler_id,vorname,nachname,vorname2,email,an_schule_seit,schule,stufe,adresse,salter,gebdatum,cre_userid,cre_date,chg_userid,chg_date):
+	def __init__(self,schueler_id,vorname,nachname,vorname2,email,an_schule_seit,schule_id,stufe,adresse,salter,gebdatum,cre_userid,cre_date,chg_userid,chg_date):
 		self.schueler_id = schueler_id
 		self.vorname = vorname
 		self.nachname = nachname
 		self.vorname2 = vorname2
 		self.email = email
 		self.an_schule_seit = an_schule_seit
-		self.schule = schule
+		self.schule_id = schule
 		self.stufe = stufe
 		self.adresse = adresse
 		self.salter = salter
@@ -79,7 +79,7 @@ class schueler_obj():
 		self.chg_date = chg_date
 		
 	def __repr__(self):
-		return f"Schüler({self.schueler_id},{self.vorname},{self.nachname},{self.vorname2},{self.email},{self.an_schule_seit},{self.schule},{self.stufe},{self.adresse},{self.salter},{self.gebdatum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+		return f"Schüler({self.schueler_id},{self.vorname},{self.nachname},{self.vorname2},{self.email},{self.an_schule_seit},{self.schule_id},{self.stufe},{self.adresse},{self.salter},{self.gebdatum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 	#function to append the object to a panda dataframe
 	def apd_pd_dataframe(self,dtframe):
@@ -91,7 +91,7 @@ class schueler_obj():
 			"vorname2": [self.vorname2],
 			"email": [self.email],
 			"an_schule_seit": [self.an_schule_seit],
-			"schule": [self.schule],
+			"schule_id": [self.schule_id],
 			"stufe": [self.stufe],
 			"adresse": [self.adresse],
 			"salter": [self.salter],
@@ -181,14 +181,14 @@ class stunden_obj():
 
 #lehrer table as object
 class lehrer_obj():
-	def __init__(self,vorname,nachname,vorname2,email,kuerzel,an_schule_seit,schule,origin,adresse,gebdatum,cre_userid,cre_date,chg_userid,chg_date):
+	def __init__(self,vorname,nachname,vorname2,email,kuerzel,an_schule_seit,schule_id,origin,adresse,gebdatum,cre_userid,cre_date,chg_userid,chg_date):
 		self.vorname = vorname
 		self.nachname = nachname
 		self.vorname2 = vorname2
 		self.email = email
 		self.kuerzel = kuerzel
 		self.an_schule_seit = an_schule_seit
-		self.schule = schule
+		self.schule_id = schule_id
 		self.origin = origin
 		self.adresse = adresse
 		self.gebdatum = gebdatum
@@ -198,7 +198,7 @@ class lehrer_obj():
 		self.chg_date = chg_date
 
 	def __repr__(self):
-		return f"Lehrer({self.vorname},{self.nachname},{self.vorname2},{self.email},{self.an_schule_seit},{self.schule},{self.origin},{self.adresse},{self.gebdatum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
+		return f"Lehrer({self.vorname},{self.nachname},{self.vorname2},{self.email},{self.an_schule_seit},{self.schule_id},{self.origin},{self.adresse},{self.gebdatum},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
 
 	#function to append the object to a panda dataframe
 	def apd_pd_dataframe(self,dtframe):
@@ -210,7 +210,7 @@ class lehrer_obj():
 			"email": [self.email],
 			"kuerzel": [self.kuerzel],
 			"an_schule_seit": [self.an_schule_seit],
-			"schule": [self.schule],
+			"schule_id": [self.schule_id],
 			"origin": [self.origin],
 			"adresse": [self.adresse],
 			"gebdatum": [self.gebdatum],

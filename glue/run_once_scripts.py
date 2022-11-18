@@ -137,6 +137,20 @@ def generate_default_tables():
     fach_table.to_csv(path_to_file, sep=",")
 
 
+def generate_schule_table():
+    """
+    TEMPORARY FUNCTION, REMOVE IF NOT NEEDED ANYMORE
+    This function pastes the structure to the schule.csv file (was created after all others)
+    """
+
+
+    data = data_core.init_pd_dataframes()
+
+    path_to_element = user_data / "schule.csv"
+    elements = data["schule"]
+    print(f"Applying structure to {path_to_element}")
+    elements.to_csv(path_to_element,sep=",")
+
 
 
 
@@ -145,6 +159,8 @@ def main():
     """
     paste function you want to use below 
     """
+
+
 
 
 

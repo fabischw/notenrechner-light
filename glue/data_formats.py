@@ -68,29 +68,33 @@ class ntr_data_formatter():
     kalender_datatypes = ["NUMBER(10)","VARCHAR(200)","DATE","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
     kalender_required = ["kalender_id","events_descript","events_date","cre_userid","cre_date"]
 
-    schueler_columns = ["schueler_id","vorname","nachname","vorname2","email","an_schule_seit","schule","stufe","adresse","salter","gebdatum","cre_userid","cre_date","chg_userid","chg_date"]
-    schueler_datatypes = ["NUMBER(10)","VARCHAR(30)","VARCHAR(30)","VARCHAR2(30)","VARCHAR(30)","DATE",""]
-    schueler_required = ["schueler_id","vorname","nachname","email","schule","stufe","salter","cre_userid","cre_date"]
+    schueler_columns = ["schueler_id","vorname","nachname","vorname2","email","an_schule_seit","schule_id","stufe","adresse","salter","gebdatum","cre_userid","cre_date","chg_userid","chg_date"]
+    schueler_datatypes = ["NUMBER(10)","VARCHAR(30)","VARCHAR(30)","VARCHAR2(30)","VARCHAR(30)","DATE","NUMBER(10)","NUMBER(2)","NUMBER(2)","DATE","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+    schueler_required = ["schueler_id","vorname","nachname","email","schule_id","stufe","salter","cre_userid","cre_date"]
 
     noten_columns = ["noten_id","score","ntype","kommentar","doclink","ndate","anz_year","kurs_id","cre_userid","cre_date","chg_userid","chg_date"]
     noten_datatypes = ["NUMBER(10)","NUMBER(2)","VARCHAR(10)","VARCHAR2(100)","VARCHAR2(200)","DATE","VARCHAR2(100)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
     noten_required = ["noten_id","score","ntype","kurs_id","cre_userid","cre_date"]
 
-    lehrer_columns = ["lehrer_id","vorname","nachname","vorname2","email","kuerzel","an_schule_seit","schule","origin","adresse","gebdatum","cre_userid","cre_date","chg_userid","chg_date"]
-    lehrer_datatypes = ["NUMBER(10)","VARCHAR(30)","VARCHAR(30)","VARCHAR2(30)","VARCHAR(30)","VARCHAR(5)","DATE","VARCHAR(2)","VARCHAR(1)","VARCHAR2(300)","VARCHAR(30)","DATE","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
-    lehrer_required = ["lehrer_id","vorname","nachname","email","kuerzel","schule","origin","adresse","cre_userid","cre_date"]
+    lehrer_columns = ["lehrer_id","vorname","nachname","vorname2","email","kuerzel","an_schule_seit","schule_id","origin","adresse","gebdatum","cre_userid","cre_date","chg_userid","chg_date"]
+    lehrer_datatypes = ["NUMBER(10)","VARCHAR(30)","VARCHAR(30)","VARCHAR2(30)","VARCHAR(30)","VARCHAR(5)","DATE","NUMBER(10)","VARCHAR(1)","VARCHAR2(300)","VARCHAR(30)","DATE","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+    lehrer_required = ["lehrer_id","vorname","nachname","email","kuerzel","schule_id","origin","adresse","cre_userid","cre_date"]
 
     fach_columns = ["fach_id","fname","cre_userid","cre_date","chg_userid","chg_date"]
     fach_datatypes = ["NUMBER(10)","VARCHAR(40)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
     fach_required = ["fach_id","fname","cre_userid","cre_date"]
 
+    schule_columns = ["schule_id","name","stype","adresse","cre_userid","cre_date","chg_userid","chg_date"]
+    schule_datatypes = ["NUMBER(10)","VARCHAR(50)","VARCHAR(40)","VARCHAR(200)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
+    schule_required = ["schule_id","name","stype","adresse","cre_userid","cre_date"]
+
     kursschuleventsref_columns = ["kursschuleventsref_id","kurs_id","schulevents_id","cre_userid","cre_date","chg_userid","chg_date"]
     kursschuleventsref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
     kursschuleventsref_required = ["kursschuleventsref_id","kurs_id","schulevents_id","cre_userid","cre_date"]
 
-    kursstundenref_columns = ["kursschuleventsref_id","kurs_id","schulevents_id","cre_userid","cre_date","chg_userid","chg_date"]
+    kursstundenref_columns = ["kursstundenref_id","kurs_id","stunden_id","cre_userid","cre_date","chg_userid","chg_date"]
     kursstundenref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
-    kursstundenref_required = ["kursschuleventsref_id","kurs_id","schulevents_id","cre_userid","cre_date"]
+    kursstundenref_required = ["kursstundenref_id","kurs_id","stunden_id","cre_userid","cre_date"]
 
     kursschuelerref_columns = ["kursschuelerref_id","kurs_id","schueler_id","cre_userid","cre_date","chg_userid","chg_date"]
     kursschuelerref_datatypes = ["NUMBER(10)","NUMBER(10)","NUMBER(10)","VARCHAR(30)","DATE","VARCHAR2(30)","DATE"]
@@ -180,6 +184,12 @@ class ntr_data_formatter():
                 result.append(ntr_data_formatter.fach_columns)
                 result.append(ntr_data_formatter.fach_datatypes)
                 result.append(ntr_data_formatter.fach_required)
+                return(result)
+            case "schule":
+                result = []
+                result.append(ntr_data_formatter.schule_columns)
+                result.append(ntr_data_formatter.schule_datatypes)
+                result.append(ntr_data_formatter.schule_required)
                 return(result)
             case "kursschuleventsref":
                 result = []
