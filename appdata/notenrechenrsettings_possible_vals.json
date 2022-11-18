@@ -1,8 +1,8 @@
 {"settings": {
     "datasource": {
         "location": ["local","cloud"],
-        "type": ["appdata/user_data","DATABASE"],
-        "size": ["full","simplified","full+"],
+        "type": ["appdata/user_data","DATABASE",null],
+        "size": ["full","simplified","full+",null],
         "db_link": [false,true],
         "db_type": {
             "db_name": [null,[]],

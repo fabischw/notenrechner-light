@@ -197,18 +197,47 @@ if current_configuration != "web":
                     setting_data["settings"]["version"]["platform"] = "localhost"
                     setting_data["settings"]["datasource"]["db_link"] = False
 
-                    
 
 
                     #saving the new settings as json into the old file -> overwriting old data
                     with open(settings_path, "w") as file:
                         file.write(json.dumps(setting_data, indent=4))
 
-
-
                     st.markdown("Änderung erfolgreich; es wird kein Neustart benötigt, sollte es zu Probleme kommen, einfach die Seite neu laden. ")
-                else:
-                    st.markdown("Bitte starten Sie die App neu, um die Änderung zu aktualisieren.")
+                elif select_different_config == "web":
+                    with st.form("Konfiguration ändern"):
+                        st.warning("Sind Sie sich sicher, dass Sie die Konfiguration auf 'web' ändern möchten ? (Dieser Vorgang ")
+                        
+                        submitted = st.form_submit_button("Ich weiß, was ich tue.")
+                        
+
+                        if submitted:
+                            # changing the settings to the web deployment settings
+                            
+                            # loading the current settings
+                            with open(settings_path, "r")as file:
+                                setting_data = json.load(file)
+
+                            setting_data["settings"]["datasource"]["location"] = "cloud"
+                            setting_data["settings"]["datasource"]["type"] = None
+                            setting_data["settings"]["datasource"]["size"] = None
+                            setting_data["settings"]["datasource"]["db_link"] = False
+
+
+                            setting_data["settings"]["version"]["platform"] = "deployed"
+                            setting_data["settings"]["version"]["full"] = False
+
+                            #saving the new settings as json into the old file -> overwriting old data
+                            with open(settings_path, "w") as file:
+                                file.write(json.dumps(setting_data, indent=4))
+                        st.warning("Bitte starten Sie die App neu, um die Änderung anzuwenden.")
+
+                elif select_different_config == "2":
+                    st.warning("Diese Funktion ist aktuell noch nicht verfügbar.")
+
+
+                    
+                    
 
         
 

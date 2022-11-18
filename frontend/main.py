@@ -191,8 +191,13 @@ def loadsettings():
 		else:
 			st.error("This is not configured yet: datasource_type is not valid.")# ? This error is only temporary and will get removed as soon as this is accessible
 
+
 	else:
-		st.error("This is not configured yet: datasource_location is not valid.")# ? This error is only temporary and will get removed as soon as this is accessible
+		if datasource_db_link:
+			notenrechner_data_config = 2
+		elif not datasource_db_link:
+			notenrechner_data_config = "web"
+
 
 	if "notenrechner_data_config" not in st.session_state:
 		st.session_state["notenrechner_data_config"] = notenrechner_data_config
