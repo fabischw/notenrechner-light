@@ -33,7 +33,6 @@ data_core = importlib.util.module_from_spec(data_core_spec)
 data_core_spec.loader.exec_module(data_core)
 sys.modules["data_core"] = data_core
 
-
 #importing frontend funcs
 frontend_funcs_spec = importlib.util.spec_from_file_location("frontend_funcs",frontend_layer / "frontend_funcs.py")
 frontend_funcs = importlib.util.module_from_spec(frontend_funcs_spec)

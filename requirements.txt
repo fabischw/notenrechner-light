@@ -8,3 +8,4 @@ streamlit-ace
 numpy
 sys
 faker
+streamlit-extras
