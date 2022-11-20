@@ -54,7 +54,7 @@ class noten_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -103,7 +103,7 @@ class schueler_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -140,7 +140,7 @@ class kurs_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -173,7 +173,7 @@ class stunden_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -221,7 +221,7 @@ class lehrer_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -255,7 +255,7 @@ class stunden_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -286,7 +286,7 @@ class fach_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -320,7 +320,7 @@ class schule_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -357,7 +357,7 @@ class schulevents_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -393,7 +393,7 @@ class arbeiten_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -426,7 +426,7 @@ class kalender_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -460,7 +460,7 @@ class kursschuleventsref_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -493,7 +493,7 @@ class kursstundenref_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -526,7 +526,7 @@ class kursschuelerref_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -560,7 +560,7 @@ class lehrerfachref_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -594,7 +594,7 @@ class notenschuelerref_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 
@@ -628,7 +628,7 @@ class noten_simplified_obj():
 		})
 		#append the dataframe with 1 row to the exisiting dataframe
 		dtframe.append(object_pd_repr)
-		return(dtframe)
+		return dtframe
 
 
 

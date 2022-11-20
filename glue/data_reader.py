@@ -66,10 +66,10 @@ def translate_plsql_dtype_to_py(inpt: str):
         result_arr[0] = datetime.datetime
 
     else:
-        return(None)
+        return None
 
 
-    return(result_arr)
+    return result_arr
 
 
 
@@ -84,8 +84,8 @@ def check_data(data,sec_priority):
         with open("list_of_naughty_strings.txt","r") as sec_list:
             line = sec_list.readline()
             if line in data_inpt:
-                return(True)
-        return(False)
+                return True
+        return False
 
 
     def basic_type_check(data,sec_priority):
@@ -96,16 +96,16 @@ def check_data(data,sec_priority):
             if sec_priority == 1:
                 dangerous = is_dangerous(data)
                 if dangerous:
-                    return("input is potentially dangerous")
+                    return "input is potentially dangerous"
                 else:
-                    return("input is safe")
+                    return "input is safe"
 
 
 
 
     if type(data) == int or type(data) == str:
         finding = basic_type_check(data,sec_priority)
-        return(finding)
+        return finding
 
 
     elif type(data) == list:
@@ -115,9 +115,9 @@ def check_data(data,sec_priority):
             if finding_current == "input is potentially dangerous":
                 finding +=1
         if finding == 0:
-            return("inpt is safe")
+            return "inpt is safe"
         elif finding > 0:
-            return(f"there are {finding} problems in your data")
+            return f"there are {finding} problems in your data"
 
 
 
@@ -171,20 +171,20 @@ def validate_inpt_13(data_dict: dict, comp_arr: list, req_arr: list, data_type: 
 
     # ** condition 5:
     if len(data_dict) != len(comp_arr):
-        return(False)
+        return False
 
 
     for keys, values in data_dict.items:
 
         # ** condition 1:
         if len(values) != ex_len:
-            return(False)
+            return False
 
         # ** condition 2:
         if keys in req_arr:
             for elements in values:
                 if elements == None:
-                    return(False)
+                    return False
 
         # ** condition 3:
         if keys not in comp_arr:
@@ -201,7 +201,7 @@ def validate_inpt_13(data_dict: dict, comp_arr: list, req_arr: list, data_type: 
         # ** condition 4:
         for elements in values:
             if type(elements) != type(data_type[current_key_idx]):
-                return(False)
+                return False
 
 
 
@@ -258,7 +258,7 @@ def read_data(target: str):
 
 
     if ".csv" not in str(target): # returning False as success for non-csv files
-        return(False)
+        return False
 
     # TODO do security checks
 
@@ -267,9 +267,9 @@ def read_data(target: str):
     try:
         data = pd.read_csv(target,sep=",")
     except FileNotFoundError:
-        return(False)# return success
+        return False# return success
 
-    return(data)
+    return data
 
 
 

@@ -672,6 +672,6 @@ class ntr_data_formatter():
                 result.append(ntr_data_formatter.noten_simplified_datatypes)
                 result.append(ntr_data_formatter.noten_simplified_required)
 
-        return(result)
+        return result
 
 

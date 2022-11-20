@@ -307,7 +307,7 @@ def init_pd_dataframes():
 	}
 
 
-	return(dataframes_dict)
+	return dataframes_dict
 
 
 
@@ -473,7 +473,7 @@ def read_data_csv(targetfile,add_to):
 
 	if add_to:
 		final = pd.concat([add_to,data])
-		return(final)
+		return final
 
 
 
