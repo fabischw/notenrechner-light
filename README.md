@@ -27,15 +27,15 @@
 - [LICENSE - GNU general public license](LICENSE)
 
 
-### Funktionen - eine kleine Auswahl (und aktuell nur eine Vorschau 😉)
-- Notenverwaltung: Trage deine Noten ein und organisiere an einem Platz 🗂
-- Notenanalyse: Analysiere deine Noten: Erstelle Diagramme, erkenne Trends 📊 📈 🧐
-- Quality of Life: Liefert eine Vielzahl an kleinen Funktionen, die das Leben bzgl Noten erleichtern 🧠
+### Funktionen - eine kleine Auswahl (und aktuell nur eine Vorschau )
+- Notenverwaltung: Trage deine Noten ein und organisiere an einem Platz 
+- Notenanalyse: Analysiere deine Noten: Erstelle Diagramme, erkenne Trends 
+- Quality of Life: Liefert eine Vielzahl an kleinen Funktionen, die das Leben bzgl Noten erleichtern 
 
 
 ### An wen richtet sich die Software:
-- Schüler 🧑‍🏫: Nutze die Software für die oben aufgezählten Funktionen und noch viel mehr !
-- Lehrer 👩‍🏫: Lerne, wie du die Software nutzen kannst, um deine Arbeit zu beschleunigen und Noten digital zu organisieren.
+- Schüler : Nutze die Software für die oben aufgezählten Funktionen und noch viel mehr !
+- Lehrer : Lerne, wie du die Software nutzen kannst, um deine Arbeit zu beschleunigen und Noten digital zu organisieren.
 - Schulverwaltung (nur experimentell) : Der Notenrechner kann auch für die Verwaltung einer Schule verwendet werden, wobei die Auswahl an Funktionen für diesen Bereich noch sehr beschränkt ist.
 
 
@@ -43,17 +43,17 @@
 <summary>Warum ausgerechnet dieser Notenrechner ?</summary>
 
 ### Was diesen Notenrechner von all den anderen unterscheidet: 
-# OpenSource 😎
-- Kostenlos 🎉: die Software ist vollkommen kostenlos 🤑
-- Erweitern: Du kannst selbst Erweiterungen entwickeln oder Änderungen am Quellcode vornehmen 👩‍💻
-- Beitragen: Du kannst Verbesserungsvorschläge und Ideen einbringen, die Entwicklung wird von einer Gemeinschaft entwickelt 🤝
-- Datenschutz 🔐: Es werden keine Daten an Dritte gesendet, überzeuge dich selbst davon 🕵️‍♂️
+# OpenSource 
+- Kostenlos : die Software ist vollkommen kostenlos 
+- Erweitern: Du kannst selbst Erweiterungen entwickeln oder Änderungen am Quellcode vornehmen 
+- Beitragen: Du kannst Verbesserungsvorschläge und Ideen einbringen, die Entwicklung wird von einer Gemeinschaft entwickelt 
+- Datenschutz : Es werden keine Daten an Dritte gesendet, überzeuge dich selbst davon 
 
 </details>
 
 
 
-### 🤯 Überzeugt? Dann lerne [hier]() wie du den Notenrechner installieren kannst und verwendest
+###  Überzeugt? Dann lerne [hier]() wie du den Notenrechner installieren kannst und verwendest
 
 ### Hinweise:
 - Die Kommentare in der Software sind in englischer Sprache, um den Austausch und das Beitragen zu vereinfachen
@@ -66,22 +66,22 @@
 
 ### Du bist Programmierer und möchtest zu dem Projekt beitragen ?
 Wenn du Programmierkentnisse hast, kannst du bei der Entwicklung des Notenrechners auf folgende Arten helfen:
-- Funktionen entwickeln 💻: Hilf mit, die Funktionalität des Notenrechner zu verbessern !
-- Software testen 🔬: Testen ist ein wichtiger Teil des Entiwcklungsprozesses, der viel Zeit in Anspruch nimmt. Hilf mit 
-- Dokumentation anfertigen 📝: Ohne Dokumentation ist es unmöglich, effizient Software für ein Projekt zu entwickeln und sich zurechtzufinden
+- Funktionen entwickeln : Hilf mit, die Funktionalität des Notenrechner zu verbessern !
+- Software testen : Testen ist ein wichtiger Teil des Entiwcklungsprozesses, der viel Zeit in Anspruch nimmt. Hilf mit 
+- Dokumentation anfertigen : Ohne Dokumentation ist es unmöglich, effizient Software für ein Projekt zu entwickeln und sich zurechtzufinden
 
 
 
 ### Kein Programmerer ? - Wie du ohne Programmierkentnisse helfen kannst, den Notenrechner zu verbessern
 Programmierkentnisse sind keine Voraussetzung, um einen wichtigen Teil beizutragen !
 Hier ein paar Dinge, die du tun kannst:
-- Werde künstlerisch aktiv und helfe, ansprechende Benutzeroberfächen, Logos und Anleitungen für Nutzer zu designen 👩‍🎨
-- Hilf beim Testen neuer Funktionen und hilf damit, die Entwicklung zu beschleunigen 👨‍💻📈
-- Reiche Verbesserungsvorschläge und eigene Idee ein, die zu neuen Funktionen und Verbesserungen führen 🤗
-- Hilf beim Erstellen von Anleitungen 📝
+- Werde künstlerisch aktiv und helfe, ansprechende Benutzeroberfächen, Logos und Anleitungen für Nutzer zu designen 
+- Hilf beim Testen neuer Funktionen und hilf damit, die Entwicklung zu beschleunigen 
+- Reiche Verbesserungsvorschläge und eigene Idee ein, die zu neuen Funktionen und Verbesserungen führen 
+- Hilf beim Erstellen von Anleitungen 
 - Fehler melden: Melde Fehler die du im Programm findest und hilf uns somit den Notenrechner zu verbessern
 
-## Hilf, dieses Projekt auf die nächste Stufe zu heben 🚀
+## Hilf, dieses Projekt auf die nächste Stufe zu heben 
 
 </details>
 
