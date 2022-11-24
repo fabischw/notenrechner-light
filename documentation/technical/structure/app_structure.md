@@ -33,9 +33,34 @@ the code for the user-interface
     - functionality to display current data 
     - functions to analyse and graph the present data (calculations not performed in this file, calls to others)
 
+- [3_datenbrowser](../../../frontend/pages/3_datenbrowser.py) which includes:
+    - functionality to browse exiting data
+
+- [4_query-data](../../../frontend/pages/4_query-data.py):
+    - query data from database extenstions is present
+
+- [5_bibliothek](../../../frontend/pages/5_bibliothek.py):
+    - library of useful links for students as well as teachers
+
+- [6_Einstellungen](../../../frontend/pages/6_Einstellungen.py):
+    - settings for:
+        - input (slider vs field)
+        - theme
+        - configs
+
+
+
 ##### init functions, others:
 code for initializing different components of the glue / backend layer, other smaller functions which are only required in the frontend, loading the settings
+Init functions / files include:
 
+- [main.py](../../../frontend/main.py)
+    - load settings and put the data in the session_state dictionairy
+    - load the current config
+    - call the data_core init function
+
+- [frontend_funcs.py](../../../frontend/frontend_funcs.py)
+    - call the main init function
 
 
 
