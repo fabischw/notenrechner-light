@@ -29,7 +29,8 @@
         "formulahendry.auto-close-tag",
         "formulahendry.auto-rename-tag",
         "trixnz.vscode-lua",
-        "ecmel.vscode-html-css"
+        "ecmel.vscode-html-css",
+        "WakaTime.vscode-wakatime"
     ]
 
 }
