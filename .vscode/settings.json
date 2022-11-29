@@ -1,5 +1,12 @@
 {
-    "githubPullRequests.ignoredPullRequestBranches": [
-        "main"
-    ]
+    "tabnine.experimentalAutoImports": true,
+    "bracket-pair-colorizer-2.depreciation-notice": false,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "workbench.colorTheme": "Tomorrow Night Blue",
+    "git.autofetch": true,
+    "oracledevtools.bookmarkFileFolder": "C:\\Users\\Fabian\\Oracle\\oracle.oracledevtools",
+    "oracledevtools.download.otherFolder": "C:\\Users\\Fabian\\downloads",
+    "oracledevtools.connectionConfiguration.configFilesFolder": "C:\\Users\\Fabian\\Oracle\\network\\admin",
+    "oracledevtools.connectionConfiguration.walletFileFolder": "C:\\Users\\Fabian\\Oracle\\network\\admin",
+    "Lua.telemetry.enable": false
 }
