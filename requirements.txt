@@ -3,9 +3,7 @@ pillow
 pandas
 pathlib
 plotly
-os
 streamlit-ace
 numpy
-sys
 faker
 streamlit-extras
