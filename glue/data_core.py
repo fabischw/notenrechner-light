@@ -14,7 +14,6 @@ planned / in development:
 - csv drag n' drop
 """
 #importing modules
-from msilib.schema import Error
 from tkinter import E
 import pandas as pd
 import os
