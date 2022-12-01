@@ -103,6 +103,38 @@ minimal translation of german text above
 </details>
 
 
+<details>
+<summary>running in github codespaces</summary>
+
+## Running the program in github codespaces (Experimental only !!!)
+- Please be aware that github's guidelines apply for codespace usage and this is use at your own risk
+- Keep in mind that running this in github codespaces is not ideal as this project is still under development just like codespaces themselves
+- There are are tons of known problems when running this in github codespaces, for more information refer to [this](#issues-running-in-github-codespaces)
+
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=546249014)
+
+- To start the app run these lines in your terminal (make sure you install the dependencies first):
+```bash
+cd ./frontend
+streamlit run home.py --server.enableCORS false --server.enableXsrfProtection false
+```
+
+
+##### Installing dependencies
+```bash
+pip install -r requirements.txt
+```
+
+
+##### Issues running in github codespaces
+- Please do not create an github issue if the app doesn't run correctly when used in github codespaces
+- instead, add the issue in [this folder](./tests/problems/codespaces-issues/), refer to the community guidelines (WIP) on information on how to structure your issues and how to submit them
+
+
+</details>
+
+
 
 ### Documentation / Dokumentation
 - [technical](./documentation/technical/README.md)
