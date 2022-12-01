@@ -194,73 +194,13 @@ else:
 
 
 
+st.markdown("Um sich die Daten anzusehen, besuchen Sie die Seite 3 (Datenbrowser)")
+
 
 
 # ** getting additional data
 schultypes = additional_data.get("schulformen")
 leistungsnachweisformen = additional_data.get("leistungsnachweisformen")
-
-
-
-
-
-
-
-
-with st.expander("Rohdaten ansehen"):
-    if st.session_state["notenrechner_data_config"] == 1:
-        # let user pick a table and check what data is currently present
-        
-        include_ref = st.radio("REF-Tabellen auch anzeigen ?",(
-            "ja",
-            "nein"
-        ),
-        index = 1
-        )
-
-        base_tables = (
-            "kurs",
-            "stunden",
-            "fach",
-            "schulevents",
-            "arbeiten",
-            "kalender",
-            "schueler",
-            "noten",
-            "lehrer",
-            "fach",
-            "schule"
-        )
-
-
-        ref_tables = (
-            "kursschuleventsref",
-            "kursstundenref",
-            "kursschuelerref",
-            "lehrerfachref",
-            "notenschuelerref"
-        )
-
-
-        if include_ref == "ja":
-            tables = base_tables + ref_tables
-        else:
-            tables = base_tables
-
-        tables_choice = st.multiselect("Tabelle zum Ansehen auswählen",tables)
-
-
-        for elements in tables_choice:
-            st.table(DATA.get(elements))
-
-
-
-
-    elif st.session_state["notenrechner_data_config"] == 0:
-        st.table(DATA.get("noten"))
-
-
-
 
 
 
