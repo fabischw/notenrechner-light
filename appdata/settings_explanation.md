@@ -62,7 +62,7 @@ This file describes what different settings in notenrechnersettings do
 - check_path_existence: check if the path exists before writing data (prevents creating files and writing data to wrong files)
 - check_if_data_already_present: check if the data is already present (should be turned off when using the simplified scheme)
 - check_indexing: check if the indexes are correct and continues
-- check_length: check if the defined length from the PL/SQL database schemes are correct, if this is turnedof, maximum length can be ignored, makes connecting to DB impossible!
+- check_length: check if the defined length from the PL/SQL database schemes are correct, if this is turned off, maximum length can be ignored, makes connecting to DB impossible!
 - enforce_required: enforce the required datatypes and similar, should always be on !
 - check_general_format: check whether the general format of the data being written is correct, should always be on !
 
