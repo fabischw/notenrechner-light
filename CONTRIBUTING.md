@@ -1,5 +1,7 @@
 # CONTRIBUTING
 
+### info:
+- to get an idea on what work is being done right now (to either not interfer or to contribute) refer [this file](./CURRENT_WORK.md)
 
 
 ### what to contribute / what not
@@ -7,7 +9,7 @@
 
 - I would appreciate any support with formatting / testing code so feel free to check for bad code and things that do not really change the actual content but rather the code syntax and backend
 
-- PR's for fixinf typos are also welcome (typo correction PR's can be directly merged to the main branch)
+- PR's for fixing typos are also welcome (typo correction PR's can be directly merged to the main branch)
 
 - check how to contribute below to see what branches you can contribute to
 
