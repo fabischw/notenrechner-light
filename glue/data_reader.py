@@ -14,6 +14,8 @@ import os.path
 import streamlit as st
 import copy
 import datetime
+import utility_funcs as util_func
+
 
 
 #paths
@@ -28,6 +30,35 @@ data_formats_spec=importlib.util.spec_from_file_location("data_formats",glue_lay
 data_formats = importlib.util.module_from_spec(data_formats_spec)
 data_formats_spec.loader.exec_module(data_formats)
 sys.modules["data_formats"] = data_formats
+
+# ** importing utility_funcs
+utility_funcs_spec=importlib.util.spec_from_file_location("utility_funcs",glue_layer / "utility_funcs.py")
+utility_funcs = importlib.util.module_from_spec(utility_funcs_spec)
+utility_funcs_spec.loader.exec_module(utility_funcs)
+sys.modules["utility_funcs"] = utility_funcs
+
+
+# loading important data from the session state
+DATA = st.session_state["DATA"]
+additional_data = st.session_state["additional_data"]
+
+#loading the security settings
+security_settings= {
+        "write": {
+            "check_dangerous": st.session_state.get("check_dangerous"),
+            "check_path_existence": st.session_state.get("check_path_existence"),
+            "check_if_data_already_present": st.session_state.get("check_if_data_already_present"),
+            "check_indexing": st.session_state.get("check_indexing"),
+            "check_length": st.session_state.get("check_length"),
+            "enforce_required": st.session_state.get("enforce_required"),
+            "check_general_format": st.session_state.get("check_general_format")
+        },
+        "read": {
+            "check_dangerous": st.session_state.get("check_dangerous"),
+            "check_path_existence": st.session_state.get("check_path_existence"),
+            "check_if_data_already_present": st.session_state.get("check_if_data_already_present")
+        }
+}
 
 
 
@@ -73,141 +104,6 @@ def translate_plsql_dtype_to_py(inpt: str):
 
 
 
-# function to validate data (general validation)
-def check_data(data,sec_priority):
-    # ! requires testing
-    """
-    This function checks an input if it makes sense and is not dangerous before writing it to the csv / json files
-    """
-    # smaller functions
-    def is_dangerous(data_inpt):
-        with open("list_of_naughty_strings.txt","r") as sec_list:
-            line = sec_list.readline()
-            if line in data_inpt:
-                return True
-        return False
-
-
-    def basic_type_check(data,sec_priority):
-        if type(data) == int:
-            return("input is safe")
-        elif type(data) == str:
-            #if priority is 1, check for string in the list of naughty strings
-            if sec_priority == 1:
-                dangerous = is_dangerous(data)
-                if dangerous:
-                    return "input is potentially dangerous"
-                else:
-                    return "input is safe"
-
-
-
-
-    if type(data) == int or type(data) == str:
-        finding = basic_type_check(data,sec_priority)
-        return finding
-
-
-    elif type(data) == list:
-        finding = 0
-        for elements in list:
-            finding_current = basic_type_check
-            if finding_current == "input is potentially dangerous":
-                finding +=1
-        if finding == 0:
-            return "inpt is safe"
-        elif finding > 0:
-            return f"there are {finding} problems in your data"
-
-
-
-
-
-
-
-
-
-
-
-def validate_inpt_13(data_dict: dict, comp_arr: list, req_arr: list, data_type: list, extra_conditions: list):
-    # ! requires testing
-    """
-    This function is a component of the write_data function (step 1.3)
-
-    It takes a dictionairy and an  comparison array(comp_arr) which contains strings as well as a required array (req_arr)  which also contains strings
-
-
-    The function checks if all the strings in the comp_arr are keys in the data_dict and if the length of all the keys is the same and if the values in the array for the keys in req_arr are not None
-
-    If the case given above is True, the function returns True, otherwise it returns False
-
-
-    inpt_explanation:
-    data_dict: a dictionairy containing keys, assigned to each key is an array
-    comp_arr: a array containing all the keys which should be present in the data_dict
-    req_arr: a array containing all the keys whose assigned array should always have a value instead of None
-    data_type: datatype at each column (array), must be 'synced' with comp_arr
-
-    extra_conditions: contains special conditions, must be 'synced' with comp_arr, condition representation as an array itself # ? not implemented yet
-
-
-    conditions:
-    1. length same as all others
-    2. if in req_arr values in arr not None
-    3. key in the comp_arr
-    4. datatype correct (=> data_type)
-    5. check if all elements in comp_arr are in the dict (if 3 is true and lengths same this is true)
-
-
-    Y. check if extra_condition is met # ? not implemented yet
-
-
-
-    """
-
-
-    #variable for saving the length of the data arrays
-    ex_len = data_dict[comp_arr[0]]# any key can picked here since the length should always be the same
-
-    # ** condition 5:
-    if len(data_dict) != len(comp_arr):
-        return False
-
-
-    for keys, values in data_dict.items:
-
-        # ** condition 1:
-        if len(values) != ex_len:
-            return False
-
-        # ** condition 2:
-        if keys in req_arr:
-            for elements in values:
-                if elements == None:
-                    return False
-
-        # ** condition 3:
-        if keys not in comp_arr:
-            return False
-
-
-        # function to find the index of the current key in the comp_arr:
-        current_key_idx = None
-        for idx,elements in enumerate(comp_arr):
-            if elements == keys:
-                current_key_idx = idx
-
-
-        # ** condition 4:
-        for elements in values:
-            if type(elements) != type(data_type[current_key_idx]):
-                return False
-
-
-
-
-
-
 
 
 def write_data(target: str,data):
@@ -215,12 +111,15 @@ def write_data(target: str,data):
     """
     This function writes data to a file (pd dataframe -> csv file)
 
+    params:
+    - target: targetfile(full path)
+    - data: data as a dictionairy
+
     For this there are multiple steps:
 
     1. validate data
-        1.1 check if the currently running version is permitted to export data to a file (ex. web version is not permitted to save data to a file)
-        1.2 ensure the data is not dangerous
-        1.3 check if the data format is valid (ex. writing data with missing arguments to a data file)
+    perform the checks which are proposed in the settings
+
 
     2. write data
         2.1 write the data to the target file
@@ -229,23 +128,37 @@ def write_data(target: str,data):
     """
 
 
-    # 1. validate data
+    # pre-validate:
+    # get the checks that have to be performed on data that is being saved
+    security_settings_write = security_settings.get("write")
+
+    if not security_settings:
+        return False# failing write when the data can't get loaded in
 
 
-    # 1.1
+    # 1. validate data:
+    #perform the checks on the data
 
 
 
-    # 1.3
 
 
-    match target[:target.find(".csv")]:
-        case "noten":
+        data_copy = copy.deepcopy(data.values)# create a dictionairy with the data contained in the pandas dataframe
+        # ** pass the data_dictionairy to the validate_inpt_13 function
+        if validate_inpt_13(data_copy):
+            pass
+        else:
+            return False
 
-            data_copy = copy.deepcopy(data.values)# create a dictionairy with the data contained in the pandas dataframe
-            # ** pass the data_dictionairy to the validate_inpt_13 function
 
-    
+
+    # actually writing the data to the csv file
+    try:
+        pd.to_csv(data)#writing the dataframe to the csv file
+        return True#returning success value
+    except:#doing bare except to prevent file corruption
+        return False
+
 
 
 def read_data(target: str):

@@ -1,4 +1,4 @@
-# settings explenation
+# settings explanation
 This file describes what different settings in notenrechnersettings do
 
 

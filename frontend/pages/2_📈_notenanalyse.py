@@ -136,7 +136,7 @@ for elements in fname_data["fname"]:# get id by name
 fach_id_dict = {}
 i= 0
 for elements in fname_data["fach_id"]:# get name by id
-    fach_id_dict[elements] = fname_data["fname"][i]
+    fach_id_dict[elements] = fname_data["fach_id"][i]
     i += 1
 
 
