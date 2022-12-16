@@ -235,16 +235,16 @@ if current_configuration != "web":
                     st.warning("Diese Funktion ist aktuell noch nicht verfügbar.")
 
 
-                    
-                    
 
-        
+
+
+
 
         with st.form("Datenbank-Verbindung aus add-ons herstellen"):
             if current_db_link:
                 db_name = st.radio("Bitte unterstütze Datenbank auswählen",("ORA 21c XE"),index=current_db_link)
 
-            
+
 
 
 with st.expander("Eingabeoptionen - erweitert"):

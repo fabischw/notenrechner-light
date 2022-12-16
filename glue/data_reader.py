@@ -14,7 +14,6 @@ import os.path
 import streamlit as st
 import copy
 import datetime
-import utility_funcs as util_func
 
 
 
@@ -38,10 +37,11 @@ utility_funcs_spec.loader.exec_module(utility_funcs)
 sys.modules["utility_funcs"] = utility_funcs
 
 
-# loading important data from the session state
-DATA = st.session_state["DATA"]
-additional_data = st.session_state["additional_data"]
+if "security_settings" not in st.session_state:
+    #re-starting the data config using utility funcs
+    utility_funcs.rerun_init_phase() ! recursion error
 
+security_settings = st.session_state["security_settings"]
 #loading the security settings
 security_settings= {
         "write": {
@@ -137,18 +137,15 @@ def write_data(target: str,data):
 
 
     # 1. validate data:
-    #perform the checks on the data
+    #perform the checks on the data that are enabled in the global settings
+
 
 
 
 
 
         data_copy = copy.deepcopy(data.values)# create a dictionairy with the data contained in the pandas dataframe
-        # ** pass the data_dictionairy to the validate_inpt_13 function
-        if validate_inpt_13(data_copy):
-            pass
-        else:
-            return False
+
 
 
 

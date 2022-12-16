@@ -4,6 +4,19 @@ This is to allow other users to see what is going on in the codebase right now a
 
 
 ### CURRENT WORK BELOW:
+<details>
+<summary>total</summary>
+
+### Issue: recursive initial page load
+Investigating an issue where a recursive initital page load structure causes the app to break because of an infinite recursion
+- [more details]()
+
+
+
+</details>
+
+
+
 
 <details>
 <summary>glue layer</summary>
