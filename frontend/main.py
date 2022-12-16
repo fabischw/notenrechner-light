@@ -212,43 +212,45 @@ def loadsettings():
 	read_security_settings = security_settings.get("read")
 	write_security_settings = security_settings.get("write")
 
+	security_settings_dict = {}# creating a dedicated dictionairy to host the security settings
+
 
 	write_check_dangerous = write_security_settings.get("check_dangerous")
-	if "write_check_dangerous" not in st.session_state:
-		st.session_state["write_check_dangerous"] = write_check_dangerous
+	if "write_check_dangerous" not in security_settings_dict:
+		security_settings_dict["write_check_dangerous"] = write_check_dangerous
 	write_check_path_existence = write_security_settings.get("check_path_existence")
-	if "write_check_path_existence" not in st.session_state:
-		st.session_state["write_check_path_existence"] = write_check_path_existence
+	if "write_check_path_existence" not in security_settings_dict:
+		security_settings_dict["write_check_path_existence"] = write_check_path_existence
 	write_check_if_data_already_present = write_security_settings.get("check_if_data_already_present")
 	if "write_check_if_data_already_present":
-		st.session_state["write_check_if_data_already_present"] = write_check_if_data_already_present
+		security_settings_dict["write_check_if_data_already_present"] = write_check_if_data_already_present
 	write_check_indexing = write_security_settings.get("check_indexing")
-	if "write_check_indexing" in st.session_state:
-		st.session_state["write_check_indexing"] = write_check_indexing
+	if "write_check_indexing" in security_settings_dict:
+		security_settings_dict["write_check_indexing"] = write_check_indexing
 	write_check_length = write_security_settings.get("check_length")
-	if "write_check_length" in st.session_state:
-		st.session_state["write_check_length"] = write_check_length
+	if "write_check_length" in security_settings_dict:
+		security_settings_dict["write_check_length"] = write_check_length
 	write_enforce_required = write_security_settings.get("enforce_required")
-	if "write_enforce_required" not in st.session_state:
-		st.session_state["write_enforce_required"] = write_enforce_required
+	if "write_enforce_required" not in security_settings_dict:
+		security_settings_dict["write_enforce_required"] = write_enforce_required
 	write_check_general_format = write_security_settings.get("check_general_format")
-	if "write_check_general_format" not in st.session_state:
-		st.session_state["write_check_general_format"] = write_check_general_format
+	if "write_check_general_format" not in security_settings_dict:
+		security_settings_dict["write_check_general_format"] = write_check_general_format
 
 
 	read_check_dangerous = read_security_settings.get("check_dangerous")
-	if "read_check_dangerous" in st.session_state:
-		st.session_state["read_check_dangerous"] = read_check_dangerous
+	if "read_check_dangerous" in security_settings_dict:
+		security_settings_dict["read_check_dangerous"] = read_check_dangerous
 	read_check_path_existence = read_security_settings.get("check_path_existence")
-	if "read_check_path_existence" not in st.session_state:
-		st.session_state["read_check_path_existence"] = read_check_path_existence
+	if "read_check_path_existence" not in security_settings_dict:
+		security_settings_dict["read_check_path_existence"] = read_check_path_existence
 	read_check_if_data_already_present = read_security_settings.get("check_if_data_already_present")
-	if "read_check_if_data_already_present" not in st.session_state:
-		st.session_state["read_check_if_data_already_present"] = read_check_if_data_already_present
+	if "read_check_if_data_already_present" not in security_settings_dict:
+		security_settings_dict["read_check_if_data_already_present"] = read_check_if_data_already_present
 
 
 
-
+	st.session_state["security-settings"] = security_settings_dict
 
 
 
@@ -258,6 +260,8 @@ def loadsettings():
 	for keys in st.session_state:
 		if st.session_state[keys] == None and keys not in list_of_possible_null_keys:
 			st.error("an critical error occured, please contact the developer with this information: key="+str(keys))
+
+
 
 
 
