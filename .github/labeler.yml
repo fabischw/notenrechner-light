@@ -1,0 +1,28 @@
+# Add 'repo' label to any root file changes
+repo:
+- '*'
+
+# specific label for data core
+glue_core:
+- glue/data_core.py
+
+# specific label for the data reader
+glue_reader:
+- glue/data_reader.py
+
+# label for other glue files
+glue:
+- any: ['glue/**/*]
+  all: ['!glue/data_core.py', '!glue/data_reader.py']
+
+# label for frontend pages
+frontend_pages:
+- frontend/pages/**/*
+
+# label for frontend folder only (no subfolders)
+frontend:
+- any: ['frontend/*']
+  all: ['!frontend/main.py']
+
+backend:
+- backend/**/*
