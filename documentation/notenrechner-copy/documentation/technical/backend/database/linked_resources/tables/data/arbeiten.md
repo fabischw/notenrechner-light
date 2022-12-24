@@ -7,7 +7,7 @@
 |--------------|----------------|------------------------------------------------------|---------------|---------------|-----------------|----------------|
 | 0            | arbeiten_id    | ID                                                   | NUMBER(10)    | y             | PK              | y              |
 | 1            | atype          | Typ der Arbeit                                       | VARCHAR(3)    | y             | null            | y              |
-| 2            | kurs_id        | ID des Kurses                                        | NUMBER(10)    | y             | FK1             | y              |
+| 2            | Kurs_id        | ID des Kurses                                        | NUMBER(10)    | y             | FK1             | y              |
 | 3            | datum          | Datum, an welchem die Arbeit geschrieben wurde       | DATE          | y             | null            | y              |
 | 4            | acount         | Anzahl der Arbeit in dem Jahr                        | NUMBER(10)    | n             | null            | y              |
 | 5            | cre_userid     | User, der die Daten eingefügt hat                    | VARCHAR(30)   | y             | null            | y              |
