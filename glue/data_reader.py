@@ -39,7 +39,7 @@ sys.modules["utility_funcs"] = utility_funcs
 
 if "security_settings" not in st.session_state:
     #re-starting the data config using utility funcs
-    utility_funcs.rerun_init_phase() ! recursion error
+    utility_funcs.rerun_init_phase() # ! recursion error
 
 security_settings = st.session_state["security_settings"]
 #loading the security settings
