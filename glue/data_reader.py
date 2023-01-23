@@ -31,15 +31,18 @@ data_formats_spec.loader.exec_module(data_formats)
 sys.modules["data_formats"] = data_formats
 
 # ** importing utility_funcs
+"""
 utility_funcs_spec=importlib.util.spec_from_file_location("utility_funcs",glue_layer / "utility_funcs.py")
 utility_funcs = importlib.util.module_from_spec(utility_funcs_spec)
 utility_funcs_spec.loader.exec_module(utility_funcs)
 sys.modules["utility_funcs"] = utility_funcs
 
 
+
 if "security_settings" not in st.session_state:
     #re-starting the data config using utility funcs
     utility_funcs.rerun_init_phase() # ! recursion error
+
 
 security_settings = st.session_state["security_settings"]
 #loading the security settings
@@ -60,7 +63,7 @@ security_settings= {
         }
 }
 
-
+"""
 
 
 def translate_plsql_dtype_to_py(inpt: str):
