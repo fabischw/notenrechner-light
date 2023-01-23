@@ -27,6 +27,9 @@ Investigating an issue where a recursive initital page load structure causes the
 ### Code
 - working on checks.py (writing the security checks for data reading / writing)
 
+### FIXING:
+- working on resolving a recursive page load problem addressed in [here](./planing-testing/work_resources_thoughts/recursive_page_load/README.md), current status: temporary fix has been deployed
+
 
 </details>
 
