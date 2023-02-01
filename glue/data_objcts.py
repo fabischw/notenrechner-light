@@ -68,7 +68,7 @@ class schueler_obj():
 		self.vorname2 = vorname2
 		self.email = email
 		self.an_schule_seit = an_schule_seit
-		self.schule_id = schule
+		self.schule_id = schule_id
 		self.stufe = stufe
 		self.adresse = adresse
 		self.salter = salter
