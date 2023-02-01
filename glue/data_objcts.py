@@ -145,39 +145,6 @@ class kurs_obj():
 
 
 
-#stunden table as object
-class stunden_obj():
-	def __init__(self,stunden_id,sday,scount,cre_userid,cre_date,chg_userid,chg_date):
-		self.stunden_id = stunden_id
-		self.sday = sday
-		self.scount = scount
-		self.cre_userid = cre_userid
-		self.cre_date = cre_date
-		self.chg_userid = chg_userid
-		self.chg_date = chg_date
-
-	def __repr__(self):
-		return f"Stunden({self.stunden_id},{self.sday},{self.scount},{self.cre_userid},{self.cre_date},{self.chg_userid},{self.chg_date})"
-
-	#function to append the object to a panda dataframe
-	def apd_pd_dataframe(self,dtframe):
-		#convert the current object to a dataframe
-		object_pd_repr = pd.DataFrame({
-			"stunden_id": [self.stunden_id],
-			"sday": [self.sday],
-			"scount": [self.scount],
-			"cre_userid": [self.cre_userid],
-			"cre_date": [self.cre_date],
-			"chg_userid": [self.chg_userid],
-			"chg_date": [self.chg_date]
-		})
-		#append the dataframe with 1 row to the exisiting dataframe
-		dtframe.append(object_pd_repr)
-		return dtframe
-
-
-
-
 
 #lehrer table as object
 class lehrer_obj():
