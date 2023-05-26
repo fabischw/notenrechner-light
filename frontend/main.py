@@ -6,7 +6,6 @@ when launching this dashboard you should lanch home.py, NOT this script
 
 
 #importing modules
-from psutil import version_info
 import streamlit as st
 import PIL
 import pathlib
